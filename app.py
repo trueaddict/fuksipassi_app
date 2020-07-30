@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 
 user = 'test'
@@ -24,10 +24,10 @@ def login():
     if username == user and password == sala:
       session['loggedin'] = True
       session['id'] = userid
-      session['username'] = user
-      return render_template('/syrinx/index.html', msg=session['username'])
+      session['useremail'] = user
+      return render_template('/syrinx/index.html', msg=session['useremail'])
   elif request.method == 'GET' and 'loggedin' in session:
-    return render_template('/syrinx/index.html', msg=session['username'])
+    return render_template('/syrinx/index.html', msg=session['useremail'])
   else:
     msg = 'Väärä sähköposti tai salasana!'
   return render_template('index.html', msg=msg)
@@ -38,6 +38,13 @@ def syrinx():
     return render_template('/syrinx/index.html', msg=session['username'])
   else:
     return render_template('index.html', msg='Kirjaudu sisään!')
+
+@app.route('/logout')
+def logout():
+  session.pop('loggedin', None)
+  session.pop('id', None)
+  session.pop('useremail', None)
+  return redirect('/')
 
 if __name__ == '__name__':
   #app.debug = True
