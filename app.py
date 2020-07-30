@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, session
+from flask import Flask, render_template, redirect, request, session
 from flask_sqlalchemy import SQLAlchemy
 
 user = 'test'
@@ -24,7 +24,7 @@ def login():
       session['loggedin'] = True
       session['id'] = userid
       session['username'] = user
-      return 'Sisäänkirjautuminen onnistui'
+      return redirect('/')
   else:
     msg = 'Väärä sähköposti tai salasana!'
   return render_template('index.html', msg=msg)
