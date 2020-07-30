@@ -15,7 +15,35 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://abcixaukzjuknx:544543e60d6a6
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
-db.init_app(app)
+
+class Kayttaja(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  useremail = db.Column(db.String(50), nullable=False, unique=True)
+  password = db.Column(db.String(50), nullable=False)
+  id_jarj = db.Column(db.Integer, db.ForeignKey('jarjesto.id'), nullable=False)
+
+  suoritukset = db.relationship('Suoritus', backref='kayttaja')
+
+class Tehtava(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  kuvaus = db.Column(db.String(255), nullable=False)
+  id_jarj = db.Column(db.Integer, db.ForeignKey('jarjesto.id'), nullable=False)
+  num = db.Column(db.Integer)
+
+class Suoritus(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  id_user = db.Column(db.Integer, db.ForeignKey('kayttaja.id'), nullable=False)
+  id_jarj = db.Column(db.Integer, db.ForeignKey('jarjesto.id'), nullable=False)
+  checked = db.Column(db.Boolean, nullable=False)
+  add_date = db.Column(db.DateTime, nullable=False)
+  checked_date = db.Column(db.DateTime)
+
+class Jarjesto(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  name = db.Column(db.String(50), nullable=False)
+
+  tehtavat = db.relationship('Tehtava', backref='jarjesto')
+
 
 @app.route('/')
 def index():
@@ -54,35 +82,6 @@ def logout():
   session.pop('id', None)
   session.pop('useremail', None)
   return redirect('/')
-
-
-class Kayttaja(db.Model):
-  id = db.Column(db.Integer, primary_key=True)
-  useremail = db.Column(db.String(50), nullable=False, unique=True)
-  password = db.Column(db.String(50), nullable=False)
-  id_jarj = db.Column(db.Integer, db.ForeignKey('jarjesto.id'), nullable=False)
-
-  suoritukset = db.relationship('Suoritus', backref='kayttaja')
-
-class Tehtava(db.Model):
-  id = db.Column(db.Integer, primary_key=True)
-  kuvaus = db.Column(db.String(255), nullable=False)
-  id_jarj = db.Column(db.Integer, db.ForeignKey('jarjesto.id'), nullable=False)
-  num = db.Column(db.Integer)
-
-class Suoritus(db.Model):
-  id = db.Column(db.Integer, primary_key=True)
-  id_user = db.Column(db.Integer, db.ForeignKey('kayttaja.id'), nullable=False)
-  id_jarj = db.Column(db.Integer, db.ForeignKey('jarjesto.id'), nullable=False)
-  checked = db.Column(db.Boolean, nullable=False)
-  add_date = db.Column(db.DateTime, nullable=False)
-  checked_date = db.Column(db.DateTime)
-
-class Jarjesto(db.Model):
-  id = db.Column(db.Integer, primary_key=True)
-  name = db.Column(db.String(50), nullable=False)
-
-  tehtavat = db.relationship('Tehtava', backref='jarjesto')
 
 if __name__ == '__name__':
   #app.debug = True
