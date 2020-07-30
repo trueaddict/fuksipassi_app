@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-  return render_template('syrinx/index.html', msg="")
+  return render_template('index.html', msg="")
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -27,7 +27,7 @@ def login():
       msg = 'Sisäänkirjautuminen onnistui'
   else:
     msg = 'Väärä sähköposti tai salasana!'
-  return render_template('syrinx/index.html', msg=msg)
+  return render_template('index.html', msg=msg)
 
 if __name__ == '__name__':
   app.debug = True
