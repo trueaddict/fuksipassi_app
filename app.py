@@ -1,4 +1,3 @@
-import os
 from flask import Flask, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 
@@ -7,7 +6,7 @@ sala = 'test'
 userid = '123456'
 
 app = Flask(__name__)
-app.secret_key = b.os.environ.get('SECRET_KEY', None)
+app.secret_key = b'@T$6bs3x2cm2F9X/rm47%8'
 
 @app.route('/')
 def index():
