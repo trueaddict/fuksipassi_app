@@ -11,7 +11,7 @@ app = Flask(__name__)
 def index():
   return render_template('syrinx/index.html', msg="")
 
-@app.route('/login', methods=['GET','POST'])
+@app.route('/', methods=['POST'])
 def login():
   msg = ''
   if request.method == 'POST' and 'useremail' in request.form and 'password' in request.form:
