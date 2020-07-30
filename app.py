@@ -1,5 +1,9 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 from flask_sqlalchemy import SQLAlchemy
+
+user = 'email@email.com'
+sala = 'salasana'
+userid = '123456'
 
 app = Flask(__name__)
 
@@ -9,7 +13,20 @@ def index():
 
 @app.route('/login', methods=['POST'])
 def login():
-  return render_template('syrinx/index.html', msg="Logged in")
+  msg = ''
+  if request.method == 'POST' and 'useremail' in request.form and 'password' in request.form:
+    username = request.form['useremail']
+    password = request.form['password']
+
+    # SQL kysely
+
+    if username == user and password == sala:
+      session['loggedin'] = True
+      session['id'] = userid
+      session['username'] = user
+      return 'Sisäänkirjautuminen onnistui'
+  else:
+    msg = 'Väärä sähköposti tai salasana!'
 
 if __name__ == '__name__':
   app.debug = True
