@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, session
+from flask import Flask, render_template, request, session
 from flask_sqlalchemy import SQLAlchemy
 
 user = 'test'
@@ -24,11 +24,12 @@ def login():
       session['loggedin'] = True
       session['id'] = userid
       session['username'] = user
-      return ''
+      return msg = 'Sisäänkirjautuminen onnistui'
   else:
     msg = 'Väärä sähköposti tai salasana!'
   return render_template('index.html', msg=msg)
 
 if __name__ == '__name__':
-  #app.debug = True
+  app.debug = True
+  app.secret_key = '@T$6bs3x2cm2F9X/rm47%8:.9$EkJ97'
   app.run()
