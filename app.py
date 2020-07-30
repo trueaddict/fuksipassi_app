@@ -8,15 +8,12 @@ userid = '123456'
 app = Flask(__name__)
 app.secret_key = b'@T$6bs3x2cm2F9X/rm47%8'
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def index():
-  if request.method == 'POST':
-    login(request)
-  elif request.method == 'GET':
-    page()
   return render_template('index.html', msg="")
 
-def login(request):
+@app.route('/login', methods=['POST'])
+def login():
   msg = ''
   if request.method == 'POST' and 'useremail' in request.form and 'password' in request.form:
     username = request.form['useremail']
@@ -32,9 +29,6 @@ def login(request):
   else:
     msg = 'Väärä sähköposti tai salasana!'
   return render_template('index.html', msg=msg)
-
-def page():
-  return render_template('index.html', msg="")
 
 @app.route('/syrinx/index.html')
 def syrinx():
