@@ -7,7 +7,7 @@ app = Flask(__name__)
 def index():
   return render_template('syrinx/index.html', msg="")
 
-@app.route('/login')
+@app.route('/login', methods=['POST'])
 def login():
   return render_template('syrinx/index.htlm', msg="Logged in")
 
