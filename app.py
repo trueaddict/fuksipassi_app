@@ -1,5 +1,8 @@
 from flask import Flask, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
+
+
 
 user = 'test'
 sala = 'test'
@@ -7,6 +10,12 @@ userid = '123456'
 
 app = Flask(__name__)
 app.secret_key = b'@T$6bs3x2cm2F9X/rm47%8'
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://abcixaukzjuknx:544543e60d6a6f12c48396bae98788ef1171d271782d4b8694ca8cc3627017e5@ec2-54-197-254-117.compute-1.amazonaws.com:5432/d42tvvjjla6t5f'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+db.init_app(app)
 
 @app.route('/')
 def index():
