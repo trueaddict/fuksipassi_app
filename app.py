@@ -24,7 +24,7 @@ def login():
       session['loggedin'] = True
       session['id'] = userid
       session['username'] = user
-      return 'Sisäänkirjautuminen onnistui'
+      msg = 'Sisäänkirjautuminen onnistui'
   else:
     msg = 'Väärä sähköposti tai salasana!'
   return render_template('syrinx/index.html', msg=msg)
