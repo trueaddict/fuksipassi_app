@@ -7,12 +7,17 @@
 <body>
   <div class="login">
     <h1>Kirjaudu</h1>
-    <form action="/submit" method="POST">
+
+    {% if msg %}
+    <p class="">{{ msg | safe }}</p>
+    {% endif %}
+
+    <form action="/login" method="POST">
       <label for="useremail"></label>
       <input type="text" name="useremail" placeholder="Sähköposti" id="useremail" required>
       <label for="password"></label>
       <input type="password" name="password" placeholder="Salasana" id="password" required>
-      <input type="submit" value="login">
+      <input type="submit" value="Kirjaudu">
     </form>
   </div>
 </body>
