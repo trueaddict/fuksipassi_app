@@ -24,11 +24,11 @@ def login():
       session['loggedin'] = True
       session['id'] = userid
       session['username'] = user
-      return redirect('/')
+      return ''
   else:
     msg = 'Väärä sähköposti tai salasana!'
   return render_template('index.html', msg=msg)
 
 if __name__ == '__name__':
-  app.debug = True
+  #app.debug = True
   app.run()
