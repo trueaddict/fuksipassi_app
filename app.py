@@ -27,6 +27,7 @@ def login():
       return 'Sisäänkirjautuminen onnistui'
   else:
     msg = 'Väärä sähköposti tai salasana!'
+  return render_template('syrinx/index.html', msg=msg)
 
 if __name__ == '__name__':
   app.debug = True
