@@ -9,7 +9,7 @@ def index():
 
 @app.route('/login', methods=['POST'])
 def login():
-  return render_template('syrinx/index.htlm', msg="Logged in")
+  return render_template('syrinx/index.html', msg="Logged in")
 
 if __name__ == '__name__':
   app.debug = True
