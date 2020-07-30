@@ -2,8 +2,6 @@ from flask import Flask, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
-
-
 user = 'test'
 sala = 'test'
 userid = '123456'
@@ -25,12 +23,21 @@ class Kayttaja(db.Model):
 
   suoritukset = db.relationship('Suoritus', backref='kayttaja')
 
+  def __init__(self, useremail, password, id_jarj):
+    self.useremail = useremail
+    self.password = password
+    self.id_jarj = id_jarj
+
 class Tehtava(db.Model):
   __tablename__ = 'tehtava'
   id = db.Column(db.Integer, primary_key=True)
   kuvaus = db.Column(db.String(255), nullable=False)
   id_jarj = db.Column(db.Integer, db.ForeignKey('jarjesto.id'), nullable=False)
   num = db.Column(db.Integer)
+
+  def __init__(self, kuvaus, num):
+    self.kuvaus = kuvaus
+    self.num = num
 
 class Suoritus(db.Model):
   __tablename__ = 'suoritus'
@@ -41,12 +48,21 @@ class Suoritus(db.Model):
   add_date = db.Column(db.DateTime, nullable=False)
   checked_date = db.Column(db.DateTime)
 
+  def __init__(self, id_user, id_jarj):
+    self.id_user = id_user
+    self.id_jarj = id_jarj
+    self.checked = False
+    self.add_date = datetime.today()
+
 class Jarjesto(db.Model):
   __tablename__ = 'jarjesto'
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String(50), nullable=False)
 
   tehtavat = db.relationship('Tehtava', backref='jarjesto')
+
+  def __init__(self, name):
+    self.name = name
 
 
 @app.route('/')
