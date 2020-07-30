@@ -12,7 +12,7 @@ app.secret_key = b'@T$6bs3x2cm2F9X/rm47%8'
 def index():
   return render_template('index.html', msg="")
 
-@app.route('/login', methods=['POST'])
+@app.route('/etusivu', methods=['GET', 'POST'])
 def login():
   msg = ''
   if request.method == 'POST' and 'useremail' in request.form and 'password' in request.form:
@@ -26,6 +26,8 @@ def login():
       session['id'] = userid
       session['username'] = user
       return render_template('/syrinx/index.html', msg=session['username'])
+  elif request.method == 'GET' and 'loggedin' in session:
+    return render_template('/syrinx/index.html', msg=session['username'])
   else:
     msg = 'Väärä sähköposti tai salasana!'
   return render_template('index.html', msg=msg)
