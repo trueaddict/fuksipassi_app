@@ -25,10 +25,17 @@ def login():
       session['loggedin'] = True
       session['id'] = userid
       session['username'] = user
-      msg = 'Sisäänkirjautuminen onnistui'
+      return render_template('/syrinx/index.html', msg=session['username'])
   else:
     msg = 'Väärä sähköposti tai salasana!'
   return render_template('index.html', msg=msg)
+
+@app.route('/syrinx/index.html')
+def syrinx():
+  if 'loggedin' in session:
+    return render_template('/syrinx/index.html', msg=session['username'])
+  else:
+    return render_template('index.html', msg='Kirjaudu sisään!')
 
 if __name__ == '__name__':
   #app.debug = True
