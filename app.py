@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, session
 from flask_sqlalchemy import SQLAlchemy
 
-user = 'email@email.com'
-sala = 'salasana'
+user = 'test'
+sala = 'test'
 userid = '123456'
 
 app = Flask(__name__)
