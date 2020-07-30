@@ -6,6 +6,7 @@ sala = 'test'
 userid = '123456'
 
 app = Flask(__name__)
+app.secret_key = b'@T$6bs3x2cm2F9X/rm47%8'
 
 @app.route('/')
 def index():
@@ -30,6 +31,5 @@ def login():
   return render_template('index.html', msg=msg)
 
 if __name__ == '__name__':
-  app.debug = True
-  app.secret_key = '@T$6bs3x2cm2F9X/rm47%8:.9$EkJ97'
+  #app.debug = True
   app.run()
