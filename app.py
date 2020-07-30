@@ -21,9 +21,9 @@ def login():
     # SQL kysely
 
     if username == user and password == sala:
-      session['loggedin'] = True
-      session['id'] = userid
-      session['username'] = user
+      #session['loggedin'] = True
+      #session['id'] = userid
+      #session['username'] = user
       msg = 'Sisäänkirjautuminen onnistui'
   else:
     msg = 'Väärä sähköposti tai salasana!'
