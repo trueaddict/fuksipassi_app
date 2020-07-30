@@ -7,11 +7,7 @@ userid = '123456'
 
 app = Flask(__name__)
 
-@app.route('/')
-def index():
-  return render_template('index.html', msg="")
-
-@app.route('/login', methods=['POST'])
+@app.route('/', methods=['GET','POST'])
 def login():
   msg = ''
   if request.method == 'POST' and 'useremail' in request.form and 'password' in request.form:
