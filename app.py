@@ -35,10 +35,12 @@ class Tehtava(db.Model):
   kuvaus = db.Column(db.String(255), nullable=False)
   id_jarj = db.Column(db.Integer, db.ForeignKey('jarjesto.id'), nullable=False)
   num = db.Column(db.Integer)
+  tyyppi = db.Column(db.String(100))
 
-  def __init__(self, kuvaus, num):
+  def __init__(self, kuvaus, tyyppi, num):
     self.kuvaus = kuvaus
     self.num = num
+    self.tyyppi = tyyppi
 
 class Suoritus(db.Model):
   __tablename__ = 'suoritus'
@@ -107,7 +109,7 @@ def logout():
   return redirect('/')
 
 def generateData():
-  return {"msg" : session['useremail'], "tehtavat" : [{"nro":1, "kuvaus":"Liity Syrinx Ry:n jäseneksi", "suoritettu":True}, {"nro":2, "kuvaus":"Osallistu tapahtumaan", "suoritettu":False}]}
+  return {"user" : "TEst Username", "tehtavat" : [{"nro":1, "kuvaus":"Liity Syrinx Ry:n jäseneksi", "suoritettu":true, "id":1255353}, {"nro":2, "kuvaus":"Osallistu tapahtumaan", "suoritettu":false, "id":1255354}, {"nro":3, "kuvaus":"Osallistu tapahtumaan", "suoritettu":false, "id":1255355}]}
 
 if __name__ == '__name__':
   app.debug = True
