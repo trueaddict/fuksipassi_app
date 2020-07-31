@@ -83,7 +83,7 @@ def login():
       session['id'] = userid
       session['useremail'] = user
       data = {'value' : 'Tehtävä 1'}
-      return render_template('/syrinx/index.html', msg=session['useremail'], data=data)
+      return render_template('/syrinx/index.html', data=data)
   elif request.method == 'GET' and 'loggedin' in session:
     return render_template('/syrinx/index.html', msg=session['useremail'])
   else:
