@@ -105,5 +105,5 @@ def logout():
   return redirect('/')
 
 if __name__ == '__name__':
-  #app.debug = True
+  app.debug = True
   app.run()
