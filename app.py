@@ -68,7 +68,7 @@ class Jarjesto(db.Model):
 
 @app.route('/')
 def index():
-  return render_template('index.html', msg="")
+  return render_template('index.html', data="")
 
 @app.route('/etusivu', methods=['GET', 'POST'])
 def login():
@@ -83,20 +83,20 @@ def login():
       session['loggedin'] = True
       session['id'] = userid
       session['useremail'] = user
-      data = {"value" : "Tehtävä 1"}
-      return render_template('/syrinx/index.html', msg=json.dumps(data))
+      data = generateData()
+      return render_template('/syrinx/index.html', data=json.dumps(data))
   elif request.method == 'GET' and 'loggedin' in session:
-    return render_template('/syrinx/index.html', msg=session['useremail'])
+    return render_template('/syrinx/index.html', data=session['useremail'])
   else:
     msg = 'Väärä sähköposti tai salasana!'
-  return render_template('index.html', msg=msg)
+  return render_template('index.html', data=msg)
 
 @app.route('/syrinx/index.html')
 def syrinx():
   if 'loggedin' in session:
-    return render_template('/syrinx/index.html', msg=session['useremail'])
+    return render_template('/syrinx/index.html', data=session['useremail'])
   else:
-    return render_template('index.html', msg='Kirjaudu sisään!')
+    return render_template('index.html', data='Kirjaudu sisään!')
 
 @app.route('/logout')
 def logout():
@@ -104,6 +104,9 @@ def logout():
   session.pop('id', None)
   session.pop('useremail', None)
   return redirect('/')
+
+def generateData():
+  return {"value" : "Tehtävä 1", "label" : 1234}
 
 if __name__ == '__name__':
   app.debug = True

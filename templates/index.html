@@ -8,8 +8,8 @@
   <div class="login">
     <h1>Kirjaudu</h1>
 
-    {% if msg %}
-    <p class="">{{ msg | safe }}</p>
+    {% if data %}
+    <p class="">{{ data | safe }}</p>
     {% endif %}
 
     <form action="/etusivu" method="POST">
