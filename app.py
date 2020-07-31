@@ -86,7 +86,8 @@ def login():
       data = generateData()
       return render_template('/syrinx/index.html', data=json.dumps(data))
   elif request.method == 'GET' and 'loggedin' in session:
-    return render_template('/syrinx/index.html', data=session['useremail'])
+    data = generateData()
+    return render_template('/syrinx/index.html', data=json.dumps(data))
   else:
     msg = 'Väärä sähköposti tai salasana!'
   return render_template('index.html', data=msg)
@@ -106,7 +107,7 @@ def logout():
   return redirect('/')
 
 def generateData():
-  return {"value" : "Tehtävä 1", "label" : 1234}
+  return {"msg" : session['useremail'], "tehtavat" : [{"nro":1, "kuvaus":"Liity Syrinx Ry:n jäseneksi", "suoritettu":True}, {"nro":2, "kuvaus":"Osallistu tapahtumaan", "suoritettu":False}]}
 
 if __name__ == '__name__':
   app.debug = True
