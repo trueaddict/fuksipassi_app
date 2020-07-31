@@ -4,6 +4,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Syrinx Fuksipassi Etusivu</title>
   <script type="text/javascript" src="./static/script/syrinx.js"></script>
+  <script type="text/javascript">
+    data = "{{ data }}"
+  </script>
 </head>
 <body>
   <div class="login">
@@ -12,14 +15,6 @@
     {% if msg %}
     <p class="">{{ msg | safe }}</p>
     {% endif %}
-
-    <ul>
-      {% data in data %}
-        <li>{{data.value}}</li>
-      {%end%}
-    </ul>
-    
-
     <a href="/logout">Kirjaudu ulos</a>
   </div>
 </body>
