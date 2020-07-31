@@ -1,4 +1,3 @@
-"use strict";
 console.log(data);
 
 set_valitut = new Set();
