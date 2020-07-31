@@ -109,7 +109,7 @@ def logout():
   return redirect('/')
 
 def generateData():
-  return {"user" : "TEst Username", "tehtavat" : [{"nro":1, "kuvaus":"Liity Syrinx Ry:n jäseneksi", "suoritettu":true, "id":1255353}, {"nro":2, "kuvaus":"Osallistu tapahtumaan", "suoritettu":false, "id":1255354}, {"nro":3, "kuvaus":"Osallistu tapahtumaan", "suoritettu":false, "id":1255355}]}
+  return {"user" : "TEst Username", "tehtavat" : [{"nro":1, "kuvaus":"Liity Syrinx Ry:n jäseneksi", "suoritettu":"true", "id":1255353}, {"nro":2, "kuvaus":"Osallistu tapahtumaan", "suoritettu":"false", "id":1255354}, {"nro":3, "kuvaus":"Osallistu tapahtumaan", "suoritettu":"false", "id":1255355}]}
 
 if __name__ == '__name__':
   app.debug = True
