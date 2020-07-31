@@ -93,7 +93,6 @@ def login():
 @app.route('/syrinx/index.html')
 def syrinx():
   if 'loggedin' in session:
-    msg = {'value' : session['useremail']}
     return render_template('/syrinx/index.html', msg=session['useremail'])
   else:
     return render_template('index.html', msg='Kirjaudu sisään!')
