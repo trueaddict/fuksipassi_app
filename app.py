@@ -82,17 +82,20 @@ def login():
       session['loggedin'] = True
       session['id'] = userid
       session['useremail'] = user
-      return render_template('/syrinx/index.html', msg=session['useremail'])
+      msg = {'value' : session['useremail']}
+      return render_template('/syrinx/index.html', data=msg)
   elif request.method == 'GET' and 'loggedin' in session:
-    return render_template('/syrinx/index.html', msg=session['useremail'])
+    msg = {'value' : session['useremail']}
+    return render_template('/syrinx/index.html', data=msg)
   else:
     msg = 'Väärä sähköposti tai salasana!'
-  return render_template('index.html', msg=msg)
+  return render_template('index.html', data=msg)
 
 @app.route('/syrinx/index.html')
 def syrinx():
   if 'loggedin' in session:
-    return render_template('/syrinx/index.html', msg=session['useremail'])
+    msg = {'value' : session['useremail']}
+    return render_template('/syrinx/index.html', msg=msg)
   else:
     return render_template('index.html', msg='Kirjaudu sisään!')
 
