@@ -82,9 +82,9 @@ def login():
       session['loggedin'] = True
       session['id'] = userid
       session['useremail'] = user
-      return render_template('/syrinx/index.html', msg=session['useremail'])
+      data = {'value' : 'Tehtävä 1'}
+      return render_template('/syrinx/index.html', msg=session['useremail'], data=data)
   elif request.method == 'GET' and 'loggedin' in session:
-    msg = {'value' : session['useremail']}
     return render_template('/syrinx/index.html', msg=session['useremail'])
   else:
     msg = 'Väärä sähköposti tai salasana!'
