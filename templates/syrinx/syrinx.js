@@ -1,0 +1,4 @@
+
+data;
+
+console.log(data);
