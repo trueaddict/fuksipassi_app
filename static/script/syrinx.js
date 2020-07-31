@@ -38,7 +38,7 @@ function luoTehtava(nro, kuvaus, suoritettu, id) {
   var div4=document.createElement('div');
   div4.className='card-action center';
   div2.appendChild(div4);
-  if (!suoritettu) {
+  if ('true' !== suoritettu) {
     var a1=document.createElement('button');
     a1.addEventListener('click', function(e) {
       if (set_valitut.has(e.target.id)) {
