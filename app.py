@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import json
 
 user = 'test'
 sala = 'test'
@@ -82,8 +83,8 @@ def login():
       session['loggedin'] = True
       session['id'] = userid
       session['useremail'] = user
-      data = '{"value" : "Tehtävä 1"}'
-      return render_template('/syrinx/index.html', msg=data)
+      data = {"value" : "Tehtävä 1"}
+      return render_template('/syrinx/index.html', msg=json.dumps(data))
   elif request.method == 'GET' and 'loggedin' in session:
     return render_template('/syrinx/index.html', msg=session['useremail'])
   else:
