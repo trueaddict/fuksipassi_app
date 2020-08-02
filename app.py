@@ -72,7 +72,7 @@ class Jarjesto(db.Model):
 def index():
   if 'loggedin' in session:
     data = generateData()
-    return render_template('index.html', data=json.dumps(data))
+    return render_template('/syrinx/index.html', data=json.dumps(data))
   return render_template('index.html', data="")
 
 @app.route('/etusivu', methods=['GET', 'POST'])
