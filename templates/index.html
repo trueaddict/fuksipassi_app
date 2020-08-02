@@ -3,22 +3,42 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Syrinx Fuksipassi</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="../static/css/syrinx.css">
 </head>
 <body>
-  <div class="login">
-    <h1>Kirjaudu</h1>
+  <div class="nav">
+    <div class="row">
+      <div class="center">
 
-    {% if data %}
-    <p class="">{{ data | safe }}</p>
-    {% endif %}
 
-    <form action="/etusivu" method="POST">
-      <label for="useremail"></label>
-      <input type="text" name="useremail" placeholder="Sähköposti" id="useremail" required>
-      <label for="password"></label>
-      <input type="password" name="password" placeholder="Salasana" id="password" required>
-      <input type="submit" value="Kirjaudu">
-    </form>
+        <div class="col s12 m2 brand-site">
+          <a href="https://www.syrinx.fi"><img src="https://www.syrinx.fi/wp-content/uploads/2019/02/copy-syrinx_logoGreenBackgroundveryYellowWithText.png" alt="" class="responsive-img"></a>
+        </div>
+        <div class="col s12 m4 offset-m2">
+          <a href="" class=""><h3 class="brand-text brand-logo">Fuksipassi</h3></a>
+        </div>
+      </div>
+    </div>
   </div>
+  <div class="center brand-text">
+    <h4>Kirjaudu</h4>
+    <p>Anna sähköposti muodossa: <i>etunimi</i>.<i>kirjain</i>.<i>sukunimi</i>@student.jyu.fi</p>
+  </div>
+  {% if data %}
+  <p class="center error">{{ data | safe }}</p>
+  {% endif %} 
+
+  <form class="kuittaus" action="/etusivu" method="POST">
+    <label for="useremail"></label>
+    <input type="text" name="useremail" placeholder="Sähköposti" id="useremail" required>
+    <label for="password"></label>
+    <input type="password" name="password" placeholder="Salasana" id="password" required>
+    <div class="center">
+      <input class="btn yellow darken-2" type="submit" value="Kirjaudu">
+    </div>
+    
+  </form>
 </body>
 </html>
