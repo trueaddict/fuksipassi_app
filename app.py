@@ -67,6 +67,9 @@ class Jarjesto(db.Model):
   def __init__(self, name):
     self.name = name
 
+@app.route('/info')
+def info():
+  return render_template('/etusivu/index.html')
 
 @app.route('/')
 def index():
