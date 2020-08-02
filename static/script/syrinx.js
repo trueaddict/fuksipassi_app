@@ -1,6 +1,5 @@
 console.log(data);
 
-set_valitut = new Set();
 
 window.onload = function() {
   toggleAccordions();
@@ -60,33 +59,6 @@ function luoTehtava(nro, kuvaus, suoritettu, id) {
     div4.appendChild(button);
     button.appendChild(document.createTextNode('Suoritettu'));
   }
-  
-  /*if ('true' !== suoritettu) {
-    var a1=document.createElement('button');
-    a1.addEventListener('click', function(e) {
-      if (set_valitut.has(e.target.id)) {
-        set_valitut.delete(e.target.id);
-        e.target.className = 'btn brand-text yellow darken-2'
-
-        if (set_valitut.size == 0) {
-          let footer = document.querySelector('div.fixed');
-          footer.classList.remove('show')
-        }
-      } else {
-        set_valitut.add(e.target.id);
-        e.target.className = 'btn brand-text green darken-4'
-        let footer = document.querySelector('div.fixed');
-        footer.classList.add('show')
-        //e.target.parentNode.removeChild(e.target); 
-      }
-      console.log(set_valitut);
-    })
-    a1.className='btn brand-text yellow darken-2';
-    a1.id=id;
-    div4.appendChild(a1);
-    var txt8=document.createTextNode('Lähetä');
-    a1.appendChild(txt8);
-  }*/
   return div1;
 }
 
