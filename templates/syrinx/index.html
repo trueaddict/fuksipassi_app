@@ -3,15 +3,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Syrinx Fuksipassi Etusivu</title>
+  
+  <script src="/dev/data.js"></script>
+  <!--
   <script type="text/javascript">
     var json = '{{ data|safe }}'
     data = JSON.parse(json);
-  </script>
-  <script type="text/javascript" src="static/script/syrinx.js"></script>
-  <link rel="icon" type="image/png" href="./static/img/favicon_fp_2.png"/>
-  <link rel="shortcut icon" type="image/png" href="./static/img/favicon_fp_2.png"/>
+  </script>-->
+  <script type="text/javascript" src="/static/script/syrinx.js"></script>
+  
+  
+  <link rel="icon" type="image/png" href="/static/img/favicon_fp_2.png"/>
+  <link rel="shortcut icon" type="image/png" href="/static/img/favicon_fp_2.png"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link rel="stylesheet" href="static/css/syrinx.css">
+  <link rel="stylesheet" href="/static/css/syrinx.css">
 </head>
 <body>
   <div class="nav">
@@ -76,7 +81,10 @@
                     <h5>Kuvaus ....</h5>
                   </div>
                   <div class="card-action center">
-                    <a class="btn brand-text yellow darken-2" href="">Valitse</a>
+                    <form action="/tarkista" method="post">
+                      <input type="text" placeholder="Viesti / Tutorin nimi" name="message" id="tehtäväID">
+                      <button type="submit" class="btn brand-text yellow darken-2">Lähetä</button>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -125,9 +133,6 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="fixed">
-    <p>Lähetä valitut tarkistettavaksi</p>
   </div>
 </body>
 </html>
