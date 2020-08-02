@@ -43,6 +43,7 @@ function luoTehtava(nro, kuvaus, suoritettu, id) {
       if (set_valitut.has(e.target.id)) {
         set_valitut.delete(e.target.id);
         e.target.className = 'btn brand-text yellow darken-2'
+
         if (set_valitut.size == 0) {
           let footer = document.querySelector('div.fixed');
           footer.classList.remove('show')
@@ -59,7 +60,7 @@ function luoTehtava(nro, kuvaus, suoritettu, id) {
     a1.className='btn brand-text yellow darken-2';
     a1.id=id;
     div4.appendChild(a1);
-    var txt8=document.createTextNode('Valitse');
+    var txt8=document.createTextNode('Lähetä');
     a1.appendChild(txt8);
   }
   return div1;

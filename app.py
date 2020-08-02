@@ -50,6 +50,7 @@ class Suoritus(db.Model):
   checked = db.Column(db.Boolean, nullable=False)
   add_date = db.Column(db.DateTime, nullable=False)
   checked_date = db.Column(db.DateTime)
+  info_text = db.Column(db.String(100))
 
   def __init__(self, id_user, id_jarj):
     self.id_user = id_user
