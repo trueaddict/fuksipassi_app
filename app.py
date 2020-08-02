@@ -87,11 +87,13 @@ def login():
       session['useremail'] = user
       data = generateData()
       return render_template('/syrinx/index.html', data=json.dumps(data))
+    else:
+      msg = 'Väärä sähköposti tai salasana!'
   elif request.method == 'GET' and 'loggedin' in session:
     data = generateData()
     return render_template('/syrinx/index.html', data=json.dumps(data))
   else:
-    msg = 'Väärä sähköposti tai salasana!'
+    return render_template('index.html', data=msg)
   return render_template('index.html', data=msg)
 
 @app.route('/syrinx/index.html')
