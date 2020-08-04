@@ -3,10 +3,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Syrinx Fuksipassi Hallinta</title>
-    <script type="text/javascript" src="/static/script/syrinx.js"></script>
 
-
-    <link rel="icon" type="image/png" href="/static/img/favicon_fp_2.png"/>
+    <script type="text/javascript" src="/dev/datahallinta.js"></script>
+    <script type="text/javascript" src="/static/script/hallinta.js"></script>
+    
     <link rel="shortcut icon" type="image/png" href="/static/img/favicon_fp_2.png"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="/static/css/hallinta.css">
@@ -19,7 +19,7 @@
                 <a href="https://www.syrinx.fi"><img src="https://www.syrinx.fi/wp-content/uploads/2019/02/copy-syrinx_logoGreenBackgroundveryYellowWithText.png" alt="" class="responsive-img"></a>
             </div>
             <div class="col s12 m4 offset-m2">
-                <a href="" class=""><h5 class="brand-text brand-logo">Syrinx Fuksipassi Hallinta</h5></a>
+                <a href="#" class=""><h5 class="brand-text brand-logo">Syrinx Fuksipassi Hallinta</h5></a>
             </div>
             <div class="col s12 m2">
                 <p class="brand-text">UserName</p>
@@ -29,7 +29,23 @@
                 <button class="btn-small logout-btn yellow darken-2" type="submit" name="logout-submit">Kirjaudu ulos</button>
                 </a>
             </div>
+            </div>
         </div>
     </div>
+    <div class="con">
+        <div class="row">
+            <div class="col s12">
+                <ul class="tabs">
+                  <li class="tab col s4"><a class="" href="#test1">Pyynnöt</a></li>
+                  <li class="tab col s4"><a href="#test2">Tehtävät</a></li>
+                  <li class="tab col s4"><a href="#test4">Käyttäjät</a></li>
+                </ul>
+            </div>
+            <div id="test1" class="col s12 red">Pyynnöt</div>
+            <div id="test2" class="col s12">Tehtävät</div>
+            <div id="test4" class="col s12">Käyttäjät</div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>

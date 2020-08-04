@@ -1,5 +1,6 @@
 body{
   font-size: 15;
+  background-color: #93ad20 !important;
 }
 
 .brand{
@@ -24,11 +25,36 @@ body{
 .logout-btn{
   padding: 0 0 0.01rem 0.01rem;
 }
-
 .nav{
-  background: #f1dc44 !important;
+  background: #f1dd44 !important;
   padding-bottom: 0.5rem;
 }
+
+.tabs {
+  background-color: #f1dd44 !important;
+  border-top: black solid 0.01rem;
+}
+
+.tabs .tab a {
+  color: black;
+}
+
+.tabs .tab a:hover, .tabs .tab a.active {
+  color: #000 !important;
+}
+
+.tabs .tab a:focus, .tabs .tab a:focus.active {
+  background-color: #fbc12d81 !important;
+}
+
+.tabs .indicator {
+  background-color: black !important;
+}
+
+.row .col {
+  padding: 0;
+}
+
 .kuittaus{
   max-width: 100%;
   padding: 1rem;
@@ -105,10 +131,6 @@ div.panel.show{
   opacity: 1;
   max-height: 100%;
   margin-bottom: 15px;
-}
-
-body{
-  background-color: #93ad20 !important;
 }
 
 input:focus{
