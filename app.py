@@ -110,6 +110,13 @@ def syrinx():
   else:
     return render_template('index.html', data='Kirjaudu sisään!')
 
+@app.route('/tarkista')
+def tarkista():
+  if 'loggedin' in session:
+    return render_template('/syrinx/index.html', data=session['useremail'])
+  else:
+    return render_template('index.html', data='Kirjaudu sisään!')
+
 @app.route('/logout')
 def logout():
   session.pop('loggedin', None)
