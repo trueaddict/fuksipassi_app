@@ -106,14 +106,16 @@ def login():
 @app.route('/syrinx/index.html')
 def syrinx():
   if 'loggedin' in session:
-    return render_template('/syrinx/index.html', data=session['useremail'])
+    data = generateData()
+    return render_template('/syrinx/index.html', data=json.dumps(data))
   else:
     return render_template('index.html', data='Kirjaudu sisään!')
 
 @app.route('/tarkista', methods=['POST'])
 def tarkista():
   if 'loggedin' in session:
-    return render_template('/syrinx/index.html', data=session['useremail'])
+    data = generateData()
+    return render_template('/syrinx/index.html', data=json.dumps(data))
   else:
     return render_template('index.html', data='Kirjaudu sisään!')
 
