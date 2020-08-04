@@ -1,7 +1,9 @@
 body{
   font-size: 15;
 }
-
+.hide {
+  display: none;
+}
 .brand{
   background: grey !important;
 }

@@ -56,6 +56,13 @@ function luoTehtava(nro, kuvaus, suoritettu, id) {
     input.setAttribute('name', 'message');
     input.setAttribute('id', id);
     input.className = 'perusopinnot';
+
+    var input_id = document.createElement('input');
+    input_id.className = 'hide';
+    input_id.setAttribute('name', 'id');
+    input_id.value = id;
+
+    form.appendChild(input_id);
     form.appendChild(input);
     var button = document.createElement('button');
     button.setAttribute('type', 'submit');
