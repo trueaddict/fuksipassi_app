@@ -4,12 +4,21 @@ console.log(data);
 window.onload = function() {
   toggleAccordions();
   luoTehtavat();
-  
+  openAccordion();
 }
+
+function openAccordion() {
+  urlParams = new URLSearchParams(window.location.search);
+  let id = urlParams.get('id');
+  let name = document.getElementById(id).className;
+  let div = document.getElementById(name).parentElement.previousElementSibling;
+  div.classList.toggle("active");
+  div.nextElementSibling.classList.toggle("show");
+}
+
 
 function luoTehtavat() {
   let perus = document.getElementById("perusopinnot");
-  console.log(perus);
   for(let teht of data.tehtavat) {
     perus.appendChild(luoTehtava(teht.nro, teht.kuvaus, teht.suoritettu, teht.id));
   }
@@ -46,6 +55,7 @@ function luoTehtava(nro, kuvaus, suoritettu, id) {
     input.setAttribute('placeholder', 'Viesti / Tutorin nimi');
     input.setAttribute('name', 'message');
     input.setAttribute('id', id);
+    input.className = 'perusopinnot';
     form.appendChild(input);
     var button = document.createElement('button');
     button.setAttribute('type', 'submit');
