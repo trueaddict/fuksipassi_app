@@ -116,7 +116,7 @@ def tarkista():
   if 'loggedin' in session:
     #data = generateData()
     #return render_template('/syrinx/index.html', data=json.dumps(data))
-    return redirect('/etusivu?id='+request.form['message'].id)
+    return redirect('/etusivu?id='+request.form['message'])
   else:
     return render_template('index.html', data='Kirjaudu sisään!')
 
