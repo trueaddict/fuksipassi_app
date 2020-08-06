@@ -60,7 +60,7 @@ class Suoritus(db.Model):
     self.id_jarj = id_jarj
     self.checked = False
     self.add_date = datetime.today()
-    self.checked_date = null
+    self.checked_date = None
     self.info_text = info_text
 
 class Jarjesto(db.Model):
