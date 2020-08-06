@@ -135,37 +135,6 @@ def logout():
   session.pop('useremail', None)
   return redirect('/')
 
-def luoTehtavat():
-  jarj = Jarjesto(id=1971, name='Syrinx')
-  db.session.add(jarj)
-  db.session.commit()
-  f = open('teht.txt', 'r')
-  for i in range(25):
-    line = f.readline().split(',')
-    teht = Tehtava(id=1971 + int(line[0]), kuvaus=line[1], id_jarj=1971, tyyppi='perusopinnot', num=line[0])
-    db.session.add(teht)
-    db.session.commit()
-  for i in range(60):
-    line = f.readline().split(',')
-    teht = Tehtava(id=1971 + int(line[0]), kuvaus=line[1], id_jarj=1971, tyyppi='aineopinnot', num=line[0])
-    db.session.add(teht)
-    db.session.commit()
-  for i in range(60):
-    line = f.readline().split(',')
-    teht = Tehtava(id=1971 + int(line[0]), kuvaus=line[1], id_jarj=1971, tyyppi='syventavat_opinnot', num=line[0])
-    db.session.add(teht)
-    db.session.commit()
-  for i in range(35):
-    line = f.readline().split(',')
-    teht = Tehtava(id=1971 + int(line[0]), kuvaus=line[1], id_jarj=1971, tyyppi='yleisopinnot', num=line[0])
-    db.session.add(teht)
-    db.session.commit()
-  kayt = Kayttaja(id=1,useremail='test',password='test',id_jarj=1971)
-  db.session.add(kayt)
-  db.session.commit()
-  suor = Suoritus(id=int('1971'+'1'+'1973'), id_user=1, id_teht=1973, id_jarj=1971, info_text='Testi suoritus')
-  db.session.add(suor)
-  db.session.commit()
 
 def generateData():
   teht = Tehtava.query.all()
@@ -174,7 +143,7 @@ def generateData():
   for t in teht:
     suoritettu = "false"
     for s in suoritukset:
-      if (t.id == s.id_teht & s.checked):
+      if (t.id == s.id_teht and s.checked):
         suoritettu = "true"
     tehtavat.append({"nro":t.num, "kuvaus":t.kuvaus, "suoritettu":suoritettu, "tyyppi":t.tyyppi, "id":t.id})
   return {"user" : "TEst Username", "tehtavat" : tehtavat}
