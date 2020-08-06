@@ -44,7 +44,17 @@ function luoTehtava(nro, kuvaus, suoritettu, tyyppi, id, lahetetty) {
   var div4=document.createElement('div');
   div4.className='card-action center';
   div2.appendChild(div4);
-  if ('true' !== suoritettu) {
+  if ('true' == suoritettu) {
+    var button = document.createElement('button');
+    button.className = 'btn brand-text btn-suoritettu';
+    div4.appendChild(button);
+    button.appendChild(document.createTextNode('Suoritettu'));
+  } else if ('true' == lahetetty) {
+    var button = document.createElement('button');
+    button.className = 'btn brand-text btn-lahetetty';
+    div4.appendChild(button);
+    button.appendChild(document.createTextNode('Lähetetty'));
+  } else {
     var form=document.createElement('form');
     form.setAttribute('action', '/tarkista');
     form.setAttribute('method', 'post');
@@ -69,16 +79,6 @@ function luoTehtava(nro, kuvaus, suoritettu, tyyppi, id, lahetetty) {
     form.appendChild(button);
     var txt7 = document.createTextNode('Lähetä');
     button.appendChild(txt7);
-  } else if ('true' == lahetetty) {
-    var button = document.createElement('button');
-    button.className = 'btn brand-text btn-lahetetty';
-    div4.appendChild(button);
-    button.appendChild(document.createTextNode('Lähetetty'));
-  } else {
-    var button = document.createElement('button');
-    button.className = 'btn brand-text btn-suoritettu';
-    div4.appendChild(button);
-    button.appendChild(document.createTextNode('Suoritettu'));
   }
   return div1;
 }
