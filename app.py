@@ -37,9 +37,10 @@ class Tehtava(db.Model):
   num = db.Column(db.Integer)
   tyyppi = db.Column(db.String(100))
 
-  def __init__(self, id, kuvaus, tyyppi, num):
+  def __init__(self, id, kuvaus, id_jarj, tyyppi, num):
     self.id = id
     self.kuvaus = kuvaus
+    self.id_jarj = id_jarj
     self.num = num
     self.tyyppi = tyyppi
 
@@ -63,10 +64,10 @@ class Jarjesto(db.Model):
   __tablename__ = 'jarjesto'
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String(50), nullable=False)
-
   tehtavat = db.relationship('Tehtava', backref='jarjesto')
 
-  def __init__(self, name):
+  def __init__(self, id, name):
+    self.id = id
     self.name = name
 
 @app.route('/info')
@@ -135,22 +136,22 @@ def luoTehtavat():
   f = open('teht.txt', 'r')
   for i in range(25):
     line = f.readline().split(',')
-    teht = Tehtava(id=1971 + int(line[0]), kuvaus=line[1], tyyppi='perusopinnot', num=line[0])
+    teht = Tehtava(id=1971 + int(line[0]), kuvaus=line[1], id_jarj=1971, tyyppi='perusopinnot', num=line[0])
     db.session.add(teht)
     db.session.commit()
   for i in range(60):
     line = f.readline().split(',')
-    teht = Tehtava(id=1971 + int(line[0]), kuvaus=line[1], tyyppi='aineopinnot', num=line[0])
+    teht = Tehtava(id=1971 + int(line[0]), kuvaus=line[1], id_jarj=1971, tyyppi='aineopinnot', num=line[0])
     db.session.add(teht)
     db.session.commit()
   for i in range(60):
     line = f.readline().split(',')
-    teht = Tehtava(id=1971 + int(line[0]), kuvaus=line[1], tyyppi='syventavat_opinnot', num=line[0])
+    teht = Tehtava(id=1971 + int(line[0]), kuvaus=line[1], id_jarj=1971, tyyppi='syventavat_opinnot', num=line[0])
     db.session.add(teht)
     db.session.commit()
   for i in range(35):
     line = f.readline().split(',')
-    teht = Tehtava(id=1971 + int(line[0]), kuvaus=line[1], tyyppi='yleisopinnot', num=line[0])
+    teht = Tehtava(id=1971 + int(line[0]), kuvaus=line[1], id_jarj=1971, tyyppi='yleisopinnot', num=line[0])
     db.session.add(teht)
     db.session.commit()
 
