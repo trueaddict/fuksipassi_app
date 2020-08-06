@@ -135,7 +135,7 @@ def logout():
 
 def generateData():
   teht = Tehtava.query.all()
-  suoritettu = Suoritus.query.filter(user_id=1)
+  suoritettu = Suoritus.query.filter(user_id=1).all()
   tehtavat = []
   for t in teht:
     for s in suoritettu:
