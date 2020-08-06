@@ -135,9 +135,14 @@ def logout():
 
 def generateData():
   teht = Tehtava.query.all()
+  suoritettu = Suoritus.query.filter(user_id=1)
   tehtavat = []
   for t in teht:
-    tehtavat.append({"nro":t.num,"kuvaus":t.kuvaus,"suoritettu":"false","tyyppi":t.tyyppi,"id":t.id})
+    for s in suoritettu:
+      suoritettu = "false"
+      if (s.checked):
+        suoritettu = "true"
+      tehtavat.append({"nro":t.num,"kuvaus":t.kuvaus,"suoritettu":suoritettu,"tyyppi":t.tyyppi,"id":t.id})
   return {"user" : "TEst Username", "tehtavat" : tehtavat}
 
 if __name__ == '__name__':
