@@ -26,6 +26,9 @@ body{
 .logout-btn{
   padding: 0 0 0.01rem 0.01rem;
 }
+.card .card-action {
+  height: 8.5rem;
+}
 
 .nav{
   background: #f1dc44 !important;
