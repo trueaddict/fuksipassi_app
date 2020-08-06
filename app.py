@@ -136,6 +136,9 @@ def logout():
   return redirect('/')
 
 def luoTehtavat():
+  jarj = Jarjesto(id=1971, name='Syrinx')
+  db.session.add(jarj)
+  db.session.commit()
   f = open('teht.txt', 'r')
   for i in range(25):
     line = f.readline().split(',')
@@ -157,9 +160,6 @@ def luoTehtavat():
     teht = Tehtava(id=1971 + int(line[0]), kuvaus=line[1], id_jarj=1971, tyyppi='yleisopinnot', num=line[0])
     db.session.add(teht)
     db.session.commit()
-  jarj = Jarjesto(id=1971, name='Syrinx')
-  db.session.add(jarj)
-  db.session.commit()
   kayt = Kayttaja(id=1,useremail='test',password='test',id_jarj=1971)
   db.session.add(kayt)
   db.session.commit()
