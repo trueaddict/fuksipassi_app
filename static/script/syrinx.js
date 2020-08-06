@@ -19,12 +19,12 @@ function openAccordion() {
 
 function luoTehtavat() {
   for(let teht of data.tehtavat) {
-    document.getElementById(teht.tyyppi).appendChild(luoTehtava(teht.nro, teht.kuvaus, teht.suoritettu, teht.id));
+    document.getElementById(teht.tyyppi).appendChild(luoTehtava(teht.nro, teht.kuvaus, teht.suoritettu, teht.tyyppi, teht.id));
   }
 }
 
 
-function luoTehtava(nro, kuvaus, suoritettu, id) {
+function luoTehtava(nro, kuvaus, suoritettu, tyyppi, id) {
   var div1=document.createElement('div');
   div1.className='col s12 m12 l6';
   var div2=document.createElement('div');
@@ -54,7 +54,7 @@ function luoTehtava(nro, kuvaus, suoritettu, id) {
     input.setAttribute('placeholder', 'Viesti / Tutorin nimi');
     input.setAttribute('name', 'message');
     input.setAttribute('id', id);
-    input.className = 'perusopinnot';
+    input.className = tyyppi;
 
     var input_id = document.createElement('input');
     input_id.className = 'hide';
