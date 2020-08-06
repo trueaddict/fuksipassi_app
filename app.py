@@ -146,7 +146,7 @@ def generateData():
     for s in suoritukset:
       if (t.id == s.id_teht and s.checked):
         suoritettu = "true"
-      else:
+      if (t.id == s.id_teht):
         lahetetty = "true"
     tehtavat.append({"nro":t.num, "kuvaus":t.kuvaus, "suoritettu":suoritettu, "lahetetty":lahetetty, "tyyppi":t.tyyppi, "id":t.id})
   return {"user" : "TEst Username", "tehtavat" : tehtavat}
