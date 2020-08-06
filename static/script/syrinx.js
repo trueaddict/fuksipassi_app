@@ -51,7 +51,7 @@ function luoTehtava(nro, kuvaus, suoritettu, tyyppi, id, lahetetty) {
     button.appendChild(document.createTextNode('Suoritettu'));
   } else if ('true' == lahetetty) {
     var button = document.createElement('button');
-    button.className = 'btn brand-text btn-lahetetty';
+    button.className = 'btn brand-text grey';
     div4.appendChild(button);
     button.appendChild(document.createTextNode('Lähetetty'));
   } else {
