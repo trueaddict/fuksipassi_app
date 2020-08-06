@@ -21,8 +21,7 @@ body{
   color: white !important;
 }
 .btn-lahetetty {
-  background: grey !important;
-  color: white !important;
+  background-color: grey !important;
 }
 .logout{
   margin-top: 1rem;
