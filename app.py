@@ -37,7 +37,8 @@ class Tehtava(db.Model):
   num = db.Column(db.Integer)
   tyyppi = db.Column(db.String(100))
 
-  def __init__(self, kuvaus, tyyppi, num):
+  def __init__(self, id, kuvaus, tyyppi, num):
+    self.id = id
     self.kuvaus = kuvaus
     self.num = num
     self.tyyppi = tyyppi
@@ -134,22 +135,22 @@ def luoTehtavat():
   f = open('teht.txt', 'r')
   for i in range(25):
     line = f.readline().split(',')
-    teht = Tehtava(kuvaus=line[1], tyyppi='perusopinnot', num=line[0])
+    teht = Tehtava(id=1971 + int(line[0]), kuvaus=line[1], tyyppi='perusopinnot', num=line[0])
     db.session.add(teht)
     db.session.commit()
   for i in range(60):
     line = f.readline().split(',')
-    teht = Tehtava(kuvaus=line[1], tyyppi='aineopinnot', num=line[0])
+    teht = Tehtava(id=1971 + int(line[0]), kuvaus=line[1], tyyppi='aineopinnot', num=line[0])
     db.session.add(teht)
     db.session.commit()
   for i in range(60):
     line = f.readline().split(',')
-    teht = Tehtava(kuvaus=line[1], tyyppi='syventavat_opinnot', num=line[0])
+    teht = Tehtava(id=1971 + int(line[0]), kuvaus=line[1], tyyppi='syventavat_opinnot', num=line[0])
     db.session.add(teht)
     db.session.commit()
   for i in range(35):
     line = f.readline().split(',')
-    teht = Tehtava(kuvaus=line[1], tyyppi='yleisopinnot', num=line[0])
+    teht = Tehtava(id=1971 + int(line[0]), kuvaus=line[1], tyyppi='yleisopinnot', num=line[0])
     db.session.add(teht)
     db.session.commit()
 
