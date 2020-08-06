@@ -130,6 +130,30 @@ def logout():
 def generateData():
   return {"user" : "TEst Username", "tehtavat" : [{"nro":1, "kuvaus":"Liity Syrinx Ry:n jäseneksi", "suoritettu":"true", "id":1255353}, {"nro":2, "kuvaus":"Osallistu tapahtumaan", "suoritettu":"false", "id":1255354}, {"nro":3, "kuvaus":"Osallistu tapahtumaan", "suoritettu":"false", "id":1255355}]}
 
+def luoTehtavat():
+  f = open('teht.txt', 'r')
+  for i in range(25):
+    line = f.readline().split(',')
+    teht = Tehtava(kuvaus=line[1], tyyppi='perusopinnot', num=line[0])
+    db.session.add(teht)
+    db.session.commit()
+  for i in range(60):
+    line = f.readline().split(',')
+    teht = Tehtava(kuvaus=line[1], tyyppi='perusopinnot', num=line[0])
+    db.session.add(teht)
+    db.session.commit()
+  for i in range(60):
+    line = f.readline().split(',')
+    teht = Tehtava(kuvaus=line[1], tyyppi='perusopinnot', num=line[0])
+    db.session.add(teht)
+    db.session.commit()
+  for i in range(35):
+    line = f.readline().split(',')
+    teht = Tehtava(kuvaus=line[1], tyyppi='perusopinnot', num=line[0])
+    db.session.add(teht)
+    db.session.commit()
+
+
 if __name__ == '__name__':
   app.debug = True
   app.run()
