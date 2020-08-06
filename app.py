@@ -139,17 +139,17 @@ def luoTehtavat():
     db.session.commit()
   for i in range(60):
     line = f.readline().split(',')
-    teht = Tehtava(kuvaus=line[1], tyyppi='perusopinnot', num=line[0])
+    teht = Tehtava(kuvaus=line[1], tyyppi='aineopinnot', num=line[0])
     db.session.add(teht)
     db.session.commit()
   for i in range(60):
     line = f.readline().split(',')
-    teht = Tehtava(kuvaus=line[1], tyyppi='perusopinnot', num=line[0])
+    teht = Tehtava(kuvaus=line[1], tyyppi='syventavat_opinnot', num=line[0])
     db.session.add(teht)
     db.session.commit()
   for i in range(35):
     line = f.readline().split(',')
-    teht = Tehtava(kuvaus=line[1], tyyppi='perusopinnot', num=line[0])
+    teht = Tehtava(kuvaus=line[1], tyyppi='yleisopinnot', num=line[0])
     db.session.add(teht)
     db.session.commit()
 
