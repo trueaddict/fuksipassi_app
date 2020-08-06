@@ -107,6 +107,7 @@ div.panel.show{
   opacity: 1;
   max-height: 100%;
   margin-bottom: 15px;
+  overflow: visible;
 }
 
 body{
