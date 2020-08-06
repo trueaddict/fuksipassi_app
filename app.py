@@ -138,8 +138,8 @@ def generateData():
   suoritukset = db.session.query(Suoritus).join(Kayttaja).filter(Kayttaja.id==1).all()
   tehtavat = []
   for t in teht:
+    suoritettu = "false"
     for s in suoritukset:
-      suoritettu = "false"
       if (s.checked):
         suoritettu = "true"
     tehtavat.append({"nro":t.num, "kuvaus":t.kuvaus, "suoritettu":suoritettu, "tyyppi":t.tyyppi, "id":t.id})
