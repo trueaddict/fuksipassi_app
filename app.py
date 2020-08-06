@@ -74,15 +74,6 @@ class Jarjesto(db.Model):
     self.id = id
     self.name = name
 
-def testSuoritus():
-  kaut = Kauttaja(1, 'test', 'test', 1971)
-  db.session.add(kaut)
-  db.session.commit()
-  suor_id = int('1971'+'1'+'1973')
-  suor = Suoritus(id=suor_id, id_user=1, id_jarj=1971, info_text='Testi suoritus')
-  db.session.add(suor)
-  db.session.commit()
-
 @app.route('/info')
 def info():
   return render_template('/etusivu/index.html')
