@@ -20,6 +20,10 @@ body{
   background: black !important;
   color: white !important;
 }
+.btn-lahetetty {
+  background: grey !important;
+  color: white !important;
+}
 .logout{
   margin-top: 1rem;
 }
