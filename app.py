@@ -17,7 +17,7 @@ db = SQLAlchemy(app)
 
 class Kayttaja(db.Model):
   __tablename__ = 'kayttaja'
-  id = db.Column(db.Integer, primary_key=True)
+  id = db.Column(db.Integer, primary_key=True, autoincrement=True)
   useremail = db.Column(db.String(50), nullable=False, unique=True)
   password = db.Column(db.String(50), nullable=False)
   id_jarj = db.Column(db.Integer, db.ForeignKey('jarjesto.id'), nullable=False)
@@ -49,15 +49,17 @@ class Suoritus(db.Model):
   __tablename__ = 'suoritus'
   id = db.Column(db.Integer, primary_key=True)
   id_user = db.Column(db.Integer, db.ForeignKey('kayttaja.id'), nullable=False)
+  id_teht = db.Column(db.Integer)
   id_jarj = db.Column(db.Integer, db.ForeignKey('jarjesto.id'), nullable=False)
   checked = db.Column(db.Boolean, nullable=False)
   add_date = db.Column(db.DateTime, nullable=False)
   checked_date = db.Column(db.DateTime)
   info_text = db.Column(db.String(100))
 
-  def __init__(self, id, id_user, id_jarj, info_text):
+  def __init__(self, id, id_user, id_teht, id_jarj, info_text):
     self.id = id
     self.id_user = id_user
+    self.id_teht = id_teht
     self.id_jarj = id_jarj
     self.checked = False
     self.add_date = datetime.today()
@@ -132,6 +134,36 @@ def logout():
   session.pop('id', None)
   session.pop('useremail', None)
   return redirect('/')
+
+def luoTehtavat():
+  f = open('teht.txt', 'r')
+  for i in range(25):
+    line = f.readline().split(',')
+    teht = Tehtava(id=1971 + int(line[0]), kuvaus=line[1], id_jarj=1971, tyyppi='perusopinnot', num=line[0])
+    db.session.add(teht)
+    db.session.commit()
+  for i in range(60):
+    line = f.readline().split(',')
+    teht = Tehtava(id=1971 + int(line[0]), kuvaus=line[1], id_jarj=1971, tyyppi='aineopinnot', num=line[0])
+    db.session.add(teht)
+    db.session.commit()
+  for i in range(60):
+    line = f.readline().split(',')
+    teht = Tehtava(id=1971 + int(line[0]), kuvaus=line[1], id_jarj=1971, tyyppi='syventavat_opinnot', num=line[0])
+    db.session.add(teht)
+    db.session.commit()
+  for i in range(35):
+    line = f.readline().split(',')
+    teht = Tehtava(id=1971 + int(line[0]), kuvaus=line[1], id_jarj=1971, tyyppi='yleisopinnot', num=line[0])
+    db.session.add(teht)
+    db.session.commit()
+  jarj = Jarjesto(id=1971, name='Syrinx')
+  db.session.add(jarj)
+  kayt = Kayttaja(id=1,useremail='test',password='test',id_jarj=1971)
+  db.session.add(kayt)
+  suor = Suoritus(id=int('1971'+'1'+'1973'), id_user=1, id_teht=1973, id_jarj=1971, info_text='Testi suoritus')
+  db.session.add(suor)
+  db.session.commit()
 
 def generateData():
   teht = Tehtava.query.all()
