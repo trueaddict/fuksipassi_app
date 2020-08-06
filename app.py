@@ -142,10 +142,13 @@ def generateData():
   tehtavat = []
   for t in teht:
     suoritettu = "false"
+    lahetetty = "false"
     for s in suoritukset:
       if (t.id == s.id_teht and s.checked):
         suoritettu = "true"
-    tehtavat.append({"nro":t.num, "kuvaus":t.kuvaus, "suoritettu":suoritettu, "tyyppi":t.tyyppi, "id":t.id})
+      else:
+        lahetetty = "true"
+    tehtavat.append({"nro":t.num, "kuvaus":t.kuvaus, "suoritettu":suoritettu, "lahetetty":lahetetty, "tyyppi":t.tyyppi, "id":t.id})
   return {"user" : "TEst Username", "tehtavat" : tehtavat}
 
 if __name__ == '__name__':
