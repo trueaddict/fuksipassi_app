@@ -54,11 +54,14 @@ class Suoritus(db.Model):
   checked_date = db.Column(db.DateTime)
   info_text = db.Column(db.String(100))
 
-  def __init__(self, id_user, id_jarj):
+  def __init__(self, id, id_user, id_jarj, info_text):
+    self.id = id
     self.id_user = id_user
     self.id_jarj = id_jarj
     self.checked = False
     self.add_date = datetime.today()
+    self.checked_date = null
+    self.info_text = info_text
 
 class Jarjesto(db.Model):
   __tablename__ = 'jarjesto'
