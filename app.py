@@ -10,7 +10,7 @@ userid = '123456'
 app = Flask(__name__)
 app.secret_key = b'@T$6bs3x2cm2F9X/rm47%8'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://qdzhvuquqgycqv:f7ae0721ecf01eb99f7d02b593496484d0affe767e8fea849f0e5528bfc92027@ec2-54-146-91-153.compute-1.amazonaws.com:5432/dcp4jqvs0dtccf'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://obspdelclwxyxp:177b2be19e3d8c08420fc054532d03bd126017706e3985ec6652a5195a8357fd@ec2-52-20-248-222.compute-1.amazonaws.com:5432/d3adjtir0n8o3m'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
