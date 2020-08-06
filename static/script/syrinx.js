@@ -18,9 +18,8 @@ function openAccordion() {
 
 
 function luoTehtavat() {
-  let perus = document.getElementById("perusopinnot");
   for(let teht of data.tehtavat) {
-    perus.appendChild(luoTehtava(teht.nro, teht.kuvaus, teht.suoritettu, teht.id));
+    document.getElementById(teht.tyyppi).appendChild(luoTehtava(teht.nro, teht.kuvaus, teht.suoritettu, teht.id));
   }
 }
 

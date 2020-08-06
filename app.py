@@ -133,7 +133,7 @@ def generateData():
   teht = Tehtava.query.all()
   tehtavat = []
   for t in teht:
-    tehtavat.append({"nro":t.num,"kuvaus":t.kuvaus,"suoritettu":"false","id":t.id})
+    tehtavat.append({"nro":t.num,"kuvaus":t.kuvaus,"suoritettu":"false","tyyppi":t.tyyppi,"id":t.id})
   return {"user" : "TEst Username", "tehtavat" : tehtavat}
 
 if __name__ == '__name__':
