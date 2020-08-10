@@ -5,7 +5,7 @@ import json
 
 user = 'test'
 sala = 'test'
-userid = '123456'
+userid = '1'
 
 app = Flask(__name__)
 app.secret_key = b'@T$6bs3x2cm2F9X/rm47%8'
@@ -138,7 +138,7 @@ def logout():
 
 def generateData():
   teht = Tehtava.query.all()
-  suoritukset = db.session.query(Suoritus).join(Kayttaja).filter(Kayttaja.id==1).all()
+  suoritukset = db.session.query(Suoritus).join(Kayttaja).filter(Kayttaja.id==session['id']).all()
   tehtavat = []
   for t in teht:
     suoritettu = "false"
