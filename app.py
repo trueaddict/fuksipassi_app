@@ -3,10 +3,6 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import json
 
-user = 'test'
-sala = 'test'
-userid = 1
-
 app = Flask(__name__)
 app.secret_key = b'@T$6bs3x2cm2F9X/rm47%8'
 
@@ -100,15 +96,15 @@ def login():
     if len(users) == 1:
       if users[0].useremail == username and users[0].password == password:
         session['loggedin'] = True
-        session['id'] = userid
-        session['useremail'] = user
+        session['id'] = users[0].id
+        session['useremail'] = users[0].useremail
         data = generateData()
         return render_template('/syrinx/index.html', data=json.dumps(data))
       else:
         msg = 'Väärä sähköposti tai salasana!'
     elif len(users) == 0:
       # Luo uusi käyttäjä
-      msg = 'Väärä sähköposti'
+      msg = 'Väärä sähköposti tai salasana!'
     else:
       # Muu virhe
       msg = 'Virhe'
@@ -158,7 +154,7 @@ def generateData():
       if (t.id == s.id_teht):
         lahetetty = "true"
     tehtavat.append({"nro":t.num, "kuvaus":t.kuvaus, "suoritettu":suoritettu, "lahetetty":lahetetty, "tyyppi":t.tyyppi, "id":t.id})
-  return {"user" : "TEst Username", "tehtavat" : tehtavat}
+  return {"user" : session['useremail'], "tehtavat" : tehtavat}
 
 if __name__ == '__name__':
   app.debug = True

@@ -4,8 +4,16 @@ console.log(data);
 window.onload = function() {
   toggleAccordions();
   luoTehtavat();
+  updateUserInfo();
   openAccordion();
 }
+
+
+function updateUserInfo() {
+  let useremail = data.user;
+  document.getElementById('useremail').appendChild(document.createTextNode(useremail));
+}
+
 
 function openAccordion() {
   urlParams = new URLSearchParams(window.location.search);
