@@ -44,8 +44,10 @@ function luoTehtavat() {
     }  
     document.getElementById(teht.tyyppi).appendChild(luoTehtava(teht.nro, teht.kuvaus, teht.suoritettu, teht.tyyppi, teht.id, teht.lahetetty));
   }
-  document.getElementById('perusopinnot_suor').appendChild(document.createTextNode(maarat['perusopinnot_suor'] / maarat['perusopinnot']));
-
+  document.getElementById('perusopinnot_suor').appendChild(document.createTextNode(maarat['perusopinnot_suor'] + ' / ' + maarat['perusopinnot']));
+  document.getElementById('aineopinnot_suor').appendChild(document.createTextNode(maarat['aineopinnot_suor'] + ' / ' + maarat['aineopinnot']));
+  document.getElementById('syventavat_opinnot_suor').appendChild(document.createTextNode(maarat['syventavat_opinnot_suor'] + ' / ' + maarat['syventavat_opinnot']));
+  document.getElementById('yleisopinnot_suor').appendChild(document.createTextNode(maarat['yleisopinnot_suor'] + ' / ' + maarat['yleisopinnot']));
 }
 
 
