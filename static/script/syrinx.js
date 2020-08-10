@@ -10,8 +10,7 @@ window.onload = function() {
 
 
 function updateUserInfo() {
-  let useremail = data.user;
-  document.getElementById('useremail').appendChild(document.createTextNode(useremail));
+  document.getElementById('useremail').appendChild(document.createTextNode(data.user));
 }
 
 
