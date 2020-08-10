@@ -44,6 +44,8 @@ function luoTehtavat() {
     }  
     document.getElementById(teht.tyyppi).appendChild(luoTehtava(teht.nro, teht.kuvaus, teht.suoritettu, teht.tyyppi, teht.id, teht.lahetetty));
   }
+  document.getElementById('perusopinnot_suor').appendChild(document.createTextNode(maarat['perusopinnot_suor'] / maarat['perusopinnot']));
+
 }
 
 
