@@ -95,15 +95,24 @@ def login():
     password = request.form['password']
 
     # SQL kysely
+    users = Kayttaja.query.filter(Kayttaja.useremail == username).all()
 
-    if username == user and password == sala:
-      session['loggedin'] = True
-      session['id'] = userid
-      session['useremail'] = user
-      data = generateData()
-      return render_template('/syrinx/index.html', data=json.dumps(data))
+    if len(users) == 1:
+      if users[0].useremail == username and users[0].password == password:
+        session['loggedin'] = True
+        session['id'] = userid
+        session['useremail'] = user
+        data = generateData()
+        return render_template('/syrinx/index.html', data=json.dumps(data))
+      else:
+        msg = 'Väärä sähköposti tai salasana!'
+    elif len(users) == 0:
+      # Luo uusi käyttäjä
+      msg = 'Väärä sähköposti'
     else:
-      msg = 'Väärä sähköposti tai salasana!'
+      # Muu virhe
+      msg = 'Virhe'
+      
   elif request.method == 'GET' and 'loggedin' in session:
     data = generateData()
     return render_template('/syrinx/index.html', data=json.dumps(data))
