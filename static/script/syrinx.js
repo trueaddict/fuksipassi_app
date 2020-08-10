@@ -10,17 +10,19 @@ window.onload = function() {
 
 
 function updateUserInfo() {
-  document.getElementById('useremail').appendChild(document.createTextNode(data.user));
+  document.getElementById("useremail").appendChild(document.createTextNode(data.user));
 }
 
 
 function openAccordion() {
   urlParams = new URLSearchParams(window.location.search);
-  let id = urlParams.get('id');
-  let name = document.getElementById(id).className;
-  let div = document.getElementById(name).parentElement.previousElementSibling;
-  div.classList.toggle("active");
-  div.nextElementSibling.classList.toggle("show");
+  if (urlParams.get('id') != null) {
+    let id = urlParams.get('id');
+    let name = document.getElementById(id).className;
+    let div = document.getElementById(name).parentElement.previousElementSibling;
+    div.classList.toggle("active");
+    div.nextElementSibling.classList.toggle("show");
+  }
 }
 
 
