@@ -32,11 +32,15 @@ function luoTehtavat() {
   maarat['aineopinnot'] = 0;
   maarat['syventavat_opinnot'] = 0;
   maarat['yleisopinnot'] = 0;
+  maarat['perusopinnot_suor'] = 0;
+  maarat['aineopinnot_suor'] = 0;
+  maarat['syventavat_opinnot_suor'] = 0;
+  maarat['yleisopinnot_suor'] = 0;
 
   for(let teht of data.tehtavat) {
     maarat[teht.tyyppi] = maarat[teht.tyyppi] + 1
     if (teht.suoritettu == 'true') {
-      maarat[teht.tyyppi + '_suor'] = maarat[teht.tyyppi + '_suoritettu'] + 1
+      maarat[teht.tyyppi + '_suor'] = maarat[teht.tyyppi + '_suor'] + 1
     }  
     document.getElementById(teht.tyyppi).appendChild(luoTehtava(teht.nro, teht.kuvaus, teht.suoritettu, teht.tyyppi, teht.id, teht.lahetetty));
   }
