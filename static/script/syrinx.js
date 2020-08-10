@@ -1,5 +1,6 @@
 console.log(data);
 
+maarat = {};
 
 window.onload = function() {
   toggleAccordions();
@@ -27,8 +28,6 @@ function openAccordion() {
 
 
 function luoTehtavat() {
-  let maarat = {};
-
   for(let teht of data.tehtavat) {
     maarat[teht.tyyppi] += 1 
     document.getElementById(teht.tyyppi).appendChild(luoTehtava(teht.nro, teht.kuvaus, teht.suoritettu, teht.tyyppi, teht.id, teht.lahetetty));
