@@ -5,7 +5,7 @@ import json
 
 user = 'test'
 sala = 'test'
-userid = '1'
+userid = 1
 
 app = Flask(__name__)
 app.secret_key = b'@T$6bs3x2cm2F9X/rm47%8'
