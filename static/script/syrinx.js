@@ -36,7 +36,7 @@ function luoTehtavat() {
   for(let teht of data.tehtavat) {
     maarat[teht.tyyppi] = maarat[teht.tyyppi] + 1
     if (teht.suoritettu == 'true') {
-      maarat[teht.tyyppi + '_suoritettu'] = maarat[teht.tyyppi + '_suoritettu'] + 1
+      maarat[teht.tyyppi + '_suor'] = maarat[teht.tyyppi + '_suoritettu'] + 1
     }  
     document.getElementById(teht.tyyppi).appendChild(luoTehtava(teht.nro, teht.kuvaus, teht.suoritettu, teht.tyyppi, teht.id, teht.lahetetty));
   }
