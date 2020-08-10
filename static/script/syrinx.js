@@ -28,10 +28,10 @@ function openAccordion() {
 
 
 function luoTehtavat() {
-  maarat[perusopinnot] = 0;
-  maarat[aineopinnot] = 0;
-  maarat[syventavat_opinnot] = 0;
-  maarat[yleisopinnot] = 0;
+  maarat['perusopinnot'] = 0;
+  maarat['aineopinnot'] = 0;
+  maarat['syventavat_opinnot'] = 0;
+  maarat['yleisopinnot'] = 0;
 
   for(let teht of data.tehtavat) {
     maarat[teht.tyyppi] = maarat[teht.tyyppi] + 1
