@@ -1,6 +1,5 @@
 console.log(data);
 
-maarat = {};
 
 window.onload = function() {
   toggleAccordions();
@@ -28,6 +27,7 @@ function openAccordion() {
 
 
 function luoTehtavat() {
+  maarat = {};
   maarat['perusopinnot'] = 0;
   maarat['aineopinnot'] = 0;
   maarat['syventavat_opinnot'] = 0;
