@@ -47,10 +47,10 @@ class Suoritus(db.Model):
   id_user = db.Column(db.Integer, db.ForeignKey('kayttaja.id'), nullable=False)
   id_teht = db.Column(db.Integer)
   id_jarj = db.Column(db.Integer, db.ForeignKey('jarjesto.id'), nullable=False)
-  checked = db.Column(db.Boolean, nullable=False)
   add_date = db.Column(db.DateTime, nullable=False)
-  checked_date = db.Column(db.DateTime)
   info_text = db.Column(db.String(100))
+  checked = db.Column(db.Boolean, nullable=False)
+  checked_date = db.Column(db.DateTime)
 
   def __init__(self, id, id_user, id_teht, id_jarj, info_text):
     self.id = id
@@ -98,6 +98,7 @@ def login():
         session['loggedin'] = True
         session['id'] = users[0].id
         session['useremail'] = users[0].useremail
+        session['id_jarj'] = users[0].id_jarj
         data = generateData()
         return render_template('/syrinx/index.html', data=json.dumps(data))
       else:
@@ -127,8 +128,13 @@ def syrinx():
 @app.route('/tarkista', methods=['POST'])
 def tarkista():
   if 'loggedin' in session:
-    #data = generateData()
-    #return render_template('/syrinx/index.html', data=json.dumps(data))
+    id_teht = request.form['id']
+    id_user = session['id']
+    id_jarj = session['id_jarj']
+    message = request.form['message']
+    pyynto = Suoritus(id=id_teht+id_user+id_jarj, id_teht=id_teht, id_user=id_user, id_jarj=id_jarj, info_text=message)
+    db.session.add(pyynto)
+    db.session.commit()
     return redirect('/etusivu?id='+request.form['id']+'#'+request.form['id'])
   else:
     return render_template('index.html', data='Kirjaudu sisään!')
