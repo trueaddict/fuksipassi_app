@@ -147,7 +147,7 @@ def hallinta():
   if request.method == "GET":
     return render_template('/hallinta/index.html', data='')
   if request.method == "POST":
-    return render_template('/hallinta/index.html', data='POST')
+    return render_template('/hallinta/syrinx/index.html', data='POST')
 
 
 
