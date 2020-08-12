@@ -128,13 +128,14 @@ def syrinx():
 @app.route('/tarkista', methods=['POST'])
 def tarkista():
   if 'loggedin' in session:
-    id_teht = request.form['id']
-    id_user = session['id']
-    id_jarj = session['id_jarj']
-    message = request.form['message']
-    pyynto = Suoritus(id=int(str(id_teht)+str(id_user)+str(id_jarj)), id_teht=id_teht, id_user=id_user, id_jarj=id_jarj, info_text=message)
-    db.session.add(pyynto)
-    db.session.commit()
+    if 'id' in request.form and 'message' in request.form:
+      id_teht = request.form['id']
+      id_user = session['id']
+      id_jarj = session['id_jarj']
+      message = request.form['message']
+      pyynto = Suoritus(id=int(str(id_teht)+str(id_user)+str(id_jarj)), id_teht=id_teht, id_user=id_user, id_jarj=id_jarj, info_text=message)
+      db.session.add(pyynto)
+      db.session.commit()
     return redirect('/etusivu?id='+request.form['id']+'#'+request.form['id'])
   else:
     return render_template('index.html', data='Kirjaudu sisään!')
