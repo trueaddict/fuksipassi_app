@@ -130,12 +130,10 @@ def tarkista():
   if 'loggedin' in session:
     id_teht = request.form['id']
     id_user = session['id']
-    #id_jarj = session['id_jarj']
+    id_jarj = session['id_jarj']
     message = request.form['message']
-    print(id_teht)
-    print(id_user)
-    print(message)
-    #pyynto = Suoritus(id=id_teht+id_user+id_jarj, id_teht=id_teht, id_user=id_user, id_jarj=id_jarj, info_text=message)
+    pyynto = Suoritus(id=int(id_teht+id_user+id_jarj), id_teht=id_teht, id_user=id_user, id_jarj=id_jarj, info_text=message)
+    print(pyynto)
     #db.session.add(pyynto)
     #db.session.commit()
     return redirect('/etusivu?id='+request.form['id']+'#'+request.form['id'])
