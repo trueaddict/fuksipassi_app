@@ -4,8 +4,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Syrinx Fuksipassi Hallinta</title>
 
-
-    <script type="text/javascript" src="./dev/datahallinta.js"></script>
+    <script type="text/javascript">
+        var json = '{{ data|safe }}'
+        data = JSON.parse(json);
+    </script>
     <script type="text/javascript" src="./static/script/hallinta.js"></script>
     
     <link rel="shortcut icon" type="image/png" href="./static/img/favicon_fp_2.png"/>
