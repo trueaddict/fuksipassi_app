@@ -25,6 +25,9 @@ body{
 .logout-btn{
   padding: 0 0 0.01rem 0.01rem;
 }
+.kuittaa-btn {
+  margin-bottom: 1rem;
+}
 .nav{
   background: #f1dd44 !important;
   padding-bottom: 0.5rem;
@@ -80,6 +83,11 @@ body{
   background-color: red;
   text-align: center;
   opacity: 0;
+}
+
+.yellow:checked + label:before {
+  border-right-color: yellow !important; /* You need to change the colour here */
+  border-bottom: 2px solid yellow !important; /* And here */
 }
 
 .fixed.show {

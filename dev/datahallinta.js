@@ -3,11 +3,15 @@ data = {
     {
       "id_teht": 1255355, 
       "id_user": 1,
+      "useremail": "test",
+      "kuvaus": "Käy syömässä Maijassa",
       "message":"kävin syömässä maijassa"
     },
     {
       "id_teht": 1255354, 
       "id_user": 1,
+      "useremail": "test",
+      "kuvaus": "Liity Syrinx Ry:n jäseneksi",
       "message":"selitys"
     }
   ],

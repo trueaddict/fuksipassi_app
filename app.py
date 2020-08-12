@@ -140,6 +140,15 @@ def logout():
   session.pop('useremail', None)
   return redirect('/')
 
+# HALLINTA
+
+@app.route('/hallinta')
+def hallinta():
+  return render_template('/hallinta/index.html', data='')
+
+
+
+#
 
 def generateData():
   teht = Tehtava.query.all()
