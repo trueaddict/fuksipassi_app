@@ -142,9 +142,12 @@ def logout():
 
 # HALLINTA
 
-@app.route('/hallinta')
+@app.route('/hallinta', methods=["POST", "GET"])
 def hallinta():
-  return render_template('/hallinta/index.html', data='')
+  if request.method == "GET":
+    return render_template('/hallinta/index.html', data='')
+  if request.method == "POST":
+    return render_template('/hallinta/index.html', data='POST')
 
 
 
