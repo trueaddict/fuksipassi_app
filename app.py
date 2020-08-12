@@ -146,9 +146,18 @@ def logout():
 def hallinta():
   if request.method == "GET":
     return render_template('/hallinta/index.html', data='')
-  if request.method == "POST":
-    data = generateDataHallinta()
-    return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
+  if request.method == "POST" and 'useremail' in request.form and 'password' in request.form:
+    username = request.form['useremail']
+    password = request.form['password']
+    #Validate Login
+    if 'test' == username and 'test' == password:
+      data = generateDataHallinta()
+      return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
+    return render_template('/hallinta/index.html', data='Väärä sähköposti tai salasana!')
+@app.route('/logout/hallinta')
+def logouthallinta():
+  return redirect('/hallinta')
+
 #
 
 def generateDataHallinta():
