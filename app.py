@@ -158,7 +158,7 @@ def hallinta():
 def logouthallinta():
   return redirect('/hallinta')
 
-#
+# HALLINTA END
 
 def generateDataHallinta():
   return {
