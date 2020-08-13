@@ -32,28 +32,10 @@ function listener(btn) {
     }).then(function (res) {
       return res.text();
     }).then(function (text) {
-      console.log(text);
-      let div = document.getElementById('collapsible-pyyn');
-      clearInner(div);
-      luoPyynnot(JSON.parse(text));
+      location.reload();
     })
   })
 }
-
-function clearInner(node) {
-  while (node.hasChildNodes()) {
-    clear(node.firstChild);
-  }
-}
-
-function clear(node) {
-  while (node.hasChildNodes()) {
-    clear(node.firstChild);
-  }
-  node.parentNode.removeChild(node);
-  console.log(node, "cleared!");
-}
-
 
 
 function luoPyynnot(data) {
