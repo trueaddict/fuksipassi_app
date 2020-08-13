@@ -37,6 +37,7 @@ function listener(btn) {
       return res.text();
     }).then(function (text) {
       console.log(text);
+      data = JSON.parse(text);
       console.log(data);
       //location.reload();
     })
