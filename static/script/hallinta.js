@@ -30,7 +30,7 @@ function listener(btn) {
     window.fetch('/kuittaa', {
       method: 'POST',
       body: JSON.stringify(data)
-    }).then(resolve, reject);
+    }).then();
   })
 }
 
