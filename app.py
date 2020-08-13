@@ -179,7 +179,7 @@ def generateDataHallinta():
   for s in suoritukset:
     suor_list.append({"id_user":s.id_user, "id_teht":s.id_teht, "useremail":session['useremail'], "kuvaus":teht_list.get(s.id_teht), "message":s.info_text})
   return {
-          "kuitattavat": suoritukset,
+          "kuitattavat": suor_list,
           "tehtavat" : [{"nro":1, "kuvaus":"Liity Syrinx Ry:n jäseneksi", "suoritettu":"true", "id":1255353}, {"nro":2, "kuvaus":"Osallistu tapahtumaan", "suoritettu":"false", "id":1255354}, {"nro":3, "kuvaus":"Osallistu tapahtumaan", "suoritettu":"false", "id":1255355}],
           "kayttajat" : [
             {
