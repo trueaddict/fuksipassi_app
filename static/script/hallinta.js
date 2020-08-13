@@ -1,15 +1,11 @@
-console.log(data);
+console.log(json);
 
 pyynnot = new Map();
 
 window.onload = function() {
   M.AutoInit();
   //var instance = M.Tabs.init(el, options);
-  luoPyynnot(data);
-  let kuittausBtns = document.getElementsByName('kuittaaBtn');
-  for (let btn of kuittausBtns) {
-    listener(btn);
-  }
+  luoPyynnot(json);
 }
 
 
@@ -37,16 +33,11 @@ function listener(btn) {
       return res.text();
     }).then(function (text) {
       console.log(text);
-      console.log(data);
       let div = document.getElementById('collapsible-pyyn');
       while (div.firstChild) {
         div.removeChild(div.lastChild);
       }
       luoPyynnot(JSON.parse(text));
-      let kuittausBtns = document.getElementsByName('kuittaaBtn');
-      for (let btn of kuittausBtns) {
-        listener(btn);
-      }
     })
   })
 }
@@ -67,6 +58,10 @@ function luoPyynnot(data) {
   }
   for (let i of pyynnot.entries()) {
     document.getElementById('collapsible-pyyn').appendChild(luoPyynto(i[1]));
+  }
+  let kuittausBtns = document.getElementsByName('kuittaaBtn');
+  for (let btn of kuittausBtns) {
+    listener(btn);
   }
 }
 
