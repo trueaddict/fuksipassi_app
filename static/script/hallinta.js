@@ -26,7 +26,7 @@ function listener(btn) {
         });
       }
     }
-    console.log(data);
+    console.log(JSON.stringify(data));
     window.fetch('/kuittaa', {
       method: 'POST',
       body: JSON.stringify(data)
