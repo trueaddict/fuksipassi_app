@@ -162,12 +162,12 @@ def hallinta():
       return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
     return render_template('/hallinta/index.html', data='Väärä sähköposti tai salasana!')
 
-@app.route('/kuittaa', methods=["POST"])
+@app.route('/hallinta/kuittaa', methods=["POST"])
 def kuittaa():
   req_data = request.get_json()
   if 'suoritukset' in req_data:
-    return redirect('/hallinta')
-  return redirect('/hallintawrong')
+    return 'suoritukset ok'
+  return 'ei ok'
 
 @app.route('/logout/hallinta')
 def logouthallinta():

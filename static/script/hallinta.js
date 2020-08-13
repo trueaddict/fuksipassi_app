@@ -27,10 +27,12 @@ function listener(btn) {
       }
     }
     console.log(JSON.stringify(data));
-    window.fetch('/kuittaa', {
+    window.fetch('/hallinta/kuittaa', {
       method: 'POST',
       body: JSON.stringify(data)
-    }).then();
+    }).then(
+      data => {console.log(data);}
+    );
   })
 }
 
