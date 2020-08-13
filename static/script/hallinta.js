@@ -43,12 +43,12 @@ function listener(btn) {
       while (div.firstChild) {
         div.removeChild(div.lastChild);
       }
-      luoPyynnot();
+      luoPyynnot(data);
     })
   })
 }
 
-function luoPyynnot() {
+function luoPyynnot(data) {
   
   for (let kuitti of data.kuitattavat) {
     if (pyynnot.has(kuitti.id_user) == false) {
