@@ -5,7 +5,7 @@ pyynnot = new Map();
 window.onload = function() {
   M.AutoInit();
   //var instance = M.Tabs.init(el, options);
-  luoPyynnot();
+  luoPyynnot(data);
   let kuittausBtns = document.getElementsByName('kuittaaBtn');
   for (let btn of kuittausBtns) {
     listener(btn);
