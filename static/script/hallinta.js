@@ -1,6 +1,3 @@
-var json = '{{ data|safe }}'
-data = JSON.parse(json);
-
 console.log(data);
 
 pyynnot = new Map();
@@ -20,27 +17,28 @@ function listener(btn) {
   btn.addEventListener('click', function(e) {
     let body = e.target.parentNode.parentNode;
     let inputs = body.getElementsByTagName('input');
-    let data = {"kuittaukset": []};
+    let kuit = {"kuittaukset": []};
     for (let input of inputs) {
       if (input.checked) {
-        data.kuittaukset.push({
+        kuit.kuittaukset.push({
           "id_user":input.id.split('_')[0],
           "id_teht":input.id.split('_')[1],
         });
       }
     }
-    console.log(JSON.stringify(data));
+    console.log(JSON.stringify(kuit));
     window.fetch('/hallinta/kuittaa', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(kuit)
     }).then(function (res) {
       return res.text();
     }).then(function (text) {
       console.log(text);
-      location.reload();
+      console.log(data);
+      //location.reload();
     })
   })
 }
