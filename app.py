@@ -158,7 +158,7 @@ def hallinta():
     password = request.form['password']
     #Validate Login
     if 'test' == username and 'test' == password:
-      data = generateDataHallinta()
+      data = generateDataHallinta(username)
       return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
     return render_template('/hallinta/index.html', data='Väärä sähköposti tai salasana!')
 @app.route('/logout/hallinta')
@@ -167,7 +167,7 @@ def logouthallinta():
 
 # HALLINTA END
 
-def generateDataHallinta():
+def generateDataHallinta(username):
   suoritukset = Suoritus.query.all()
   teht = Tehtava.query.all()
   teht_list = dict()
@@ -177,7 +177,7 @@ def generateDataHallinta():
     teht_list[t.id] = t.kuvaus
 
   for s in suoritukset:
-    suor_list.append({"id_user":s.id_user, "id_teht":s.id_teht, "useremail":session['useremail'], "kuvaus":teht_list.get(s.id_teht), "message":s.info_text})
+    suor_list.append({"id_user":s.id_user, "id_teht":s.id_teht, "useremail":username, "kuvaus":teht_list.get(s.id_teht), "message":s.info_text})
   return {
           "kuitattavat": suor_list,
           "tehtavat" : [{"nro":1, "kuvaus":"Liity Syrinx Ry:n jäseneksi", "suoritettu":"true", "id":1255353}, {"nro":2, "kuvaus":"Osallistu tapahtumaan", "suoritettu":"false", "id":1255354}, {"nro":3, "kuvaus":"Osallistu tapahtumaan", "suoritettu":"false", "id":1255355}],
