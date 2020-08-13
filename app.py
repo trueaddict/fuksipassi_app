@@ -164,7 +164,7 @@ def hallinta():
       session['loggedin'] = True
       session['id'] = 11
       session['useremail'] = username
-      data = generateDataHallinta()
+      data = generateDataHallinta(True)
       return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
     return render_template('/hallinta/index.html', data='Väärä sähköposti tai salasana!')
 
@@ -172,7 +172,9 @@ def hallinta():
 def kuittaa():
   req_data = request.get_json()
   if request.method == 'POST':
-    return jsonify(req_data)
+    # TODO kuittauksen tekeminen databaseen
+
+    return jsonify(generateDataHallinta(False))
   else:
     return 'OK', 200
 
@@ -185,7 +187,7 @@ def logouthallinta():
 
 # HALLINTA END
 
-def generateDataHallinta():
+def generateDataHallinta(tosi):
   suoritukset = Suoritus.query.all()
   teht = Tehtava.query.all()
   teht_list = dict()
@@ -196,7 +198,8 @@ def generateDataHallinta():
 
   for s in suoritukset:
     if not s.checked:
-      suor_list.append({"id_user":s.id_user, "id_teht":s.id_teht, "useremail":session['useremail'], "kuvaus":teht_list.get(s.id_teht), "message":s.info_text})
+      if tosi:
+        suor_list.append({"id_user":s.id_user, "id_teht":s.id_teht, "useremail":session['useremail'], "kuvaus":teht_list.get(s.id_teht), "message":s.info_text})
   return {
           "kuitattavat": suor_list,
           "tehtavat" : [{"nro":1, "kuvaus":"Liity Syrinx Ry:n jäseneksi", "suoritettu":"true", "id":1255353}, {"nro":2, "kuvaus":"Osallistu tapahtumaan", "suoritettu":"false", "id":1255354}, {"nro":3, "kuvaus":"Osallistu tapahtumaan", "suoritettu":"false", "id":1255355}],
