@@ -39,7 +39,7 @@ function listener(btn) {
       console.log(text);
       data = JSON.parse(text);
       console.log(data);
-      location.reload(false);
+      luoPyynnot();
     })
   })
 }
