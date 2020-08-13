@@ -164,7 +164,10 @@ def hallinta():
 
 @app.route('/kuittaa', methods=["POST"])
 def kuittaa():
-  return request.get_json()['suoritukset']
+  req_data = request.get_json()
+  if 'suoritukset' in req_data:
+    return redirect('/hallinta')
+  return redirect('/hallintawrong')
 
 @app.route('/logout/hallinta')
 def logouthallinta():
