@@ -37,19 +37,21 @@ function listener(btn) {
       return res.text();
     }).then(function (text) {
       console.log(text);
-      data = JSON.parse(text);
       console.log(data);
       let div = document.getElementById('collapsible-pyyn');
       while (div.firstChild) {
         div.removeChild(div.lastChild);
       }
-      luoPyynnot(data);
+      luoPyynnot(JSON.parse(text));
+      let kuittausBtns = document.getElementsByName('kuittaaBtn');
+      for (let btn of kuittausBtns) {
+        listener(btn);
+      }
     })
   })
 }
 
 function luoPyynnot(data) {
-  
   for (let kuitti of data.kuitattavat) {
     if (pyynnot.has(kuitti.id_user) == false) {
       pyynnot.set(kuitti.id_user, {"useremail":kuitti.useremail, "id_user":kuitti.id_user ,"kuitattavat":[]});
