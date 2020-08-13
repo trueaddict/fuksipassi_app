@@ -39,6 +39,7 @@ function listener(btn) {
       console.log(text);
       data = JSON.parse(text);
       console.log(data);
+      document.getElementById('pyyn').removeChild(document.getElementById('pyyn').firstChild);
       luoPyynnot();
     })
   })
