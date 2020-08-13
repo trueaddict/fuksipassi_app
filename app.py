@@ -178,6 +178,9 @@ def kuittaa():
 
 @app.route('/logout/hallinta')
 def logouthallinta():
+  session.pop('loggedin', None)
+  session.pop('id', None)
+  session.pop('useremail', None)
   return redirect('/hallinta')
 
 # HALLINTA END
