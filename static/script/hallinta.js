@@ -33,9 +33,7 @@ function listener(btn) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data)
-    }).then(
-      data => {console.log(data);}
-    );
+    })
   })
 }
 
