@@ -166,7 +166,7 @@ def hallinta():
 def kuittaa():
   req_data = request.get_json()
   if 'suoritukset' in req_data:
-    return 'suoritukset ok'
+    return req_data
   return 'ei ok'
 
 @app.route('/logout/hallinta')
