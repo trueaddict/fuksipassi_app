@@ -29,6 +29,9 @@ function listener(btn) {
     console.log(JSON.stringify(data));
     window.fetch('/hallinta/kuittaa', {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(data)
     }).then(
       data => {console.log(data);}
