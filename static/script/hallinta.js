@@ -33,6 +33,10 @@ function listener(btn) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data)
+    }).then(function (res) {
+      return res.text();
+    }).then(function (text) {
+      console.log(text);
     })
   })
 }

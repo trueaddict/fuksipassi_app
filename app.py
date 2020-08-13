@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, jsonify, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import json
@@ -162,13 +162,13 @@ def hallinta():
       return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
     return render_template('/hallinta/index.html', data='Väärä sähköposti tai salasana!')
 
-@app.route('/hallinta/kuittaa', methods=["POST"])
+@app.route('/hallinta/kuittaa', methods=["GET","POST"])
 def kuittaa():
   req_data = request.get_json()
-  if 'kuittaukset' in req_data:
-    data = generateDataHallinta('test')
-    render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
-  return 'ei ok'
+  if request.method == 'POST':
+    return 'OK', 200
+  else:
+    return jsonify(req_data)
 
 @app.route('/logout/hallinta')
 def logouthallinta():
