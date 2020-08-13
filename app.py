@@ -165,7 +165,7 @@ def hallinta():
 @app.route('/hallinta/kuittaa', methods=["POST"])
 def kuittaa():
   req_data = request.get_json()
-  if 'suoritukset' in req_data:
+  if 'kuittaukset' in req_data:
     data = generateDataHallinta('test')
     return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
   return 'ei ok'
