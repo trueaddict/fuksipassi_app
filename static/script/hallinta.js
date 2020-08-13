@@ -1,3 +1,6 @@
+var json = '{{ data|safe }}'
+data = JSON.parse(json);
+
 console.log(data);
 
 pyynnot = new Map();
