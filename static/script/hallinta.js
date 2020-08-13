@@ -34,13 +34,27 @@ function listener(btn) {
     }).then(function (text) {
       console.log(text);
       let div = document.getElementById('collapsible-pyyn');
-      while (div.firstChild) {
-        div.removeChild(div.lastChild);
-      }
+      clearInner(div);
       luoPyynnot(JSON.parse(text));
     })
   })
 }
+
+function clearInner(node) {
+  while (node.hasChildNodes()) {
+    clear(node.firstChild);
+  }
+}
+
+function clear(node) {
+  while (node.hasChildNodes()) {
+    clear(node.firstChild);
+  }
+  node.parentNode.removeChild(node);
+  console.log(node, "cleared!");
+}
+
+
 
 function luoPyynnot(data) {
   for (let kuitti of data.kuitattavat) {
