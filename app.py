@@ -161,6 +161,11 @@ def hallinta():
       data = generateDataHallinta(username)
       return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
     return render_template('/hallinta/index.html', data='Väärä sähköposti tai salasana!')
+
+@app.route('/kuittaa', methods=["POST"])
+def kuittaa():
+  return request.get_json()
+
 @app.route('/logout/hallinta')
 def logouthallinta():
   return redirect('/hallinta')
