@@ -39,7 +39,10 @@ function listener(btn) {
       console.log(text);
       data = JSON.parse(text);
       console.log(data);
-      document.getElementById('pyyn').removeChild(document.getElementById('pyyn').firstChild);
+      let div = document.getElementById('collapsible-pyyn');
+      while (div.firstChild) {
+        div.removeChild(div.lastChild);
+      }
       luoPyynnot();
     })
   })
@@ -61,7 +64,7 @@ function luoPyynnot() {
     pyynnot.set(kuitti.id_user, kuitList);
   }
   for (let i of pyynnot.entries()) {
-    document.getElementById('collapsible').appendChild(luoPyynto(i[1]));
+    document.getElementById('collapsible-pyyn').appendChild(luoPyynto(i[1]));
   }
 }
 
