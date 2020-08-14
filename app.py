@@ -168,11 +168,14 @@ def hallinta():
       return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
     return render_template('/hallinta/index.html', data='Väärä sähköposti tai salasana!')
 
-@app.route('/kuittaa', methods=["POST"])
+@app.route('/kuittaa', methods=["GET","POST"])
 def kuittaa():
   if request.method == 'POST':
     # TODO kuittauksen tekeminen databaseen
     data = generateDataHallinta(False)
+    return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
+  else:
+    data = generateDataHallinta(True)
     return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
   return 
 

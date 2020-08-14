@@ -41,8 +41,9 @@ function listener(btn) {
 function luoPyynnot(data) {
   if (data.kuitattavat.length <= 0) {
     let p = document.createElement('p');
+    p.className = 'center'
     p.appendChild(document.createTextNode('Ei kuitattavia pyyntöjä'));
-    document.getElementById('collapsible-pyyn').appendChild(p);
+    document.getElementById('pyyn').appendChild(p);
   } else {
     for (let kuitti of data.kuitattavat) {
       if (pyynnot.has(kuitti.id_user) == false) {
