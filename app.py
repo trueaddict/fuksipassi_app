@@ -149,7 +149,7 @@ def logout():
 
 # HALLINTA
 
-@app.route('/hallinta', methods=["POST", "GET"])
+@app.route('/hallinta', methods=["GET"])
 def hallinta():
   if request.method == "GET":
     if 'loggedin' in session:
@@ -168,7 +168,7 @@ def hallinta():
       return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
     return render_template('/hallinta/index.html', data='Väärä sähköposti tai salasana!')
 
-@app.route('/hallinta/kuittaa', methods=["POST"])
+@app.route('/hallinta', methods=["POST"])
 def kuittaa():
   if request.method == 'POST':
     # TODO kuittauksen tekeminen databaseen
