@@ -152,7 +152,7 @@ def logout():
 @app.route('/hallinta', methods=["GET", "POST"])
 def hallinta():
   if request.method == 'GET':
-    if 'loggedin' in session:
+    if 'loggedin' in session and 'hallinta' in session:
       data = generateDataHallinta()
       return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
     return render_template('/hallinta/index.html', data='')
@@ -162,6 +162,7 @@ def hallinta():
     #Validate Login
     if 'test' == username and 'test' == password:
       session['loggedin'] = True
+      session['hallinta'] = True
       session['id'] = 11
       session['useremail'] = username
       data = generateDataHallinta()
@@ -170,7 +171,7 @@ def hallinta():
 
 @app.route('/hallinta/kuittaa', methods=["GET","POST"])
 def kuittaa():
-  if request.method == 'POST' and 'loggedin' in session:
+  if request.method == 'POST' and 'loggedin' in session and 'hallinta' in session:
     # TODO kuittauksen tekeminen databaseen
     req = request.form
     inputs = list()
@@ -179,13 +180,13 @@ def kuittaa():
             inputs.append(k)
             i = k.split('_')
             suor = Suoritus.query.filter_by(id_user=i[0], id_teht=i[1]).first()
-            suor.checked = True
+            suor.checked = 'true'
             suor.checked_date = datetime.today()
             db.session.commit()
     print(inputs)
     data = generateDataHallinta()
-    return render_template('/hallinta/index.html', data=json.dumps(data))
-  if request.method == 'GET' and 'loggedin' in session:
+    return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
+  if request.method == 'GET' and 'loggedin' in session and 'hallinta' in session:
     data = generateDataHallinta()
     return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
   return render_template('/hallinta/index.html', data='Kirjaudu sisään!')
