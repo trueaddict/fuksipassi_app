@@ -180,7 +180,7 @@ def kuittaa():
             inputs.append(k)
             i = k.split('_')
             suor = Suoritus.query.filter_by(id_user=i[0], id_teht=i[1]).first()
-            suor.checked = 'true'
+            suor.checked = True
             suor.checked_date = datetime.today()
             db.session.commit()
     print(inputs)
