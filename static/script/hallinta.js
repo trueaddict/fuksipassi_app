@@ -55,10 +55,10 @@ function luoPyynnot(data) {
   for (let i of pyynnot.entries()) {
     document.getElementById('collapsible-pyyn').appendChild(luoPyynto(i[1]));
   }
-  let kuittausBtns = document.getElementsByName('kuittaaBtn');
-  for (let btn of kuittausBtns) {
-    listener(btn);
-  }
+  //let kuittausBtns = document.getElementsByName('kuittaaBtn');
+  //for (let btn of kuittausBtns) {
+  //  listener(btn);
+  //}
 }
 
 
