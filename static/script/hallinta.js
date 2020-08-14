@@ -106,6 +106,7 @@ function luoPyynto(i) {
     var input1=document.createElement('input');
     input1.setAttribute('type','checkbox');
     input1.setAttribute('checked', 'checked');
+    input1.setAttribute('name', 'input');
     input1.id = i.id_user + '_' + teht.id_teht
     input1.className = 'yellow';
     label1.appendChild(input1);

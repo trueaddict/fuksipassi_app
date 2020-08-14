@@ -153,7 +153,7 @@ def logout():
 def hallinta():
   if request.method == 'GET':
     if 'loggedin' in session:
-      data = generateDataHallinta(True)
+      data = generateDataHallinta()
       return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
     return render_template('/hallinta/index.html', data='')
   if request.method == "POST" and 'useremail' in request.form and 'password' in request.form:
@@ -164,7 +164,7 @@ def hallinta():
       session['loggedin'] = True
       session['id'] = 11
       session['useremail'] = username
-      data = generateDataHallinta(True)
+      data = generateDataHallinta()
       return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
     return render_template('/hallinta/index.html', data='Väärä sähköposti tai salasana!')
 
@@ -172,10 +172,16 @@ def hallinta():
 def kuittaa():
   if request.method == 'POST' and 'loggedin' in session:
     # TODO kuittauksen tekeminen databaseen
-    data = generateDataHallinta(False)
-    return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
+    inputs = request.form
+    url = ''
+    for i in inputs:
+      url = url + i
+
+
+    data = generateDataHallinta()
+    return render_template(url, data=json.dumps(data))
   if request.method == 'GET' and 'loggedin' in session:
-    data = generateDataHallinta(True)
+    data = generateDataHallinta()
     return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
   return render_template('/hallinta/index.html', data='Kirjaudu sisään!')
 
@@ -188,7 +194,7 @@ def logouthallinta():
 
 # HALLINTA END
 
-def generateDataHallinta(tosi):
+def generateDataHallinta():
   suoritukset = Suoritus.query.all()
   teht = Tehtava.query.all()
   teht_list = dict()
@@ -197,10 +203,10 @@ def generateDataHallinta(tosi):
   for t in teht:
     teht_list[t.id] = t.kuvaus
 
-  if tosi:
-    for s in suoritukset:
-      if not s.checked:
-        suor_list.append({"id_user":s.id_user, "id_teht":s.id_teht, "useremail":session['useremail'], "kuvaus":teht_list.get(s.id_teht), "message":s.info_text})
+
+  for s in suoritukset:
+    if not s.checked:
+      suor_list.append({"id_user":s.id_user, "id_teht":s.id_teht, "useremail":session['useremail'], "kuvaus":teht_list.get(s.id_teht), "message":s.info_text})
   return {
           "kuitattavat": suor_list,
           "tehtavat" : [{"nro":1, "kuvaus":"Liity Syrinx Ry:n jäseneksi", "suoritettu":"true", "id":1255353}, {"nro":2, "kuvaus":"Osallistu tapahtumaan", "suoritettu":"false", "id":1255354}, {"nro":3, "kuvaus":"Osallistu tapahtumaan", "suoritettu":"false", "id":1255355}],
