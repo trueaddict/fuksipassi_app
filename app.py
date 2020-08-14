@@ -177,7 +177,7 @@ def kuittaa():
     for i in inputs:
       url = url + i
 
-
+    print(inputs)
     data = generateDataHallinta()
     return render_template('/hallinta/index.html', data=url)
   if request.method == 'GET' and 'loggedin' in session:
