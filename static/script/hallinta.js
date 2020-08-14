@@ -73,15 +73,18 @@ function luoPyynto(i) {
   div2.className='collapsible-body';
   li1.appendChild(div2);
   
+  var form = document.createElement('form');
+  div2.appendChild(form);
+
   var div3 = document.createElement('div');
-  div2.appendChild(div3);
+  form.appendChild(div3);
   var btn = document.createElement('button');
   btn.setAttribute('name', 'kuittaaBtn');
   btn.className = 'btn kuittaa-btn yellow darken-2';
   btn.appendChild(document.createTextNode('Kuittaa valitut'));
   div3.appendChild(btn);
   var div4=document.createElement('div');
-  div2.appendChild(div4);
+  form.appendChild(div4);
   
   var ul = document.createElement('ul');
 
