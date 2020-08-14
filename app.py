@@ -174,14 +174,17 @@ def kuittaa():
     # TODO kuittauksen tekeminen databaseen
     req = request.form
     inputs = list()
-
     for k, v in req.items():
         if v != "":
             inputs.append(k)
-
+            i = k.split('_')
+            suor = Suoritus.query.filter_by(id_user=i[0], id_teht=i[1]).first()
+            suor.checked = True
+            suor.checked_date = datetime.today()
+            db.session.commit()
     print(inputs)
     data = generateDataHallinta()
-    return render_template('/hallinta/index.html', data=inputs)
+    return render_template('/hallinta/index.html', data=json.dumps(data))
   if request.method == 'GET' and 'loggedin' in session:
     data = generateDataHallinta()
     return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
