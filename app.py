@@ -172,12 +172,16 @@ def hallinta():
 def kuittaa():
   if request.method == 'POST' and 'loggedin' in session:
     # TODO kuittauksen tekeminen databaseen
-    inputs = request.form.keys
-    url = ''
+    req = request.form
+    inputs = list()
+
+    for k, v in req.items():
+        if v != "":
+            inputs.append(k)
 
     print(inputs)
     data = generateDataHallinta()
-    return render_template('/hallinta/index.html', data=url)
+    return render_template('/hallinta/index.html', data=inputs)
   if request.method == 'GET' and 'loggedin' in session:
     data = generateDataHallinta()
     return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
