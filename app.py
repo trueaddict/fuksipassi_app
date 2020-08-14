@@ -151,7 +151,7 @@ def logout():
 
 @app.route('/hallinta', methods=["GET"])
 def hallinta():
-  if request.method == "GET":
+  if request.method == 'GET':
     if 'loggedin' in session:
       data = generateDataHallinta(True)
       return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
