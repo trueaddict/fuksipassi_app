@@ -170,11 +170,10 @@ def hallinta():
 
 @app.route('/hallinta/kuittaa', methods=["POST"])
 def kuittaa():
-  req_data = request.get_json()
   if request.method == 'POST':
     # TODO kuittauksen tekeminen databaseen
-
-    return jsonify(generateDataHallinta(False))
+    data = generateDataHallinta(False)
+    return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
   else:
     return 'OK', 200
 
