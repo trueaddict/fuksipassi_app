@@ -170,13 +170,12 @@ def hallinta():
 
 @app.route('/hallinta/kuittaa', methods=["GET","POST"])
 def kuittaa():
-  if request.method == 'POST':
+  if request.method == 'POST' and 'loggedin' in session:
     # TODO kuittauksen tekeminen databaseen
     data = generateDataHallinta(False)
     return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
   else:
-    data = generateDataHallinta(True)
-    return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
+    return render_template('/hallinta/index.html', data='Kirjaudu sisään!')
   return 
 
 @app.route('/logout/hallinta')
