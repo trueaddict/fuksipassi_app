@@ -39,22 +39,29 @@ function listener(btn) {
 
 
 function luoPyynnot(data) {
-  for (let kuitti of data.kuitattavat) {
-    if (pyynnot.has(kuitti.id_user) == false) {
-      pyynnot.set(kuitti.id_user, {"useremail":kuitti.useremail, "id_user":kuitti.id_user ,"kuitattavat":[]});
+  if (data.kuitattavat.length <= 0) {
+    let p = document.createElement('p');
+    p.appendChild(document.createTextNode('Ei kuitattavia pyyntöjä'));
+    document.getElementById('collapsible-pyyn').appendChild(p);
+  } else {
+    for (let kuitti of data.kuitattavat) {
+      if (pyynnot.has(kuitti.id_user) == false) {
+        pyynnot.set(kuitti.id_user, {"useremail":kuitti.useremail, "id_user":kuitti.id_user ,"kuitattavat":[]});
+      }
+      let kuitList = pyynnot.get(kuitti.id_user);
+      console.log(kuitList);
+      kuitList.kuitattavat.push({
+        "id_teht": kuitti.id_teht,
+        "kuvaus": kuitti.kuvaus,
+        "message": kuitti.message,
+      })
+      pyynnot.set(kuitti.id_user, kuitList);
     }
-    let kuitList = pyynnot.get(kuitti.id_user);
-    console.log(kuitList);
-    kuitList.kuitattavat.push({
-       "id_teht": kuitti.id_teht,
-       "kuvaus": kuitti.kuvaus,
-       "message": kuitti.message,
-    })
-    pyynnot.set(kuitti.id_user, kuitList);
+    for (let i of pyynnot.entries()) {
+      document.getElementById('collapsible-pyyn').appendChild(luoPyynto(i[1]));
+    }
   }
-  for (let i of pyynnot.entries()) {
-    document.getElementById('collapsible-pyyn').appendChild(luoPyynto(i[1]));
-  }
+
   //let kuittausBtns = document.getElementsByName('kuittaaBtn');
   //for (let btn of kuittausBtns) {
   //  listener(btn);
