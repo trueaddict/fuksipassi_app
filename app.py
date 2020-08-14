@@ -172,10 +172,8 @@ def hallinta():
 def kuittaa():
   if request.method == 'POST' and 'loggedin' in session:
     # TODO kuittauksen tekeminen databaseen
-    inputs = request.form.values
+    inputs = request.form.to_dict
     url = ''
-    for i in inputs:
-      url = url + i
 
     print(inputs)
     data = generateDataHallinta()
