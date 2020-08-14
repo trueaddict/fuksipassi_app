@@ -174,9 +174,10 @@ def kuittaa():
     # TODO kuittauksen tekeminen databaseen
     data = generateDataHallinta(False)
     return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
-  else:
-    return render_template('/hallinta/index.html', data='Kirjaudu sisään!')
-  return 
+  if request.method == 'GET' and 'loggedin' in session:
+    data = generateDataHallinta(True)
+    return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
+  return render_template('/hallinta/index.html', data='Kirjaudu sisään!')
 
 @app.route('/logout/hallinta')
 def logouthallinta():
