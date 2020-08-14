@@ -179,7 +179,7 @@ def kuittaa():
 
 
     data = generateDataHallinta()
-    return render_template(url, data=json.dumps(data))
+    return render_template('/hallinta/index.html', data=url)
   if request.method == 'GET' and 'loggedin' in session:
     data = generateDataHallinta()
     return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
