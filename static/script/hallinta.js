@@ -9,35 +9,6 @@ window.onload = function() {
 }
 
 
-function listener(btn) {
-  btn.addEventListener('click', function(e) {
-    let body = e.target.parentNode.parentNode;
-    let inputs = body.getElementsByTagName('input');
-    let kuit = {"kuittaukset": []};
-    for (let input of inputs) {
-      if (input.checked) {
-        kuit.kuittaukset.push({
-          "id_user":input.id.split('_')[0],
-          "id_teht":input.id.split('_')[1],
-        });
-      }
-    }
-    console.log(JSON.stringify(kuit));
-    window.fetch('/hallinta/kuittaa', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(kuit)
-    }).then(function (res) {
-      return res.text();
-    }).then(function (text) {
-      location.reload();
-    })
-  })
-}
-
-
 function luoPyynnot(data) {
   if (data.kuitattavat.length <= 0) {
     let p = document.createElement('p');
@@ -50,7 +21,6 @@ function luoPyynnot(data) {
         pyynnot.set(kuitti.id_user, {"useremail":kuitti.useremail, "id_user":kuitti.id_user ,"kuitattavat":[]});
       }
       let kuitList = pyynnot.get(kuitti.id_user);
-      console.log(kuitList);
       kuitList.kuitattavat.push({
         "id_teht": kuitti.id_teht,
         "kuvaus": kuitti.kuvaus,
@@ -62,11 +32,6 @@ function luoPyynnot(data) {
       document.getElementById('collapsible-pyyn').appendChild(luoPyynto(i[1]));
     }
   }
-
-  //let kuittausBtns = document.getElementsByName('kuittaaBtn');
-  //for (let btn of kuittausBtns) {
-  //  listener(btn);
-  //}
 }
 
 

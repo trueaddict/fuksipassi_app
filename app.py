@@ -183,7 +183,6 @@ def kuittaa():
             suor.checked = True
             suor.checked_date = datetime.today()
             db.session.commit()
-    print(inputs)
     data = generateDataHallinta()
     return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
   if request.method == 'GET' and 'loggedin' in session and 'hallinta' in session:
