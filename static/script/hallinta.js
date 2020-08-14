@@ -74,7 +74,7 @@ function luoPyynto(i) {
   li1.appendChild(div2);
   
   var form = document.createElement('form');
-  form.setAttribute('action', '/hallinta/kuittaa');
+  form.setAttribute('action', '/hallinta');
   form.setAttribute('method', 'post');
   div2.appendChild(form);
 
