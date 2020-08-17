@@ -105,7 +105,6 @@ def login():
         msg = 'Väärä sähköposti tai salasana!'
     elif len(users) == 0 and 'test' == password:
       # Luo uusi käyttäjä
-      session['loggedin'] = True
 
       data = generateData()
       return render_template('/syrinx/index.html', data=json.dumps(data), new="true")
