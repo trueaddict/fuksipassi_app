@@ -103,7 +103,7 @@ def login():
         return render_template('/syrinx/index.html', data=json.dumps(data))
       else:
         msg = 'Väärä sähköposti tai salasana!'
-    elif len(users) == 0:
+    elif len(users) == 0 and 'test' == password:
       # Luo uusi käyttäjä
       data = generateData("true")
       return render_template('/syrinx/index.html', data=json.dumps(data))
