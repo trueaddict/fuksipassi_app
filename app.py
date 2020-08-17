@@ -106,9 +106,9 @@ def login():
     elif len(users) == 0 and 'test' == password:
       # Luo uusi käyttäjä
       session['loggedin'] = True
-      
-      data = generateData("true")
-      return render_template('/syrinx/index.html', data=json.dumps(data))
+
+      data = generateData()
+      return render_template('/syrinx/index.html', data=json.dumps(data), new="true")
     else:
       # Muu virhe
       msg = 'Virhe'
@@ -235,7 +235,7 @@ def generateDataHallinta():
           ]
         }
 
-def generateData(user_uusi = "false"):
+def generateData():
   teht = Tehtava.query.all()
   suoritukset = db.session.query(Suoritus).join(Kayttaja).filter(Kayttaja.id==session['id']).all()
   tehtavat = []
@@ -248,7 +248,7 @@ def generateData(user_uusi = "false"):
       if (t.id == s.id_teht):
         lahetetty = "true"
     tehtavat.append({"nro":t.num, "kuvaus":t.kuvaus, "suoritettu":suoritettu, "lahetetty":lahetetty, "tyyppi":t.tyyppi, "id":t.id})
-  return {"user" : session['useremail'],"user_uusi" : user_uusi ,"tehtavat" : tehtavat}
+  return {"user" : session['useremail'], "tehtavat" : tehtavat}
 
 if __name__ == '__name__':
   app.debug = True

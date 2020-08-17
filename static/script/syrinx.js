@@ -11,7 +11,7 @@ window.onload = function() {
 
 
 function luodaankoUusiKayttaja() {
-  if (data.user_uusi == 'true') {
+  if (newUser == 'true') {
     var div1=document.createElement('div');
     div1.className='policy';
     var h51=document.createElement('h5');
