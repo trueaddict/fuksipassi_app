@@ -140,6 +140,14 @@ input:focus{
   background-color: grey;
   opacity: 0.8;
 }
+.margin-top-bottom {
+  margin: 1rem 0rem;
+}
+.green-syrinx {
+  background-color: #93ad20 !important;
+  
+}
+
 .info-text{
     font-size: 1.1rem;
 }

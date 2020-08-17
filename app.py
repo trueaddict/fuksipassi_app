@@ -105,7 +105,8 @@ def login():
         msg = 'Väärä sähköposti tai salasana!'
     elif len(users) == 0:
       # Luo uusi käyttäjä
-      msg = 'Väärä sähköposti tai salasana!'
+      data = generateData("true")
+      return render_template('/syrinx/index.html', data=json.dumps(data))
     else:
       # Muu virhe
       msg = 'Virhe'
@@ -139,6 +140,14 @@ def tarkista():
     return redirect('/etusivu?id='+request.form['id']+'#'+request.form['id'])
   else:
     return render_template('index.html', data='Kirjaudu sisään!')
+
+@app.route('/signout')
+def signout():
+  #Käyttäjän poistaminen
+  session.pop('loggedin', None)
+  session.pop('id', None)
+  session.pop('useremail', None)
+  return redirect('/')
 
 @app.route('/logout')
 def logout():
@@ -224,7 +233,7 @@ def generateDataHallinta():
           ]
         }
 
-def generateData():
+def generateData(user_uusi = "false"):
   teht = Tehtava.query.all()
   suoritukset = db.session.query(Suoritus).join(Kayttaja).filter(Kayttaja.id==session['id']).all()
   tehtavat = []
@@ -237,7 +246,7 @@ def generateData():
       if (t.id == s.id_teht):
         lahetetty = "true"
     tehtavat.append({"nro":t.num, "kuvaus":t.kuvaus, "suoritettu":suoritettu, "lahetetty":lahetetty, "tyyppi":t.tyyppi, "id":t.id})
-  return {"user" : session['useremail'], "tehtavat" : tehtavat}
+  return {"user" : session['useremail'],"user_uusi":user_uusi ,"tehtavat" : tehtavat}
 
 if __name__ == '__name__':
   app.debug = True

@@ -6,6 +6,67 @@ window.onload = function() {
   luoTehtavat();
   updateUserInfo();
   openAccordion();
+  luodaankoUusiKayttaja();
+}
+
+
+function luodaankoUusiKayttaja() {
+  if (data.user_uusi == 'true') {
+    var div1=document.createElement('div');
+    div1.className='policy';
+    var h51=document.createElement('h5');
+    h51.className='center gray-text';
+    div1.appendChild(h51);
+    var txt2=document.createTextNode('Luodaanko uusi käyttäjä?');
+    h51.appendChild(txt2);
+    var p1=document.createElement('p');
+    p1.className='center brand-text';
+    div1.appendChild(p1);
+    var txt4=document.createTextNode('Email');
+    p1.appendChild(txt4);
+    var p2=document.createElement('p');
+    p2.className='center gray-text';
+    div1.appendChild(p2);
+    var txt6=document.createTextNode('Luomalla käyttäjän hyväksyt palvelun käyttöehdot sekä ');
+    p2.appendChild(txt6);
+    var a1=document.createElement('a');
+    a1.setAttribute('href','http://www.syrinx.fi/yhdistyksen-saannot/fuksipassin-kayttoehdot-seka-rekisteri-ja-tietosuojaseloste/');
+    p2.appendChild(a1);
+    var txt7=document.createTextNode('rekisteri- ja tietosuojaselosteen');
+    a1.appendChild(txt7);
+    var div2=document.createElement('div');
+    div2.className='center margin-top-bottom';
+    div1.appendChild(div2);
+    var button1=document.createElement('button');
+    button1.setAttribute('id','signup');
+    button1.className='btn green-syrinx';
+    div2.appendChild(button1);
+    var txt10=document.createTextNode('Kyllä');
+    button1.appendChild(txt10);
+    var div3=document.createElement('div');
+    div3.className='center margin-top-bottom';
+    div1.appendChild(div3);
+    var a2=document.createElement('a');
+    a2.setAttribute('href','/signout');
+    a2.className='btn yellow darken-2';
+    div3.appendChild(a2);
+    var txt14=document.createTextNode('Ei');
+    a2.appendChild(txt14);
+    var div4=document.createElement('div');
+    div4.className='policy-background';
+    let pol = document.getElementById('policy');
+    pol.appendChild(div1);
+    pol.appendChild(div4);    
+  }
+
+
+  document.getElementById('signup').addEventListener('click', function (e) {
+    console.log(e);
+    let policy = document.getElementsByClassName('policy')[0];
+    policy.className = 'hide';
+    policy = document.getElementsByClassName('policy-background')[0];
+    policy.className = 'hide';
+  });
 }
 
 
