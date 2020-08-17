@@ -105,10 +105,13 @@ def login():
         msg = 'Väärä sähköposti tai salasana!'
     elif len(users) == 0 and 'test' == password:
       # Luo uusi käyttäjä
+      newUser = Kayttaja(id, useremail = username, password = password, id_jarj=1971)
+      db.session.add(newUser)
+      db.session.commit()
       session['loggedin'] = True
-      session['id'] = 2
-      session['useremail'] = username
-      session['id_jarj'] = 1971
+      session['id'] = newUser.id
+      session['useremail'] = newUser.useremail
+      session['id_jarj'] = newUser.id_jarj
       data = generateData('true')
       return render_template('/syrinx/index.html', data=json.dumps(data))
     else:
