@@ -105,7 +105,9 @@ def login():
         msg = 'Väärä sähköposti tai salasana!'
     elif len(users) == 0 and 'test' == password:
       # Luo uusi käyttäjä
-      newUser = Kayttaja(id, useremail = username, password = password, id_jarj=1971)
+      users = Kayttaja.query.all()
+      newId = users[len(users)-1].id + 1
+      newUser = Kayttaja(id=newId, useremail = username, password = password, id_jarj=1971)
       db.session.add(newUser)
       db.session.commit()
       session['loggedin'] = True
