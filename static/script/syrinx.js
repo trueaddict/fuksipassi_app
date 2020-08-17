@@ -56,17 +56,18 @@ function luodaankoUusiKayttaja() {
     div4.className='policy-background';
     let pol = document.getElementById('policy');
     pol.appendChild(div1);
-    pol.appendChild(div4);    
+    pol.appendChild(div4);   
+    document.getElementById('signup').addEventListener('click', function (e) {
+      console.log(e);
+      let policy = document.getElementsByClassName('policy')[0];
+      policy.className = 'hide';
+      policy = document.getElementsByClassName('policy-background')[0];
+      policy.className = 'hide';
+    }); 
   }
 
 
-  document.getElementById('signup').addEventListener('click', function (e) {
-    console.log(e);
-    let policy = document.getElementsByClassName('policy')[0];
-    policy.className = 'hide';
-    policy = document.getElementsByClassName('policy-background')[0];
-    policy.className = 'hide';
-  });
+
 }
 
 
