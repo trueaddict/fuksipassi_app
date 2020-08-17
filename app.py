@@ -105,6 +105,8 @@ def login():
         msg = 'Väärä sähköposti tai salasana!'
     elif len(users) == 0 and 'test' == password:
       # Luo uusi käyttäjä
+      session['loggedin'] = True
+      
       data = generateData("true")
       return render_template('/syrinx/index.html', data=json.dumps(data))
     else:
@@ -246,7 +248,7 @@ def generateData(user_uusi = "false"):
       if (t.id == s.id_teht):
         lahetetty = "true"
     tehtavat.append({"nro":t.num, "kuvaus":t.kuvaus, "suoritettu":suoritettu, "lahetetty":lahetetty, "tyyppi":t.tyyppi, "id":t.id})
-  return {"user" : session['useremail'],"user_uusi":user_uusi ,"tehtavat" : tehtavat}
+  return {"user" : session['useremail'],"user_uusi" : user_uusi ,"tehtavat" : tehtavat}
 
 if __name__ == '__name__':
   app.debug = True
