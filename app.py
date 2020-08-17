@@ -153,9 +153,13 @@ def tarkista():
 @app.route('/signout')
 def signout():
   #Käyttäjän poistaminen
+  userToDel = Kayttaja.query.filter_by(id = session['id']).first()
+  db.session.delete(userToDel)
+  db.session.commit()
   session.pop('loggedin', None)
   session.pop('id', None)
   session.pop('useremail', None)
+  session.pop('id_jarj', None)
   return redirect('/')
 
 @app.route('/logout')
@@ -163,6 +167,7 @@ def logout():
   session.pop('loggedin', None)
   session.pop('id', None)
   session.pop('useremail', None)
+  session.pop('id_jarj', None)
   return redirect('/')
 
 # HALLINTA
