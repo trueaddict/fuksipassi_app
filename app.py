@@ -2,11 +2,12 @@ from flask import Flask, jsonify, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import json
+import os
 
 app = Flask(__name__)
-app.secret_key = b'@T$6bs3x2cm2F9X/rm47%8'
+app.secret_key = os.environ.get('SECRET_KEY')
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://obspdelclwxyxp:177b2be19e3d8c08420fc054532d03bd126017706e3985ec6652a5195a8357fd@ec2-52-20-248-222.compute-1.amazonaws.com:5432/d3adjtir0n8o3m'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -103,7 +104,7 @@ def login():
         return render_template('/syrinx/index.html', data=json.dumps(data))
       else:
         msg = 'Väärä sähköposti tai salasana!'
-    elif len(users) == 0 and 'test' == password:
+    elif len(users) == 0 and os.environ.get('PASSWORD') == password:
       # Luo uusi käyttäjä
       users = Kayttaja.query.all()
       newId = users[len(users)-1].id + 1
