@@ -109,7 +109,7 @@ def login():
       session['id'] = 2
       session['useremail'] = username
       session['id_jarj'] = 1971
-      data = generateData('true')
+      data = generateData()
       return render_template('/syrinx/index.html', data=json.dumps(data))
     else:
       # Muu virhe
@@ -237,7 +237,7 @@ def generateDataHallinta():
           ]
         }
 
-def generateData(user_new):
+def generateData():
   teht = Tehtava.query.all()
   suoritukset = db.session.query(Suoritus).join(Kayttaja).filter(Kayttaja.id==session['id']).all()
   tehtavat = []
@@ -250,7 +250,7 @@ def generateData(user_new):
       if (t.id == s.id_teht):
         lahetetty = "true"
     tehtavat.append({"nro":t.num, "kuvaus":t.kuvaus, "suoritettu":suoritettu, "lahetetty":lahetetty, "tyyppi":t.tyyppi, "id":t.id})
-  return {"user" : session['useremail'], "newUser" : user_new, "tehtavat" : tehtavat}
+  return {"user" : session['useremail'], "tehtavat" : tehtavat}
 
 if __name__ == '__name__':
   app.debug = True
