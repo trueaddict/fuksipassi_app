@@ -237,7 +237,7 @@ def generateDataHallinta():
           ]
         }
 
-def generateData(user_new = 'false'):
+def generateData(user_new):
   teht = Tehtava.query.all()
   suoritukset = db.session.query(Suoritus).join(Kayttaja).filter(Kayttaja.id==session['id']).all()
   tehtavat = []
