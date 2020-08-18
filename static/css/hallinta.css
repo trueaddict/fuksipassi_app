@@ -34,24 +34,24 @@ body{
 }
 
 .tabs {
-  background-color: #f1dd44 !important;
+  
   border-top: black solid 0.01rem;
 }
 
 .tabs .tab a {
-  color: black;
+  
 }
 
 .tabs .tab a:hover, .tabs .tab a.active {
-  color: #000 !important;
+  
 }
 
 .tabs .tab a:focus, .tabs .tab a:focus.active {
-  background-color: #fbc12d81 !important;
+  
 }
 
 .tabs .indicator {
-  background-color: black !important;
+  
 }
 
 .row .col {
