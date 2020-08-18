@@ -1,6 +1,6 @@
 body{
   font-size: 15;
-  background-color: #93ad20 !important;
+  background-color: rgba(71, 71, 71, 0.5) !important;
 }
 
 .brand{
@@ -29,7 +29,7 @@ body{
   margin-bottom: 1rem;
 }
 .nav{
-  background: #f1dd44 !important;
+  background: white !important;
   padding-bottom: 0.5rem;
 }
 
@@ -61,7 +61,7 @@ body{
 .kuittaus{
   max-width: 100%;
   padding: 1rem;
-  background-color: #687a17;
+  background-color: grey;
 }
 .error{
   max-width: 460px;
