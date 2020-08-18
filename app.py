@@ -4,7 +4,7 @@ from datetime import datetime
 import json
 import os
 
-ainejarjesto = 'hallinta'
+ainejarjesto = 'syrinx'
 idjarj = None
 
 app = Flask(__name__)
