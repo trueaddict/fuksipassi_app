@@ -1,0 +1,65 @@
+1, Hanki asunto
+2, Hyödynnä Google Mapsia löytääksesi paikan päälle
+3, Maksa JYY:n jäsenmaksu
+4, Liity Abakuksen sähköpostilistalle
+5, Osallistu luennolle
+6, Ilmoittaudu ensimmäisille kursseille sisussa
+7, Liity fuksien WhatsApp-ryhmään
+8, Osallistu tutor-ryhmän tapaamiseen
+9, Tapaa HOPS-ohjaajasi
+10, Seuraa Kerttu Krokoa somessa
+11, Vieraile kaikilla kampuksilla
+12, Matkusta Linkillä
+13, Löydä uusi ystävä
+14, Opiskele kirjastolla
+15, Tutustu korkeakoululiikuntaan
+16, Löydä kompassi
+17, Tee ryhmätyötä
+18, Ota MyJYU-sovellus käyttöön
+19, Käy kolmessa eri opiskelijaravintolassa
+20, Osallistu tenttiin
+21, Saa ensimmäiset opintopisteesi
+22, Käy Sohwissa
+23, Kiinnitä haalareihisi haalarimerkki
+24, Löydä uusi poikkitieteellinen tuttavuus
+25, Hanki yliopiston kirjastokortti
+26, Osallistu fuksiaisiin
+27, Liity SOOL:iin
+28, Koe ensimmäistä kertaa Timen karaoke
+29, Osallistu (fuksi)sitseille
+30, Kapua harjun portaat ylös
+31, Ihaile maisemia Harjun tornista
+32, Osallistu opiskelijabileisiin Abakuksen haalarit jalassa
+33, Pyöräile ympäri Jyväskylää ja koe vaihtelevat korkeuserot
+34, Käy Pandan tehtaalla
+35, Kiipeä Laajavuoren huipulle
+36, Osallistu hallituksen kokoukseen
+37, Käy Aban liikuntavuorolla
+38, Kierrä Jyväsjärvi pöyräillen tai jalan
+39, Käy Lutakossa keikalla
+40, Vieraile Rentukassa
+41, Mene haalarit jalassa luennolle
+42, Tapaa Kerttu Kroko
+43, Kävele Kuokkalan silta päästä päähän
+44, Vieraile Viitaniemen puistossa
+45, Vieraile Tuomiojärven uimarannalla tai ulkokuntosalilla
+46, Kulje Tourujoen luontopolku
+47, Käy Lutakon puistossa
+48, Löydä Suuri Kompassi
+49, Käy Survon omenatarhassa ihastelemassa ja/tai maistelemassa omenoita
+50, Vieraile Toivolan vanhalla pihalla
+51, Bongaa Jyväskylän keskustan seinämuraalit
+52, Osallistu kaupungintalon tutustumiskierrokselle
+53, Tutustu Kirkkopuistosta löytyviin taideteoksiin
+54, Osallistu Abakuksen kulttuuri/ teatterireissulle
+55, Bongaa Alvar Aallon suunnittelemia kohteita ja vieraile ainakin yhdessä
+56, Askartele oma tapahtuma-asu
+57, Käy luovuttamassa verta Abakuksen veriryhmään
+58, Maista Kerttu Krokon nimikkodrinkkiä DeLoreanissa
+59, Käy keittokeskiviikkona Revolutionissa
+60, Pidä lyhyt leikkimielinen infopuhe kolmiportaisesta tuesta jollekulle
+61, Lähde opiskelijatapahtumaan toiselle paikkakunnalle
+62, Tee tutkimusretki Valon kaupunkiin
+63, Juhli Abakuksen syntymäpäivää vuosijuhlissa
+64, Osallistu väitöstilaisuuteen
+65, Osallistu syksylle siirrettyyn vapputapahtumaan
