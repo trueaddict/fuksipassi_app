@@ -175,7 +175,7 @@ def logout():
   return redirect('/')
 
 def generateData(user_new = 'false'):
-  teht = Tehtava.query.all()
+  teht = Tehtava.query.filter_by(id_jarj=idjarj).all()
   suoritukset = db.session.query(Suoritus).join(Kayttaja).filter(Kayttaja.id==session['id']).all()
   tehtavat = []
   for t in teht:
