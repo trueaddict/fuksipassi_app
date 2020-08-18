@@ -37,7 +37,7 @@ body{
 .kuittaus{
   max-width: 100%;
   padding: 1rem;
-  background-color: #687a17;
+  background-color: #3b7a17;
 }
 .error{
   max-width: 460px;
@@ -114,7 +114,7 @@ div.panel.show{
 }
 
 body{
-  background-color: white!important;
+  background-color: rgba(17, 51, 25, 0.575) !important;
 }
 
 input:focus{
