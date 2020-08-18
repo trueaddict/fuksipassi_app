@@ -75,7 +75,7 @@ function updateUserInfo() {
 
 
 function openAccordion() {
-  urlParams = new URLSearchParams(window.location.search);
+  let urlParams = new URLSearchParams(window.location.search);
   if (urlParams.get('id') != null) {
     let id = urlParams.get('id');
     let name = document.getElementById(id).className;
@@ -87,7 +87,7 @@ function openAccordion() {
 
 
 function luoTehtavat() {
-  maarat = {};
+  var maarat = {};
   maarat['perusopinnot'] = 0;
   maarat['aineopinnot'] = 0;
   maarat['syventavat_opinnot'] = 0;
