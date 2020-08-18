@@ -1,0 +1,45 @@
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fuksipassi Hallinta</title>
+  <link rel="icon" type="image/png" href="./static/img/favicon_fp_2.png"/>
+  <link rel="shortcut icon" type="image/png" href="./static/img/favicon_fp_2.png"/>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="../static/css/hallinta.css">
+</head>
+<body>
+  <div class="nav">
+    <div class="row">
+      <div class="center">
+
+
+        <div class="col s12 m2 brand-site">
+          <a href="#"><img src="" alt="" class="responsive-img"></a>
+        </div>
+        <div class="col s12 m4 offset-m2">
+          <a href="" class=""><h3 class="brand-text brand-logo">Fuksipassi Hallinta</h3></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="center brand-text">
+    <h4>Kirjaudu</h4>
+  </div>
+  {% if data %}
+  <p class="center error">{{ data | safe }}</p>
+  {% endif %} 
+
+  <form class="kuittaus" action="/hallinta" method="POST">
+    <label for="useremail"></label>
+    <input type="text" name="useremail" placeholder="Käyttäjätunnus" id="useremail" required>
+    <label for="password"></label>
+    <input type="password" name="password" placeholder="Salasana" id="password" required>
+    <div class="center">
+      <input class="btn yellow darken-2" type="submit" value="Kirjaudu">
+    </div>
+    
+  </form>
+</body>
+</html>
