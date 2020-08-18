@@ -77,7 +77,7 @@ function updateUserInfo() {
 function openAccordion() {
   let urlParams = new URLSearchParams(window.location.search);
   if (urlParams.get('id') != null) {
-    let id = parseInt(urlParams.get('id'))-1;
+    let id = parseInt(urlParams.get('id'))-2;
     let name = document.getElementById(id).className;
     let div = document.getElementById(name).parentElement.previousElementSibling;
     div.classList.toggle("active");
