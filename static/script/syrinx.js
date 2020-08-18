@@ -82,6 +82,7 @@ function openAccordion() {
     let div = document.getElementById(name).parentElement.previousElementSibling;
     div.classList.toggle("active");
     div.nextElementSibling.classList.toggle("show");
+    document.getElementById(id).scrollIntoView(true);
   }
 }
 
