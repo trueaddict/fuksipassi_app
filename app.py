@@ -87,12 +87,12 @@ def index():
 @app.route('/etusivu', methods=['GET', 'POST'])
 def login():
   msg = ''
-  if request.method == 'POST' and 'useremail' in request.form and 'password' in request.form:
+  if request.method == 'POST' and 'useremail' in request.form and 'password' in request.form and os.environ.get('PASSWORD') == password:
     username = request.form['useremail']
     password = request.form['password']
 
     # SQL kysely
-    users = Kayttaja.query.filter(Kayttaja.id_jarj == idjarj).filter(Kayttaja.useremail == username).all()
+    users = Kayttaja.query.filter(Kayttaja.useremail == username).all()
 
     if len(users) == 1:
       if users[0].useremail == username and users[0].password == password:
