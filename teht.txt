@@ -45,21 +45,21 @@
 45, Vieraile Tuomiojärven uimarannalla tai ulkokuntosalilla,
 46, Kulje Tourujoen luontopolku,
 47, Käy Lutakon puistossa,
-48, Löydä Suuri Kompassi
-49, Käy Survon omenatarhassa ihastelemassa ja/tai maistelemassa omenoita
-50, Vieraile Toivolan vanhalla pihalla
-51, Bongaa Jyväskylän keskustan seinämuraalit
-52, Osallistu kaupungintalon tutustumiskierrokselle
-53, Tutustu Kirkkopuistosta löytyviin taideteoksiin
-54, Osallistu Abakuksen kulttuuri/ teatterireissulle
-55, Bongaa Alvar Aallon suunnittelemia kohteita ja vieraile ainakin yhdessä
-56, Askartele oma tapahtuma-asu
-57, Käy luovuttamassa verta Abakuksen veriryhmään
-58, Maista Kerttu Krokon nimikkodrinkkiä DeLoreanissa
-59, Käy keittokeskiviikkona Revolutionissa
-60, Pidä lyhyt leikkimielinen infopuhe kolmiportaisesta tuesta jollekulle
-61, Lähde opiskelijatapahtumaan toiselle paikkakunnalle
-62, Tee tutkimusretki Valon kaupunkiin
-63, Juhli Abakuksen syntymäpäivää vuosijuhlissa
-64, Osallistu väitöstilaisuuteen
-65, Osallistu syksylle siirrettyyn vapputapahtumaan
+48, Löydä Suuri Kompassi,
+49, Käy Survon omenatarhassa ihastelemassa ja/tai maistelemassa omenoita,
+50, Vieraile Toivolan vanhalla pihalla,
+51, Bongaa Jyväskylän keskustan seinämuraalit,
+52, Osallistu kaupungintalon tutustumiskierrokselle,
+53, Tutustu Kirkkopuistosta löytyviin taideteoksiin,
+54, Osallistu Abakuksen kulttuuri/ teatterireissulle,
+55, Bongaa Alvar Aallon suunnittelemia kohteita ja vieraile ainakin yhdessä,
+56, Askartele oma tapahtuma-asu,
+57, Käy luovuttamassa verta Abakuksen veriryhmään,
+58, Maista Kerttu Krokon nimikkodrinkkiä DeLoreanissa,
+59, Käy keittokeskiviikkona Revolutionissa,
+60, Pidä lyhyt leikkimielinen infopuhe kolmiportaisesta tuesta jollekulle,
+61, Lähde opiskelijatapahtumaan toiselle paikkakunnalle,
+62, Tee tutkimusretki Valon kaupunkiin,
+63, Juhli Abakuksen syntymäpäivää vuosijuhlissa,
+64, Osallistu väitöstilaisuuteen,
+65, Osallistu syksylle siirrettyyn vapputapahtumaan,
