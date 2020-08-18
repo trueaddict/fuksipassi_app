@@ -10,6 +10,9 @@ body{
 .brand-text{
   color: black !important;
 }
+.brand-text-white {
+  color: white !important;
+}
 .brand-logo{
   margin: 0.8rem 0 0 0;
 }

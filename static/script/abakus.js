@@ -162,7 +162,7 @@ function luoTehtava(nro, kuvaus, suoritettu, tyyppi, id, lahetetty) {
     form.appendChild(input);
     var button = document.createElement('button');
     button.setAttribute('type', 'submit');
-    button.className = 'btn brand-text green darken-2';
+    button.className = 'btn brand-text-white green darken-2';
     form.appendChild(button);
     var txt7 = document.createTextNode('Lähetä');
     button.appendChild(txt7);
