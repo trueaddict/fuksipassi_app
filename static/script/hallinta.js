@@ -55,7 +55,7 @@ function luoPyynto(i) {
   form.appendChild(div3);
   var btn = document.createElement('button');
   btn.setAttribute('name', 'kuittaaBtn');
-  btn.className = 'btn kuittaa-btn yellow darken-2';
+  btn.className = 'btn kuittaa-btn';
   btn.appendChild(document.createTextNode('Kuittaa valitut'));
   div3.appendChild(btn);
   var div4=document.createElement('div');
