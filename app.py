@@ -4,6 +4,9 @@ from datetime import datetime
 import json
 import os
 
+ainejarjesto = 'syrinx'
+idjarj = 1971
+
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY')
 
@@ -81,7 +84,7 @@ def info():
 def index():
   if 'loggedin' in session:
     data = generateData()
-    return render_template('/syrinx/index.html', data=json.dumps(data))
+    return render_template('/' + ainejarjesto + '/index.html', data=json.dumps(data))
   return render_template('index.html', data="")
 
 @app.route('/etusivu', methods=['GET', 'POST'])
@@ -101,14 +104,14 @@ def login():
         session['useremail'] = users[0].useremail
         session['id_jarj'] = users[0].id_jarj
         data = generateData()
-        return render_template('/syrinx/index.html', data=json.dumps(data))
+        return render_template('/' + ainejarjesto + '/index.html', data=json.dumps(data))
       else:
         msg = 'Väärä sähköposti tai salasana!'
     elif len(users) == 0 and os.environ.get('PASSWORD') == password:
       # Luo uusi käyttäjä
       users = Kayttaja.query.all()
       newId = users[len(users)-1].id + 1
-      newUser = Kayttaja(id=newId, useremail = username, password = password, id_jarj=1971)
+      newUser = Kayttaja(id=newId, useremail = username, password = password, id_jarj=idjarj)
       db.session.add(newUser)
       db.session.commit()
       session['loggedin'] = True
@@ -116,23 +119,23 @@ def login():
       session['useremail'] = newUser.useremail
       session['id_jarj'] = newUser.id_jarj
       data = generateData('true')
-      return render_template('/syrinx/index.html', data=json.dumps(data))
+      return render_template('/' + ainejarjesto + '/index.html', data=json.dumps(data))
     else:
       # Muu virhe
       msg = 'Väärä sähköposti tai salasana!'
       
   elif request.method == 'GET' and 'loggedin' in session:
     data = generateData()
-    return render_template('/syrinx/index.html', data=json.dumps(data))
+    return render_template('/' + ainejarjesto + '/index.html', data=json.dumps(data))
   else:
     return render_template('index.html', data=msg)
   return render_template('index.html', data=msg)
 
-@app.route('/syrinx/index.html')
-def syrinx():
+@app.route('/' + ainejarjesto + '/index.html')
+def ainejarjestofunc():
   if 'loggedin' in session:
     data = generateData()
-    return render_template('/syrinx/index.html', data=json.dumps(data))
+    return render_template('/' + ainejarjesto + '/index.html', data=json.dumps(data))
   else:
     return render_template('index.html', data='Kirjaudu sisään!')
 
@@ -178,7 +181,7 @@ def hallinta():
   if request.method == 'GET':
     if 'loggedin' in session and 'hallinta' in session:
       data = generateDataHallinta()
-      return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
+      return render_template('/hallinta/' + ainejarjesto + '/index.html', data=json.dumps(data))
     return render_template('/hallinta/index.html', data='')
   if request.method == "POST" and 'useremail' in request.form and 'password' in request.form:
     username = request.form['useremail']
@@ -190,7 +193,7 @@ def hallinta():
       session['id'] = 11
       session['useremail'] = username
       data = generateDataHallinta()
-      return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
+      return render_template('/hallinta/' + ainejarjesto + '/index.html', data=json.dumps(data))
     return render_template('/hallinta/index.html', data='Väärä sähköposti tai salasana!')
 
 @app.route('/hallinta/kuittaa', methods=["GET","POST"])
@@ -208,10 +211,10 @@ def kuittaa():
             suor.checked_date = datetime.today()
             db.session.commit()
     data = generateDataHallinta()
-    return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
+    return render_template('/hallinta/' + ainejarjesto + '/index.html', data=json.dumps(data))
   if request.method == 'GET' and 'loggedin' in session and 'hallinta' in session:
     data = generateDataHallinta()
-    return render_template('/hallinta/syrinx/index.html', data=json.dumps(data))
+    return render_template('/hallinta/' + ainejarjesto + '/index.html', data=json.dumps(data))
   return render_template('/hallinta/index.html', data='Kirjaudu sisään!')
 
 @app.route('/logout/hallinta')

@@ -65,9 +65,6 @@ function luodaankoUusiKayttaja() {
       policy.className = 'hide';
     }); 
   }
-
-
-
 }
 
 
