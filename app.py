@@ -155,7 +155,7 @@ def generateDataHallinta():
     kayt_list[k.id] = k.useremail
 
   for s in suoritukset:
-    if s.id_jarj == idjarj:
+    if s.id_jarj == idjarj and kayt_list.get(s.id_user) != None:
       if not s.checked:
         suor_list.append({"id_user":s.id_user, "id_teht":s.id_teht, "useremail":kayt_list.get(s.id_user), "kuvaus":teht_list.get(s.id_teht).rstrip(), "message":s.info_text})
   return {
