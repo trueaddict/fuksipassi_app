@@ -144,6 +144,12 @@ def generateDataHallinta():
   suoritukset = Suoritus.query.filter(Suoritus.id_jarj==idjarj).all()
   teht = Tehtava.query.filter(Tehtava.id_jarj==idjarj).all()
   kayttajat = Kayttaja.query.filter(Kayttaja.id_jarj==idjarj).all()
+
+  print(suoritukset)
+  print(teht)
+  print(kayttajat)
+
+
   kayt_list = dict()
   teht_list = dict()
   suor_list = []
