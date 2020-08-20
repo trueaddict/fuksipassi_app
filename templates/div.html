@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="/static/css/hallinta.css">
+</head>
+<body>
+  
+  <ul>
+    <li>
+      <div class="suor_div">
+        <label class="brand-text">
+          <input type="checkbox" checked="checked" name="1_1255355" id="1_1255355" class="yellow">
+          <span>Käy syömässä Maijassa <br><span class="small-margin-left">Seotysss</span></span>
+        </label>
+        <form class="hylkaaform" action="/hylkaa" method="POST">
+          <input class="hide" type="text" name="suorId" value="1255354">
+          <button name="hylkaaBtn" class="hylkaa btn-small">Hylkää</button>
+        </form>
+      </div>  
+      
+    </li>
+    <li>
+      
+
+      <div class="row">
+        <div class="col s9">
+          <label class="brand-text">
+            <input type="checkbox" checked="checked" name="1_1255354" id="1_1255354" class="yellow">
+            <span>Liity Syrinx Ry:n jäseneksi </span>
+            <div class="small-margin-left font-13"> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo asperiores iste quos</div>
+          </label>
+        </div>
+        <div class="col s3">
+          <form class="" action="/hylkaa" method="POST">
+            <input class="hide" type="text" name="suorId" value="1255354">
+            <button name="hylkaaBtn" class="hylkaa btn-small">Hylkää</button>
+          </form>
+        </div>
+      </div>
+    </li>
+  </ul>
+</body>
+</html>

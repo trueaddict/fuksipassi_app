@@ -1,6 +1,7 @@
-data = {
+json = {
   "kuitattavat": [
     {
+      "id_suor": 1233333,
       "id_teht": 1255355, 
       "id_user": 1,
       "useremail": "test",
@@ -8,6 +9,7 @@ data = {
       "message":"kävin syömässä maijassa"
     },
     {
+      "id_suor": 1233334,
       "id_teht": 1255354, 
       "id_user": 1,
       "useremail": "test",

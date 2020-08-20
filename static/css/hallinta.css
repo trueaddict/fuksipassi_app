@@ -168,3 +168,9 @@ input:focus{
 .info-text-last{
     font-size: 1.3rem;
 }
+.small-margin-left {
+  margin-left: 3rem;
+}
+.font-13{
+  font-size: 13px;
+}

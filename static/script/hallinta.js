@@ -1,5 +1,6 @@
 console.log(json);
 
+
 pyynnot = new Map();
 
 window.onload = function() {
@@ -22,6 +23,7 @@ function luoPyynnot(data) {
       }
       let kuitList = pyynnot.get(kuitti.id_user);
       kuitList.kuitattavat.push({
+        "id_suor":kuitti.id_suor,
         "id_teht": kuitti.id_teht,
         "kuvaus": kuitti.kuvaus,
         "message": kuitti.message,
@@ -65,9 +67,18 @@ function luoPyynto(i) {
 
   for (let teht of i.kuitattavat) {
     var li=document.createElement('li');
+
+    var divrow = document.createElement('div');
+    divrow.className = 'row'
+    li.appendChild(divrow);
+
+    var divcol1 = document.createElement('div');
+    divcol1.className = 'col s9';
+    divrow.appendChild(divcol1);
+
     var label1=document.createElement('label');
     label1.className = 'brand-text';
-    li.appendChild(label1);
+    divcol1.appendChild(label1);
     var input1=document.createElement('input');
     input1.setAttribute('type','checkbox');
     input1.setAttribute('checked', 'checked');
@@ -77,8 +88,35 @@ function luoPyynto(i) {
     label1.appendChild(input1);
     var span1=document.createElement('span');
     label1.appendChild(span1);
-    var txt4=document.createTextNode(teht.kuvaus + ' : ' + teht.message);
+    var txt4=document.createTextNode(teht.kuvaus);
     span1.appendChild(txt4);
+    var span2 = document.createElement('div');
+    span2.className = 'small-margin-left font-13';
+    label1.appendChild(span2);
+    var txt5 = document.createTextNode(teht.message);
+    span2.appendChild(txt5);
+    
+    var divcol2 = document.createElement('div');
+    divcol2.className = 'col s3';
+    divrow.appendChild(divcol2);
+    var formhyl = document.createElement('form');
+    formhyl.setAttribute('action', '/hylkaa');
+    formhyl.setAttribute('method', 'POST');
+    divcol2.appendChild(formhyl);
+
+    var inputid = document.createElement('input');
+    inputid.setAttribute('type', 'text');
+    inputid.setAttribute('name', 'suorId');
+    inputid.setAttribute('value', teht.id_suor);
+    inputid.className = 'hide';
+    formhyl.appendChild(inputid);
+
+    var buttonhyl = document.createElement('button');
+    buttonhyl.setAttribute('name', 'hylkaaBtn');
+    buttonhyl.className = 'btn-small';
+    buttonhyl.appendChild(document.createTextNode('Hylkää'));
+    formhyl.appendChild(buttonhyl);
+
     ul.appendChild(li);
   }
   div4.appendChild(ul);
