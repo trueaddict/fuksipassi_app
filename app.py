@@ -101,7 +101,7 @@ def hallinta():
 
     users = Kayttaja.query.filter_by(id_jarj=idjarj).filter(Kayttaja.useremail == username).first()
 
-    if 'test' == username and 'test' == ajPass:
+    if 'test' == username and ajPass == password:
       session['loggedin'] = True
       session['hallinta'] = True
       session['id'] = idjarj
