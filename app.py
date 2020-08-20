@@ -181,3 +181,8 @@ def generateDataHallinta():
             }
           ]
         }
+
+
+if __name__ == '__name__':
+  app.debug = True
+  app.run()
