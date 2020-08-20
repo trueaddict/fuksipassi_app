@@ -88,18 +88,23 @@ def hallinta():
   if request.method == "POST" and 'useremail' in request.form and 'password' in request.form:
     username = request.form['useremail']
     password = request.form['password']
+
+    ajPass = None
+
     #Validate Login
     if password == os.environ.get('PASS_SYRINX'):
+      ajPass = os.environ.get('PASS_SYRINX')
       idjarj = 1971
     if password == os.environ.get('PASS_ABAKUS'):
+      ajPass = os.environ.get('PASS_ABAKUS')
       idjarj = 1985
 
-    users = Kayttaja.query.filter_by(id_jarj=idjarj).filter(Kayttaja.useremail == username).all()
+    users = Kayttaja.query.filter_by(id_jarj=idjarj).filter(Kayttaja.useremail == username).first()
 
-    if 'test' == username and 'test' == password:
+    if 'test' == username and 'test' == ajPass:
       session['loggedin'] = True
       session['hallinta'] = True
-      session['id'] = 11
+      session['id'] = idjarj
       session['useremail'] = username
       data = generateDataHallinta()
       return render_template('/' + ainejarjesto + '/index.html', data=json.dumps(data))
