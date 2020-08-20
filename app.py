@@ -131,6 +131,18 @@ def kuittaa():
     return render_template('/' + ainejarjesto + '/index.html', data=json.dumps(data))
   return render_template('/index.html', data='Kirjaudu sisään!')
 
+
+@app.route('/hylkaa', methods=['GET','POST'])
+def hylkaa():
+  if request.method == 'POST' and 'loggedin' in session and 'hallinta' in session:
+    suorId = request.form['suorId']
+    print(suorId)
+  if request.method == 'GET' and 'loggedin' in session and 'hallinta' in session:
+    data = generateDataHallinta()
+    return render_template('/' + ainejarjesto + '/index.html', data=json.dumps(data))
+  return render_template('/index.html', data='Kirjaudu sisään!')
+
+
 @app.route('/logout')
 def logouthallinta():
   session.pop('loggedin', None)
