@@ -82,7 +82,7 @@ class Jarjesto(db.Model):
 def hallinta():
   if request.method == 'GET':
     if 'loggedin' in session and 'hallinta' in session:
-      data = generateDataHallinta()
+      data = generateDataHallinta(idjarj)
       return render_template('/' + ainejarjesto + '/index.html', data=json.dumps(data))
     return render_template('/index.html', data='')
   if request.method == "POST" and 'useremail' in request.form and 'password' in request.form:
@@ -106,7 +106,7 @@ def hallinta():
       session['hallinta'] = True
       session['id'] = idjarj
       session['useremail'] = username
-      data = generateDataHallinta()
+      data = generateDataHallinta(idjarj)
       return render_template('/' + ainejarjesto + '/index.html', data=json.dumps(data))
     return render_template('/index.html', data='Väärä sähköposti tai salasana!')
 
@@ -124,10 +124,10 @@ def kuittaa():
             suor.checked = True
             suor.checked_date = datetime.today()
             db.session.commit()
-    data = generateDataHallinta()
+    data = generateDataHallinta(idjarj)
     return render_template('/' + ainejarjesto + '/index.html', data=json.dumps(data))
   if request.method == 'GET' and 'loggedin' in session and 'hallinta' in session:
-    data = generateDataHallinta()
+    data = generateDataHallinta(idjarj)
     return render_template('/' + ainejarjesto + '/index.html', data=json.dumps(data))
   return render_template('/index.html', data='Kirjaudu sisään!')
 
@@ -140,7 +140,7 @@ def logouthallinta():
 
 # HALLINTA END
 
-def generateDataHallinta():
+def generateDataHallinta(jarj):
   suoritukset = Suoritus.query.all()
   teht = Tehtava.query.all()
   kayttajat = Kayttaja.query.all()
@@ -165,7 +165,7 @@ def generateDataHallinta():
   print(kayt_list)
 
   for s in suoritukset:
-    if s.id_jarj == idjarj:
+    if s.id_jarj == jarj:
       if not s.checked:
         suor_list.append({"id_user":s.id_user, "id_teht":s.id_teht, "useremail":kayt_list.get(s.id_user), "kuvaus":teht_list.get(s.id_teht), "message":s.info_text})
   
