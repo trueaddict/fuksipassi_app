@@ -143,8 +143,6 @@ div.panel.show{
 
 input:focus{
   color: #123;
-  border-bottom: 1px solid #fbc02d !important;
-  box-shadow: 0 1px 0 0 #fbc02d !important;
 }
 
 .policy{

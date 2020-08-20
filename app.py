@@ -89,6 +89,13 @@ def hallinta():
     username = request.form['useremail']
     password = request.form['password']
     #Validate Login
+    if password == os.environ.get('PASS_SYRINX'):
+      idjarj = 1971
+    if password == os.environ.get('PASS_ABAKUS'):
+      idjarj = 1985
+
+    users = Kayttaja.query.filter_by(id_jarj=idjarj).filter(Kayttaja.useremail == username).all()
+
     if 'test' == username and 'test' == password:
       session['loggedin'] = True
       session['hallinta'] = True
@@ -129,9 +136,9 @@ def logouthallinta():
 # HALLINTA END
 
 def generateDataHallinta():
-  suoritukset = Suoritus.query.all()
-  teht = Tehtava.query.all()
-  kayttajat = Kayttaja.query.all()
+  suoritukset = Suoritus.query.filter_by(id_jarj=idjarj).all()
+  teht = Tehtava.query.filter_by(id_jarj=idjarj).all()
+  kayttajat = Kayttaja.query.filter_by(id_jarj=idjarj).all()
   kayt_list = dict()
   teht_list = dict()
   suor_list = []
