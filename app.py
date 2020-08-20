@@ -136,7 +136,12 @@ def kuittaa():
 def hylkaa():
   if request.method == 'POST' and 'loggedin' in session and 'hallinta' in session:
     suorId = request.form['suorId']
-    print(suorId)
+    
+    suor = Suoritus.query.filter_by(id=suorId).first()
+    db.session.delete(suor)
+    db.session.commit()
+    data = generateDataHallinta()
+    return render_template('/' + ainejarjesto + '/index.html', data=json.dumps(data))
   if request.method == 'GET' and 'loggedin' in session and 'hallinta' in session:
     data = generateDataHallinta()
     return render_template('/' + ainejarjesto + '/index.html', data=json.dumps(data))
