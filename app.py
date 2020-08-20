@@ -141,9 +141,9 @@ def logouthallinta():
 # HALLINTA END
 
 def generateDataHallinta():
-  suoritukset = Suoritus.query.filter(id_jarj=idjarj).all()
-  teht = Tehtava.query.filter(id_jarj=idjarj).all()
-  kayttajat = Kayttaja.query.filter(id_jarj=idjarj).all()
+  suoritukset = Suoritus.query.filter(Suoritus.id_jarj==idjarj).all()
+  teht = Tehtava.query.filter(Tehtava.id_jarj==idjarj).all()
+  kayttajat = Kayttaja.query.filter(Kayttaja.id_jarj==idjarj).all()
   kayt_list = dict()
   teht_list = dict()
   suor_list = []
