@@ -141,7 +141,7 @@ def logouthallinta():
 # HALLINTA END
 
 def generateDataHallinta():
-  suoritukset = Suoritus.query.all()
+  suoritukset = Suoritus.query.filter(Suoritus.id_jarj==idjarj).all()
   teht = Tehtava.query.filter(Tehtava.id_jarj==idjarj).all()
   kayttajat = Kayttaja.query.filter(Kayttaja.id_jarj==idjarj).all()
   kayt_list = dict()
@@ -149,15 +149,21 @@ def generateDataHallinta():
   suor_list = []
 
   for t in teht:
-    teht_list[t.id] = t.kuvaus
+    teht_list[t.id] = t.kuvaus.rstrip()
+
+  print(teht_list)
 
   for k in kayttajat:
     kayt_list[k.id] = k.useremail
 
+  print(kayt_list)
+
   for s in suoritukset:
-    if s.id_jarj == idjarj and kayt_list.get(s.id_user) != None:
-      if not s.checked:
-        suor_list.append({"id_user":s.id_user, "id_teht":s.id_teht, "useremail":kayt_list.get(s.id_user), "kuvaus":teht_list.get(s.id_teht).rstrip(), "message":s.info_text})
+    if not s.checked:
+      suor_list.append({"id_user":s.id_user, "id_teht":s.id_teht, "useremail":kayt_list.get(s.id_user), "kuvaus":teht_list.get(s.id_teht), "message":s.info_text})
+  
+  print(suor_list)
+
   return {
           "kuitattavat": suor_list,
           "tehtavat" : [{"nro":1, "kuvaus":"Liity Syrinx Ry:n jäseneksi", "suoritettu":"true", "id":1255353}, {"nro":2, "kuvaus":"Osallistu tapahtumaan", "suoritettu":"false", "id":1255354}, {"nro":3, "kuvaus":"Osallistu tapahtumaan", "suoritettu":"false", "id":1255355}],
