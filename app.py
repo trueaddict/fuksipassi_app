@@ -142,9 +142,9 @@ def logouthallinta():
 
 def generateDataHallinta():
   jarj = session['id']
-  suoritukset = Suoritus.query.all()
-  teht = Tehtava.query.all()
-  kayttajat = Kayttaja.query.all()
+  suoritukset = Suoritus.query.filter_by(id_jarj=jarj).all()
+  teht = Tehtava.query.filter_by(id_jarj=jarj).all()
+  kayttajat = Kayttaja.query.filter_by(id_jarj=jarj).all()
 
   print(suoritukset)
   print(teht)
@@ -166,9 +166,8 @@ def generateDataHallinta():
   print(kayt_list)
 
   for s in suoritukset:
-    if s.id_jarj == jarj:
-      if not s.checked:
-        suor_list.append({"id_user":s.id_user, "id_teht":s.id_teht, "useremail":kayt_list.get(s.id_user), "kuvaus":teht_list.get(s.id_teht), "message":s.info_text})
+    if not s.checked:
+      suor_list.append({"id_user":s.id_user, "id_teht":s.id_teht, "useremail":kayt_list.get(s.id_user), "kuvaus":teht_list.get(s.id_teht), "message":s.info_text})
   
   print(suor_list)
 
