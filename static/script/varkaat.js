@@ -4,8 +4,8 @@ console.log(data);
 
 window.onload = function() {
   toggleAccordions();
-  luoTehtavat();
   updateUserInfo();
+  luoTehtavat();
   openAccordion();
   luodaankoUusiKayttaja();
 }
