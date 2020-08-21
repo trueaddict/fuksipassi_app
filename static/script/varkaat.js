@@ -88,7 +88,13 @@ function openAccordion() {
 
 
 function luoTehtavat() {
-  var maarat = {};
+  let tyypit = new Set();
+  for (let teht of data.tehtavat) {
+    tyypit.add(teht.tyyppi);
+  }
+
+  console.log(tyypit);
+  /*var maarat = {};
   maarat['perusopinnot'] = 0;
   maarat['syventavat_opinnot'] = 0;
   maarat['valinnaiset_opinnot'] = 0;
@@ -107,7 +113,7 @@ function luoTehtavat() {
   }
   document.getElementById('perusopinnot_suor').appendChild(document.createTextNode(maarat['perusopinnot_suor'] + ' / ' + maarat['perusopinnot']));
   document.getElementById('syventavat_opinnot_suor').appendChild(document.createTextNode(maarat['syventavat_opinnot_suor'] + ' / ' + maarat['syventavat_opinnot']));
-  document.getElementById('valinnaiset_opinnot_suor').appendChild(document.createTextNode(maarat['valinnaiset_opinnot_suor'] + ' / ' + maarat['valinnaiset_opinnot']));
+  document.getElementById('valinnaiset_opinnot_suor').appendChild(document.createTextNode(maarat['valinnaiset_opinnot_suor'] + ' / ' + maarat['valinnaiset_opinnot']));*/
 }
 
 

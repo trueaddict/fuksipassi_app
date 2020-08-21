@@ -183,7 +183,7 @@ def generateData(user_new = 'false'):
         suoritettu = "true"
       if (t.id == s.id_teht):
         lahetetty = "true"
-    tehtavat.append({"nro":t.num, "kuvaus":t.kuvaus.strip(), "suoritettu":suoritettu, "lahetetty":lahetetty, "tyyppi":t.tyyppi, "id":t.id})
+    tehtavat.append({"nro":t.num, "kuvaus":t.kuvaus.strip(), "suoritettu":suoritettu, "lahetetty":lahetetty, "tyyppi":t.tyyppi.strip(), "id":t.id})
   return {"user" : session['useremail'], "newUser" : user_new, "tehtavat" : tehtavat}
 
 if __name__ == '__name__':
@@ -191,14 +191,14 @@ if __name__ == '__name__':
   app.run()
 
 
-def luoTehtavat():
-  #jarj = Jarjesto(id=1961, name='Varkaat')
-  #db.session.add(jarj)
-  #db.session.commit()
-  f = open('teht.txt', 'r')
-  for i in range(54):
-    line = f.readline().split(',')
-    num = i + 1
-    teht = Tehtava(id=int(str(1961) + str(num)), kuvaus=line[0], id_jarj=1961, tyyppi=line[1], num=num)
-    db.session.add(teht)
-    db.session.commit()
+#def luoTehtavat():
+#  jarj = Jarjesto(id=1961, name='Varkaat')
+#  db.session.add(jarj)
+#  db.session.commit()
+#  f = open('teht.txt', 'r')
+#  for i in range(54):
+#    line = f.readline().split(',')
+#    num = i + 1
+#    teht = Tehtava(id=int(str(1961) + str(num)), kuvaus=line[0], id_jarj=1961, tyyppi=line[1], num=num)
+#    db.session.add(teht)
+#    db.session.commit()
