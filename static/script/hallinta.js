@@ -54,7 +54,7 @@ function luoTehtavat(data) {
     input1.className='hide';
     input1.setAttribute('type','text');
     input1.setAttribute('name', 'id_teht');
-    input1.setAttribute('value', t.id);
+    input1.setAttribute('value', t.id_teht);
     form1.appendChild(input1);
     var input2=document.createElement('input');
     input2.className='margin-0';
