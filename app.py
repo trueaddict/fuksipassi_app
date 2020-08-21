@@ -121,6 +121,7 @@ def kuittaa():
             suor = Suoritus.query.filter_by(id_user=i[0], id_teht=i[1]).first()
             suor.checked = True
             suor.checked_date = datetime.today()
+            suor.info_text = session['useremail'] + suor.info_text
             db.session.commit()
     data = generateDataHallinta()
     return render_template('/' + ainejarjesto + '/index.html', data=json.dumps(data))
