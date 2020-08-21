@@ -7,8 +7,13 @@ window.onload = function() {
   M.AutoInit();
   //var instance = M.Tabs.init(el, options);
   luoPyynnot(json);
+  updateUserInfo();
 }
 
+
+function updateUserInfo() {
+  document.getElementById('useremail').appendChild(parseUseremail(json.useremail));
+}
 
 function parseUseremail(useremail) {
   if (useremail.includes('@')) {
