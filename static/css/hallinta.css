@@ -174,3 +174,9 @@ input:focus{
 .font-13{
   font-size: 13px;
 }
+.margin-bottom{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 90%;
+}

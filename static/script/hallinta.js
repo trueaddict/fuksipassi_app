@@ -10,6 +10,23 @@ window.onload = function() {
 }
 
 
+function parseUseremail(useremail) {
+  if (useremail.includes('@')) {
+    let parseName = useremail.split('@');
+    let name_list = parseName[0].split('.')
+    name_list[0] = name_list[0].charAt(0).toUpperCase() + name_list[0].slice(1);
+    if (name_list.length > 1) {
+      name_list[name_list.length-1] = name_list[name_list.length-1].charAt(0).toUpperCase() + name_list[name_list.length-1].slice(1);
+      return name_list[0] + ' ' + name_list[name_list.length-1];
+    } else {
+      return name_list[0]
+    }
+  } else {
+    return useremail;
+  }
+}
+
+
 function luoPyynnot(data) {
   if (data.kuitattavat.length <= 0) {
     let p = document.createElement('p');
@@ -42,7 +59,7 @@ function luoPyynto(i) {
   var div1=document.createElement('div');
   div1.className='collapsible-header';
   li1.appendChild(div1);
-  var txt2=document.createTextNode(i.useremail);
+  var txt2=document.createTextNode(parseUseremail(i.useremail));
   div1.appendChild(txt2);
   var div2=document.createElement('div');
   div2.className='collapsible-body';
@@ -73,7 +90,7 @@ function luoPyynto(i) {
     li.appendChild(divrow);
 
     var divcol1 = document.createElement('div');
-    divcol1.className = 'col s9';
+    divcol1.className = 'col s9 coli';
     divrow.appendChild(divcol1);
 
     var label1=document.createElement('label');
@@ -87,6 +104,7 @@ function luoPyynto(i) {
     input1.className = 'yellow';
     label1.appendChild(input1);
     var span1=document.createElement('span');
+    span1.className = 'margin-bottom';
     label1.appendChild(span1);
     var txt4=document.createTextNode(teht.kuvaus);
     span1.appendChild(txt4);
