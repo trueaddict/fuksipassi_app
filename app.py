@@ -157,7 +157,7 @@ def tallenna():
     db.session.commit()
 
     data = generateDataHallinta()
-    return redirect('/index.html#teht')
+    return redirect('/#teht')
   if request.method == 'GET' and 'loggedin' in session and 'hallinta' in session:
     data = generateDataHallinta()
     return render_template('/' + ainejarjesto + '/index.html', data=json.dumps(data))
