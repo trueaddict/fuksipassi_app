@@ -111,7 +111,7 @@ def hallinta():
 @app.route('/kuittaa', methods=["GET","POST"])
 def kuittaa():
   if request.method == 'POST' and 'loggedin' in session and 'hallinta' in session:
-    # TODO kuittauksen tekeminen databaseen
+    # Kuittauksen tekeminen databaseen
     req = request.form
     inputs = list()
     for k, v in req.items():

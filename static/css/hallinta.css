@@ -170,6 +170,8 @@ input:focus{
 }
 .small-margin-left {
   margin-left: 4rem;
+  word-wrap: break-word;
+  width: 70%;
 }
 .font-13{
   font-size: 13px;
