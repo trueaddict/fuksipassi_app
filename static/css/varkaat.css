@@ -34,7 +34,7 @@ body{
 }
 
 .nav{
-  background: #036d00 !important;
+  background: #25561d !important;
   padding-bottom: 0.5rem;
 }
 .kuittaus{
@@ -84,8 +84,8 @@ button.accordion{
   outline: none;
   width: 100%;
   background-color: transparent;
-  border: 1px solid white;
-  color: white;
+  border: 1px solid #666666;
+  color: #666666;
   padding: 25px;
   margin: 0 0 4px 0px;
   transition: 0.3s;
@@ -117,7 +117,7 @@ div.panel.show{
 }
 
 body{
-  background-color: rgba(17, 51, 25, 0.575) !important;
+  background-color: #d1ded2 !important;
 }
 
 input:focus{

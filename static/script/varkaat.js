@@ -3,9 +3,9 @@ console.log(data);
 
 
 window.onload = function() {
-  toggleAccordions();
   updateUserInfo();
   luoTehtavat();
+  toggleAccordions();
   openAccordion();
   luodaankoUusiKayttaja();
 }
@@ -92,18 +92,40 @@ function luoTehtavat() {
   for (let teht of data.tehtavat) {
     tyypit.add(teht.tyyppi);
   }
-
   console.log(tyypit);
-  /*var maarat = {};
-  maarat['perusopinnot'] = 0;
-  maarat['syventavat_opinnot'] = 0;
-  maarat['valinnaiset_opinnot'] = 0;
+  var maarat = {};
+  for (let t of tyypit) {
+    maarat[t] = 0;
+    maarat[t+'_suor'] = 0;
 
-  maarat['perusopinnot_suor'] = 0;
-  maarat['syventavat_opinnot_suor'] = 0;
-  maarat['valinnaiset_opinnot_suor'] = 0;
-
-
+    var div1=document.createElement('div');
+    div1.className='col s12';
+    var div2=document.createElement('div');
+    div2.className='center';
+    div1.appendChild(div2);
+    var button1=document.createElement('button');
+    button1.className='accordion';
+    div2.appendChild(button1);
+    var h41=document.createElement('h4');
+    button1.appendChild(h41);
+    var txt3=document.createTextNode(t);
+    h41.appendChild(txt3);
+    var br1=document.createElement('br');
+    button1.appendChild(br1);
+    var h51=document.createElement('h5');
+    h51.setAttribute('id',t+'_suor');
+    button1.appendChild(h51);
+    var div3=document.createElement('div');
+    div3.className='panel';
+    div2.appendChild(div3);
+    var div4=document.createElement('div');
+    div4.setAttribute('id',t);
+    div4.className='row';
+    div3.appendChild(div4);
+    document.getElementById('row').appendChild(div1);
+  }
+  console.log(maarat);
+  
   for(let teht of data.tehtavat) {
     maarat[teht.tyyppi] = maarat[teht.tyyppi] + 1
     if (teht.suoritettu == 'true') {
@@ -111,9 +133,10 @@ function luoTehtavat() {
     }  
     document.getElementById(teht.tyyppi).appendChild(luoTehtava(teht.nro, teht.kuvaus, teht.suoritettu, teht.tyyppi, teht.id, teht.lahetetty));
   }
-  document.getElementById('perusopinnot_suor').appendChild(document.createTextNode(maarat['perusopinnot_suor'] + ' / ' + maarat['perusopinnot']));
-  document.getElementById('syventavat_opinnot_suor').appendChild(document.createTextNode(maarat['syventavat_opinnot_suor'] + ' / ' + maarat['syventavat_opinnot']));
-  document.getElementById('valinnaiset_opinnot_suor').appendChild(document.createTextNode(maarat['valinnaiset_opinnot_suor'] + ' / ' + maarat['valinnaiset_opinnot']));*/
+  console.log(maarat);
+  for (let t of tyypit) {
+    document.getElementById(t+'_suor').appendChild(document.createTextNode(maarat[t+'_suor'] + ' / ' + maarat[t]));
+  }
 }
 
 
