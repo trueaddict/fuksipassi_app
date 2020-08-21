@@ -99,9 +99,7 @@ def hallinta():
       ajPass = os.environ.get('PASS_ABAKUS')
       idjarj = 1985
 
-    users = Kayttaja.query.filter_by(id_jarj=idjarj).filter(Kayttaja.useremail == username).first()
-
-    if 'test' == username and ajPass == password:
+    if ajPass == password:
       session['loggedin'] = True
       session['hallinta'] = True
       session['id'] = idjarj
