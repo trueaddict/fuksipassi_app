@@ -169,7 +169,7 @@ def generateDataHallinta():
 
   for t in teht:
     teht_list[t.id] = t.kuvaus.rstrip()
-    tehtavat_list.append({"id_teht":t.id, "kuvaus":t.kuvaus, "id_jarj":t.id_jarj, "num":t.num, "tyyppi":t.tyyppi})
+    tehtavat_list.append({"id_teht":t.id, "kuvaus":t.kuvaus.rstrip(), "id_jarj":t.id_jarj, "num":t.num, "tyyppi":t.tyyppi})
 
   for k in kayttajat:
     kayt_list[k.id] = k.useremail
