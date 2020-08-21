@@ -4,13 +4,13 @@ from datetime import datetime
 import json
 import os
 
-ainejarjesto = 'abakus'
-idjarj = 1985
+ainejarjesto = 'varkaat'
+idjarj = 1961
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY')
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('HEROKU_POSTGRESQL_TEAL_URL')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -191,23 +191,14 @@ if __name__ == '__name__':
   app.run()
 
 
-#def luoTehtavat():
-#  jarj = Jarjesto(id=1985, name='Abakus')
-#  db.session.add(jarj)
-#  db.session.commit()
-#  f = open('teht.txt', 'r')
-#  for i in range(25):
-#    line = f.readline().split(',')
-#    teht = Tehtava(id=int(str(1985) + line[0]), kuvaus=line[1], id_jarj=1985, tyyppi='perusopinnot', num=line[0])
-#    db.session.add(teht)
-#    db.session.commit()
-#  for i in range(30):
-#    line = f.readline().split(',')
-#    teht = Tehtava(id=int(str(1985) + line[0]), kuvaus=line[1], id_jarj=1985, tyyppi='syventavat_opinnot', num=line[0])
-#    db.session.add(teht)
-#    db.session.commit()
-#  for i in range(10):
-#    line = f.readline().split(',')
-#    teht = Tehtava(id=int(str(1985) + line[0]), kuvaus=line[1], id_jarj=1985, tyyppi='valinnaiset_opinnot', num=line[0])
-#    db.session.add(teht)
-#    db.session.commit()
+def luoTehtavat():
+  jarj = Jarjesto(id=1961, name='Varkaat')
+  db.session.add(jarj)
+  db.session.commit()
+  f = open('teht.txt', 'r')
+  for i in range(54):
+    line = f.readline().split(',')
+    num = i + 1
+    teht = Tehtava(id=int(str(1985) + num), kuvaus=line[0], id_jarj=1961, tyyppi=line[1], num=num)
+    db.session.add(teht)
+    db.session.commit()
