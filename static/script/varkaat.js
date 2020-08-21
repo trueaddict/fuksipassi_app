@@ -70,7 +70,15 @@ function luodaankoUusiKayttaja() {
 
 
 function updateUserInfo() {
-  document.getElementById("useremail").appendChild(document.createTextNode(data.user));
+  let parseName = data.user.split('@');
+  let name_list = parseName[0].split('.')
+  name_list[0] = name_list[0].charAt(0).toUpperCase() + name_list[0].slice(1);
+  if (name_list.length > 1) {
+    name_list[name_list.length-1] = name_list[name_list.length-1].charAt(0).toUpperCase() + name_list[name_list.length-1].slice(1);
+    document.getElementById("useremail").appendChild(document.createTextNode(name_list[0] + ' ' + name_list[name_list.length-1]));
+  } else {
+    document.getElementById("useremail").appendChild(document.createTextNode(name_list[0]));
+  }
 }
 
 
