@@ -6,6 +6,7 @@ import os
 
 ainejarjesto = 'hallinta'
 idjarj = None
+jarj = ''
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY')
@@ -95,15 +96,18 @@ def hallinta():
     if password == os.environ.get('PASS_SYRINX'):
       ajPass = os.environ.get('PASS_SYRINX')
       idjarj = 1971
+      jarj = 'Syrinx'
     if password == os.environ.get('PASS_ABAKUS'):
       ajPass = os.environ.get('PASS_ABAKUS')
       idjarj = 1985
+      jarj = 'Abakus'
 
     if ajPass == password:
       session['loggedin'] = True
       session['hallinta'] = True
       session['id'] = idjarj
       session['useremail'] = username
+      session['aj'] = jarj
       data = generateDataHallinta()
       return render_template('/' + ainejarjesto + '/index.html', data=json.dumps(data))
     return render_template('/index.html', data='Väärä sähköposti tai salasana!')
@@ -169,6 +173,7 @@ def logouthallinta():
   session.pop('hallinta', None)
   session.pop('id', None)
   session.pop('useremail', None)
+  session.pop('aj', None)
   return redirect('/')
 
 # HALLINTA END
@@ -197,7 +202,7 @@ def generateDataHallinta():
 
   return {
           "useremail": session['useremail'],
-          "id_jarj": session['id'],
+          "aj": session['aj'],
           "kuitattavat": suor_list,
           "tehtavat" : tehtavat_list,
           "kayttajat" : [
