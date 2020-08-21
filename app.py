@@ -101,6 +101,10 @@ def hallinta():
       ajPass = os.environ.get('PASS_ABAKUS')
       idjarj = 1985
       jarj = 'Abakus'
+    if password == os.environ.get('PASS_VARKAAT'):
+      ajPass = os.environ.get('PASS_VARKAAT')
+      idjarj = 1961
+      jarj = 'Varkaat'
 
     if ajPass == password:
       session['loggedin'] = True
@@ -191,7 +195,7 @@ def generateDataHallinta():
 
   for t in teht:
     teht_list[t.id] = t.kuvaus.strip()
-    tehtavat_list.append({"id_teht":t.id, "kuvaus":t.kuvaus.strip(), "id_jarj":t.id_jarj, "num":t.num, "tyyppi":t.tyyppi})
+    tehtavat_list.append({"id_teht":t.id, "kuvaus":t.kuvaus.strip(), "id_jarj":t.id_jarj, "num":t.num, "tyyppi":t.tyyppi.strip()})
 
   for k in kayttajat:
     kayt_list[k.id] = k.useremail
