@@ -16,7 +16,7 @@ window.onload = function() {
 
 function updateUserInfo() {
   document.getElementById('useremail').appendChild(document.createTextNode(parseUseremail(json.useremail)));
-  document.getElementById('title').appendChild(document.createTextNode(json.aj));
+  document.getElementById('title').appendChild(document.createTextNode(json.aj +' Fuksipassi Hallinta'));
 }
 
 function parseUseremail(useremail) {
