@@ -39,7 +39,7 @@ function luoTehtavat(data) {
   //let tehtavat = [];
   for (let i = 0; i < data.tehtavat.length; i++) {
     for (let k = 0; k < data.tehtavat.length; k++) {
-      if (data.tehtavat[k].num = i+1) {
+      if (data.tehtavat[k].num == i+1) {
         tehtavat.push(data.tehtavat[k]);
       }
     } 
@@ -48,7 +48,7 @@ function luoTehtavat(data) {
   let ul = document.createElement('ul');
   ul.className = 'collection';
   document.getElementById('teht').appendChild(ul);
-  for (let t of data.tehtavat) {
+  for (let t of tehtavat) {
     var li1=document.createElement('li');
     li1.className='collection-item center';
     var txt1=document.createTextNode(t.num + '.');
