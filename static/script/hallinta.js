@@ -3,6 +3,8 @@ console.log(json);
 
 pyynnot = new Map();
 
+tehtavat = [];
+
 window.onload = function() {
   M.AutoInit();
   //var instance = M.Tabs.init(el, options);
@@ -34,6 +36,15 @@ function parseUseremail(useremail) {
 
 
 function luoTehtavat(data) {
+  //let tehtavat = [];
+  for (let i = 0; i < data.tehtavat.length; i++) {
+    for (let k = 0; k < data.tehtavat.length; k++) {
+      if (data.tehtavat[k].num = i+1) {
+        tehtavat.push(data.tehtavat[k]);
+      }
+    } 
+  }
+
   let ul = document.createElement('ul');
   ul.className = 'collection';
   document.getElementById('teht').appendChild(ul);
