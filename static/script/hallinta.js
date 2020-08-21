@@ -12,7 +12,7 @@ window.onload = function() {
 
 
 function updateUserInfo() {
-  document.getElementById('useremail').appendChild(parseUseremail(json.useremail));
+  document.getElementById('useremail').appendChild(document.createTextNode(parseUseremail(json.useremail)));
 }
 
 function parseUseremail(useremail) {
