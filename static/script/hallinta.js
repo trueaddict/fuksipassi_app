@@ -7,6 +7,7 @@ window.onload = function() {
   M.AutoInit();
   //var instance = M.Tabs.init(el, options);
   luoPyynnot(json);
+  luoTehtavat(json);
   updateUserInfo();
 }
 
@@ -28,6 +29,45 @@ function parseUseremail(useremail) {
     }
   } else {
     return useremail;
+  }
+}
+
+
+function luoTehtavat(data) {
+  let ul = document.createElement('ul');
+  ul.className = 'collection';
+  document.getElementById('teht').appendChild(ul);
+  for (let t of data.tehtavat) {
+    var li1=document.createElement('li');
+    li1.className='collection-item';
+    var txt1=document.createTextNode(t.num + '.');
+    li1.appendChild(txt1);
+    var div1=document.createElement('div');
+    div1.className='input-field inline margin-0';
+    li1.appendChild(div1);
+    var form1=document.createElement('form');
+    form1.setAttribute('action','/tallenna');
+    form1.setAttribute('method','POST');
+    form1.className='margin-0';
+    div1.appendChild(form1);
+    var input1=document.createElement('input');
+    input1.className='hide';
+    input1.setAttribute('type','text');
+    input1.setAttribute('name', 'id_teht');
+    input1.setAttribute('value', t.id);
+    form1.appendChild(input1);
+    var input2=document.createElement('input');
+    input2.className='margin-0';
+    input2.setAttribute('type','text');
+    input2.setAttribute('name', 'kuvaus');
+    input2.setAttribute('value', t.kuvaus);
+    form1.appendChild(input2);
+    var button1=document.createElement('button');
+    button1.className='btn-small float-right';
+    form1.appendChild(button1);
+    var txt6=document.createTextNode('Tallenna');
+    button1.appendChild(txt6);
+    ul.appendChild(li1);
   }
 }
 

@@ -182,3 +182,12 @@ input:focus{
   white-space: nowrap;
   width: 90%;
 }
+.margin-0 {
+  margin: 0;
+}
+.float-right{
+  float:right;
+}
+.collection-item{
+  margin-bottom: 0.5rem !important;
+}
