@@ -162,35 +162,26 @@ def generateDataHallinta():
   teht = Tehtava.query.filter_by(id_jarj=jarj).all()
   kayttajat = Kayttaja.query.filter_by(id_jarj=jarj).all()
 
-  print(suoritukset)
-  print(teht)
-  print(kayttajat)
-
-
   kayt_list = dict()
   teht_list = dict()
   suor_list = []
+  tehtavat_list = []
 
   for t in teht:
     teht_list[t.id] = t.kuvaus.rstrip()
-
-  print(teht_list)
+    tehtavat_list.append({"id_teht":t.id, "kuvaus":t.kuvaus, "id_jarj":t.id_jarj, "num":t.num, "tyyppi":t.tyyppi})
 
   for k in kayttajat:
     kayt_list[k.id] = k.useremail
 
-  print(kayt_list)
-
   for s in suoritukset:
     if not s.checked:
       suor_list.append({"id_suor":s.id, "id_user":s.id_user, "id_teht":s.id_teht, "useremail":kayt_list.get(s.id_user), "kuvaus":teht_list.get(s.id_teht), "message":s.info_text})
-  
-  print(suor_list)
 
   return {
           "useremail": session['useremail'],
           "kuitattavat": suor_list,
-          "tehtavat" : [{"nro":1, "kuvaus":"Liity Syrinx Ry:n jäseneksi", "suoritettu":"true", "id":1255353}, {"nro":2, "kuvaus":"Osallistu tapahtumaan", "suoritettu":"false", "id":1255354}, {"nro":3, "kuvaus":"Osallistu tapahtumaan", "suoritettu":"false", "id":1255355}],
+          "tehtavat" : tehtavat_list,
           "kayttajat" : [
             {
               "id" : 1,
