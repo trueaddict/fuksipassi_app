@@ -157,7 +157,7 @@ def tallenna():
     db.session.commit()
 
     data = generateDataHallinta()
-    return render_template('/' + ainejarjesto + '/index.html#teht', data=json.dumps(data))
+    return redirect('/' + ainejarjesto + '/index.html#teht')
   if request.method == 'GET' and 'loggedin' in session and 'hallinta' in session:
     data = generateDataHallinta()
     return render_template('/' + ainejarjesto + '/index.html', data=json.dumps(data))
@@ -166,6 +166,7 @@ def tallenna():
 @app.route('/logout')
 def logouthallinta():
   session.pop('loggedin', None)
+  session.pop('hallinta', None)
   session.pop('id', None)
   session.pop('useremail', None)
   return redirect('/')
