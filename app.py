@@ -146,6 +146,22 @@ def hylkaa():
     return render_template('/' + ainejarjesto + '/index.html', data=json.dumps(data))
   return render_template('/index.html', data='Kirjaudu sisään!')
 
+@app.route('/tallenna', methods=['GET', 'POST'])
+def tallenna():
+  if request.method == 'POST' and 'loggedin' in session and 'hallinta' in session and 'kuvaus' in request.form:
+    tehtId = request.form['id_teht']
+    tehtkuvaus = request.form['kuvaus']
+
+    teht = Tehtava.query.filter_by(id=tehtId).first()
+    teht.kuvaus = tehtkuvaus
+    db.session.commit()
+
+    data = generateDataHallinta()
+    return render_template('/' + ainejarjesto + '/index.html', data=json.dumps(data)
+  if request.method == 'GET' and 'loggedin' in session and 'hallinta' in session:
+    data = generateDataHallinta()
+    return render_template('/' + ainejarjesto + '/index.html', data=json.dumps(data))
+  return render_template('/index.html', data='Kirjaudu sisään!')
 
 @app.route('/logout')
 def logouthallinta():
