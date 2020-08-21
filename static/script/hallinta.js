@@ -39,7 +39,7 @@ function luoTehtavat(data) {
   document.getElementById('teht').appendChild(ul);
   for (let t of data.tehtavat) {
     var li1=document.createElement('li');
-    li1.className='collection-item';
+    li1.className='collection-item center';
     var txt1=document.createTextNode(t.num + '.');
     li1.appendChild(txt1);
     var div1=document.createElement('div');
