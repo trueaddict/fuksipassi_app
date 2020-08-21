@@ -199,6 +199,6 @@ def luoTehtavat():
   for i in range(54):
     line = f.readline().split(',')
     num = i + 1
-    teht = Tehtava(id=int(str(1985) + str(num)), kuvaus=line[0], id_jarj=1961, tyyppi=line[1], num=num)
+    teht = Tehtava(id=int(str(1961) + str(num)), kuvaus=line[0], id_jarj=1961, tyyppi=line[1], num=num)
     db.session.add(teht)
     db.session.commit()
