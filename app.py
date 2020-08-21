@@ -192,9 +192,9 @@ if __name__ == '__name__':
 
 
 def luoTehtavat():
-  jarj = Jarjesto(id=1961, name='Varkaat')
-  db.session.add(jarj)
-  db.session.commit()
+  #jarj = Jarjesto(id=1961, name='Varkaat')
+  #db.session.add(jarj)
+  #db.session.commit()
   f = open('teht.txt', 'r')
   for i in range(54):
     line = f.readline().split(',')
