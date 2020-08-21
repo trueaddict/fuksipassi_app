@@ -157,7 +157,7 @@ def tallenna():
     db.session.commit()
 
     data = generateDataHallinta()
-    return redirect('/' + ainejarjesto + '/index.html#teht')
+    return redirect('/index.html#teht')
   if request.method == 'GET' and 'loggedin' in session and 'hallinta' in session:
     data = generateDataHallinta()
     return render_template('/' + ainejarjesto + '/index.html', data=json.dumps(data))
@@ -197,6 +197,7 @@ def generateDataHallinta():
 
   return {
           "useremail": session['useremail'],
+          "id_jarj": session['id'],
           "kuitattavat": suor_list,
           "tehtavat" : tehtavat_list,
           "kayttajat" : [
