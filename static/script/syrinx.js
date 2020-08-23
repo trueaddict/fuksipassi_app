@@ -2,7 +2,7 @@
 console.log(data);
 
 var name;
-tehtavat = [];
+var tehtavat = [];
 
 window.onload = function() {
   toggleAccordions();
