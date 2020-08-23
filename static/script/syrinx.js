@@ -2,6 +2,7 @@
 console.log(data);
 
 var name;
+tehtavat = [];
 
 window.onload = function() {
   toggleAccordions();
@@ -98,6 +99,16 @@ function openAccordion() {
 
 
 function luoTehtavat() {
+  //let tehtavat = [];
+  for (let i = 0; i < data.tehtavat.length; i++) {
+    for (let k = 0; k < data.tehtavat.length; k++) {
+      if (data.tehtavat[k].num == i+1) {
+        tehtavat.push(data.tehtavat[k]);
+      }
+    } 
+  }
+
+
   var maarat = {};
   maarat['perusopinnot'] = 0;
   maarat['aineopinnot'] = 0;
@@ -108,7 +119,7 @@ function luoTehtavat() {
   maarat['syventavat_opinnot_suor'] = 0;
   maarat['yleisopinnot_suor'] = 0;
 
-  for(let teht of data.tehtavat) {
+  for(let teht of tehtavat) {
     maarat[teht.tyyppi] = maarat[teht.tyyppi] + 1
     if (teht.suoritettu == 'true') {
       maarat[teht.tyyppi + '_suor'] = maarat[teht.tyyppi + '_suor'] + 1
