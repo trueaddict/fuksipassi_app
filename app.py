@@ -196,3 +196,11 @@ def generateData(user_new = 'false'):
 if __name__ == '__name__':
   app.debug = True
   app.run()
+
+def updateTeht():
+  f = open('teht.txt', 'r')
+  syrreTeht = Tehtava.query.filter_by(id_jarj=1971).all()
+  for i in syrreTeht:
+    line = f.readline()
+    i.kuvaus = line.strip()
+    db.session.commit()
