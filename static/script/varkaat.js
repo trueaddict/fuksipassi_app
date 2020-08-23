@@ -40,7 +40,7 @@ function luodaankoUusiKayttaja() {
     div1.appendChild(div2);
     var button1=document.createElement('button');
     button1.setAttribute('id','signup');
-    button1.className='btn green-syrinx';
+    button1.className='btn green-varkaat';
     div2.appendChild(button1);
     var txt10=document.createTextNode('Kyllä');
     button1.appendChild(txt10);
@@ -49,7 +49,7 @@ function luodaankoUusiKayttaja() {
     div1.appendChild(div3);
     var a2=document.createElement('a');
     a2.setAttribute('href','/signout');
-    a2.className='btn yellow darken-2';
+    a2.className='btn black';
     div3.appendChild(a2);
     var txt14=document.createTextNode('Ei');
     a2.appendChild(txt14);
