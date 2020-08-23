@@ -31,7 +31,7 @@ function luodaankoUusiKayttaja() {
     var txt6=document.createTextNode('Luomalla käyttäjän hyväksyt palvelun käyttöehdot sekä ');
     p2.appendChild(txt6);
     var a1=document.createElement('a');
-    a1.setAttribute('href','/gdpr');
+    a1.setAttribute('href','./gdpr');
     p2.appendChild(a1);
     var txt7=document.createTextNode('rekisteri- ja tietosuojaselosteen');
     a1.appendChild(txt7);
