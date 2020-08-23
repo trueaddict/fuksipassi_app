@@ -1,6 +1,7 @@
 "use strict";
 console.log(data);
 
+var tehtavat = [];
 
 window.onload = function() {
   updateUserInfo();
@@ -133,13 +134,22 @@ function luoTehtavat() {
     document.getElementById('row').appendChild(div1);
   }
   console.log(maarat);
+
+  //let tehtavat = [];
+  for (let i = 0; i < data.tehtavat.length; i++) {
+    for (let k = 0; k < data.tehtavat.length; k++) {
+      if (data.tehtavat[k].num == i+1) {
+        tehtavat.push(data.tehtavat[k]);
+      }
+    } 
+  }
   
-  for(let teht of data.tehtavat) {
+  for(let teht of tehtavat) {
     maarat[teht.tyyppi] = maarat[teht.tyyppi] + 1
     if (teht.suoritettu == 'true') {
       maarat[teht.tyyppi + '_suor'] = maarat[teht.tyyppi + '_suor'] + 1
     }  
-    document.getElementById(teht.tyyppi).appendChild(luoTehtava(teht.nro, teht.kuvaus, teht.suoritettu, teht.tyyppi, teht.id, teht.lahetetty));
+    document.getElementById(teht.tyyppi).appendChild(luoTehtava(teht.num, teht.kuvaus, teht.suoritettu, teht.tyyppi, teht.id, teht.lahetetty));
   }
   console.log(maarat);
   for (let t of tyypit) {

@@ -187,7 +187,7 @@ def generateData(user_new = 'false'):
         suoritettu = "true"
       if (t.id == s.id_teht):
         lahetetty = "true"
-    tehtavat.append({"nro":t.num, "kuvaus":t.kuvaus.strip(), "suoritettu":suoritettu, "lahetetty":lahetetty, "tyyppi":t.tyyppi.strip(), "id":t.id})
+    tehtavat.append({"num":t.num, "kuvaus":t.kuvaus.strip(), "suoritettu":suoritettu, "lahetetty":lahetetty, "tyyppi":t.tyyppi.strip(), "id":t.id})
   return {"user" : session['useremail'], "newUser" : user_new, "tehtavat" : tehtavat}
 
 if __name__ == '__name__':
