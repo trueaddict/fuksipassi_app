@@ -151,6 +151,10 @@ def tarkista():
   else:
     return render_template('index.html', data='Kirjaudu sisään!')
 
+@app.route('/gdpr', methods=['GET'])
+def gdpr():
+  return render_template('/gdpr/index.html', data="")
+
 @app.route('/signout')
 def signout():
   #Käyttäjän poistaminen
