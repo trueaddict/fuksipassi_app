@@ -199,8 +199,9 @@ if __name__ == '__name__':
 
 def updateTeht():
   f = open('teht.txt', 'r')
-  syrreTeht = Tehtava.query.filter_by(id_jarj=1971).all()
-  for i in syrreTeht:
+  for i in range(180):
+    num = i+1
+    syrreTeht = Tehtava.query.filter_by(id_jarj=1971, num=num).first()
     line = f.readline()
-    i.kuvaus = line.strip()
+    syrreTeht.kuvaus = line.strip()
     db.session.commit()
