@@ -124,7 +124,7 @@ function luoTehtavat() {
     if (teht.suoritettu == 'true') {
       maarat[teht.tyyppi + '_suor'] = maarat[teht.tyyppi + '_suor'] + 1
     }  
-    document.getElementById(teht.tyyppi).appendChild(luoTehtava(teht.nro, teht.kuvaus, teht.suoritettu, teht.tyyppi, teht.id, teht.lahetetty));
+    document.getElementById(teht.tyyppi).appendChild(luoTehtava(teht.num, teht.kuvaus, teht.suoritettu, teht.tyyppi, teht.id, teht.lahetetty));
   }
   document.getElementById('perusopinnot_suor').appendChild(document.createTextNode(maarat['perusopinnot_suor'] + ' / ' + maarat['perusopinnot']));
   document.getElementById('aineopinnot_suor').appendChild(document.createTextNode(maarat['aineopinnot_suor'] + ' / ' + maarat['aineopinnot']));
