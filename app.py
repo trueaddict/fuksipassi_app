@@ -192,6 +192,7 @@ def generateDataHallinta():
   teht_list = dict()
   suor_list = []
   tehtavat_list = []
+  kayttajat_list = []
 
   for t in teht:
     teht_list[t.id] = t.kuvaus.strip()
@@ -199,6 +200,7 @@ def generateDataHallinta():
 
   for k in kayttajat:
     kayt_list[k.id] = k.useremail
+    kayttajat_list.append({"id":k.id, "useremail":k.useremail})
 
   for s in suoritukset:
     if not s.checked:
@@ -209,13 +211,7 @@ def generateDataHallinta():
           "aj": session['aj'],
           "kuitattavat": suor_list,
           "tehtavat" : tehtavat_list,
-          "kayttajat" : [
-            {
-              "id" : 1,
-              "useremail" : "test",
-              "id_jarj": 99999 
-            }
-          ]
+          "kayttajat" : kayttajat_list,
         }
 
 
