@@ -10,6 +10,7 @@ window.onload = function() {
   //var instance = M.Tabs.init(el, options);
   luoPyynnot(json);
   luoTehtavat(json);
+  luoKayttajat(json);
   updateUserInfo();
 }
 
@@ -19,6 +20,25 @@ function updateUserInfo() {
   document.getElementById('title').appendChild(document.createTextNode(json.aj +' Fuksipassi Hallinta'));
   document.getElementById('headtitle').appendChild(document.createTextNode(json.aj +' Fuksipassi Hallinta'));
 }
+
+function luoKayttajat(data) {
+  let ul = document.getElementById('collapsible-kayt');
+
+  for (let kayt of data.kayttajat) {
+    let name = parseUseremail(kayt.useremail);
+    let li = document.createElement('li');
+    let div1 = document.createElement('div');
+    div1.className = 'collapsible-header';
+    div1.appendChild(document.createTextNode(name));
+    li.appendChild(div1);
+    let div2 = document.createElement('div');
+    div2.className = 'collapsible-body';
+    div2.appendChild(document.createTextNode('Lisää infoa tulossa...'));
+    li.appendChild(div2);
+    ul.appendChild(li);
+  }
+}
+
 
 function parseUseremail(useremail) {
   if (useremail.includes('@')) {
