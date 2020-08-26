@@ -33,6 +33,8 @@ function luoKayttajat(data) {
     li.appendChild(div1);
     let div2 = document.createElement('div');
     div2.className = 'collapsible-body';
+    div2.appendChild(document.createTextNode(kayt.useremail));
+    div2.appendChild(document.createElement('br'));
     div2.appendChild(document.createTextNode('Lisää infoa tulossa...'));
     li.appendChild(div2);
     ul.appendChild(li);
