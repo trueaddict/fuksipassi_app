@@ -29,7 +29,6 @@ function laskeSuoritukset(data) {
   for (let teht of data.tehtavat) {
     tyyppi_maarat[teht.tyyppi] = tyyppi_maarat[teht.tyyppi] + 1; 
   }
-  console.log(tyyppi_maarat);
   for (let suor of data.suoritukset) {
     if (suoritukset[suor.id_user] == null) {
       suoritukset[suor.id_user] = [];
@@ -44,9 +43,8 @@ function laskeSuoritukset(data) {
     }
     for (let i of suoritukset[suor]) {
       kayt_suor[i.tyyppi] = kayt_suor[i.tyyppi] + 1;
-      kayt_suor[i.tyyppi + '_pros'] = (kayt_suor[i.tyyppi] / tyyppi_maarat[i.tyyppi]) * 100;
+      kayt_suor[i.tyyppi + '_pros'] = Math.round(kayt_suor[i.tyyppi] / tyyppi_maarat[i.tyyppi]) * 100;
     }
-    console.log(kayt_suor);
     suoritukset[suor + '_maarat'] = kayt_suor;
     lisaaSuoritukset(kayt_suor, tyyppi_maarat, suor);
   }
@@ -68,7 +66,6 @@ function lisaaSuoritukset(kayt_suor, tyyppi_maarat, suor) {
   
   let nameDiv = document.getElementById(suor+'1');
   nameDiv.appendChild(document.createTextNode(' - '+ yhtSuor +' / '+yhtMaar))
-  console.log(nameDiv);
 }
 
 function updateUserInfo() {
