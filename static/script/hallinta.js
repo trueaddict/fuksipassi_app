@@ -43,7 +43,7 @@ function laskeSuoritukset(data) {
     }
     for (let i of suoritukset[suor]) {
       kayt_suor[i.tyyppi] = kayt_suor[i.tyyppi] + 1;
-      kayt_suor[i.tyyppi + '_pros'] = Math.round(kayt_suor[i.tyyppi] / tyyppi_maarat[i.tyyppi]) * 100;
+      kayt_suor[i.tyyppi + '_pros'] = Math.round(kayt_suor[i.tyyppi] / tyyppi_maarat[i.tyyppi] * 100);
     }
     suoritukset[suor + '_maarat'] = kayt_suor;
     lisaaSuoritukset(kayt_suor, tyyppi_maarat, suor);
