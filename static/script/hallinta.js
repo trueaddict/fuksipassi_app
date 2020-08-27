@@ -12,8 +12,64 @@ window.onload = function() {
   luoTehtavat(json);
   luoKayttajat(json);
   updateUserInfo();
+  laskeSuoritukset(json);
 }
 
+
+function laskeSuoritukset(data) {
+  var suoritukset = {};
+  let tyypit = new Set();
+  var tyyppi_maarat = {};
+  for (let teht of data.tehtavat) {
+    tyypit.add(teht.tyyppi);
+  }
+  for (let typ of tyypit) {
+    tyyppi_maarat[typ] = 0;
+  }
+  for (let teht of data.tehtavat) {
+    tyyppi_maarat[teht.tyyppi] = tyyppi_maarat[teht.tyyppi] + 1; 
+  }
+  console.log(tyyppi_maarat);
+  for (let suor of data.suoritukset) {
+    if (suoritukset[suor.id_user] == null) {
+      suoritukset[suor.id_user] = [];
+    }
+    suoritukset[suor.id_user].push(suor);
+  }
+  for (let suor in suoritukset) {
+    let kayt_suor = {};
+    for (let typ of tyypit) {
+      kayt_suor[typ] = 0;
+      kayt_suor[typ + '_pros'] = 0;
+    }
+    for (let i of suoritukset[suor]) {
+      kayt_suor[i.tyyppi] = kayt_suor[i.tyyppi] + 1;
+      kayt_suor[i.tyyppi + '_pros'] = (kayt_suor[i.tyyppi] / tyyppi_maarat[i.tyyppi]) * 100;
+    }
+    console.log(kayt_suor);
+    suoritukset[suor + '_maarat'] = kayt_suor;
+    lisaaSuoritukset(kayt_suor, tyyppi_maarat, suor);
+  }
+}
+
+function lisaaSuoritukset(kayt_suor, tyyppi_maarat, suor) {
+  let yhtMaar = 0;
+  let yhtSuor = 0;
+  for (let typ in tyyppi_maarat) {
+    yhtMaar = yhtMaar + tyyppi_maarat[typ];
+    yhtSuor = yhtSuor + kayt_suor[typ];
+    let div = document.getElementById(suor);
+    let div1 = document.createElement('div');
+    div1.className = 'halinfo';
+    let tyyppi = typ.charAt(0).toUpperCase() + typ.slice(1).replace('_', ' ');
+    div1.appendChild(document.createTextNode(tyyppi + ': ' + kayt_suor[typ] + ' / ' + tyyppi_maarat[typ] + '  |  ' + kayt_suor[typ+'_pros'] + '%'));
+    div.appendChild(div1);
+  }
+  
+  let nameDiv = document.getElementById(suor+'1');
+  nameDiv.appendChild(document.createTextNode(' - '+ yhtSuor +' / '+yhtMaar))
+  console.log(nameDiv);
+}
 
 function updateUserInfo() {
   document.getElementById('useremail').appendChild(document.createTextNode(parseUseremail(json.useremail)));
