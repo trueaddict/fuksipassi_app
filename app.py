@@ -192,6 +192,7 @@ def generateDataHallinta():
 
   kayt_list = dict()
   teht_list = dict()
+  teht_tyyppi_list = dict()
   suor_list = []
   tehtavat_list = []
   kayttajat_list = []
@@ -199,6 +200,7 @@ def generateDataHallinta():
 
   for t in teht:
     teht_list[t.id] = t.kuvaus.strip()
+    teht_tyyppi_list[t.id] = t.tyyppi
     tehtavat_list.append({"id_teht":t.id, "kuvaus":t.kuvaus.strip(), "id_jarj":t.id_jarj, "num":t.num, "tyyppi":t.tyyppi.strip()})
 
   for k in kayttajat:
@@ -209,7 +211,7 @@ def generateDataHallinta():
     if not s.checked:
       suor_list.append({"id_suor":s.id, "id_user":s.id_user, "id_teht":s.id_teht, "useremail":kayt_list.get(s.id_user), "kuvaus":teht_list.get(s.id_teht), "message":s.info_text})
     else:
-      suoritukset_list.append({"id_suor":s.id, "id_user":s.id_user, "id_teht":s.id_teht, "useremail":kayt_list.get(s.id_user), "kuvaus":teht_list.get(s.id_teht)})
+      suoritukset_list.append({"id_suor":s.id, "id_user":s.id_user, "id_teht":s.id_teht, "useremail":kayt_list.get(s.id_user), "tyyppi":teht_tyyppi_list.get(s.id_teht)})
 
   return {
           "useremail": session['useremail'],
