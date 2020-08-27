@@ -86,12 +86,15 @@ function luoKayttajat(data) {
     let div1 = document.createElement('div');
     div1.className = 'collapsible-header';
     div1.appendChild(document.createTextNode(name));
+    div1.setAttribute('id', kayt.id+'1');
     li.appendChild(div1);
     let div2 = document.createElement('div');
     div2.className = 'collapsible-body';
-    div2.appendChild(document.createTextNode(kayt.useremail));
-    div2.appendChild(document.createElement('br'));
-    div2.appendChild(document.createTextNode('Lisää infoa tulossa...'));
+    //div2.appendChild(document.createTextNode(kayt.useremail));
+    let div3 = document.createElement('div');
+    div3.setAttribute('id', kayt.id);
+    div2.appendChild(div3);
+
     li.appendChild(div2);
     ul.appendChild(li);
   }
