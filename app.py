@@ -107,7 +107,7 @@ def login():
     elif len(users) == 0 and os.environ.get('PASSWORD') == password:
       # Luo uusi käyttäjä
       users = Kayttaja.query.all()
-      newId = users[len(users)-1].id + 4
+      newId = users[len(users)-1].id + 1
       newUser = Kayttaja(id=newId, useremail = username, password = password, id_jarj=idjarj)
       db.session.add(newUser)
       db.session.commit()
