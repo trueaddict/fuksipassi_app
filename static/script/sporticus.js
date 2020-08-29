@@ -97,9 +97,9 @@ function openAccordion() {
 
 
 function luoTehtavat() {
-  let tyypit = new Set([ "1. Taso – TERVETULOA YLIOPISTOON", "2. Taso – LIIKUNNAN HENKI", "3. TASO - OPISKELIJAELÄMÄÄ", "LIIKUNNAN RIEMUA" ]);
+  let tyypit = new Set([ "1. Taso – TERVETULOA YLIOPISTOON", "2. Taso – LIIKUNNAN HENKI", "3. Taso - OPISKELIJAELÄMÄÄ", "LIIKUNNAN RIEMUA" ]);
   for (let teht of data.tehtavat) {
-    tyypit.add(teht.tyyppi);
+    tyypit.add(teht.tyyppi.replace('TASO', 'Taso'));
   }
   console.log(tyypit);
   var maarat = {};
