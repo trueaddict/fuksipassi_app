@@ -105,6 +105,11 @@ def hallinta():
       ajPass = os.environ.get('PASS_VARKAAT')
       idjarj = 1961
       jarj = 'Varkaat'
+    if password == os.environ.get('PASS_SPORTICUS'):
+      ajPass = os.environ.get('PASS_SPORTICUS')
+      idjarj = 1951
+      jarj = 'Sporticus'
+
 
     if ajPass == password:
       session['loggedin'] = True
