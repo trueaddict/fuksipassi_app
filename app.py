@@ -195,14 +195,20 @@ if __name__ == '__name__':
   app.run()
 
 
-def luoTehtavat():
-  jarj = Jarjesto(id=1951, name='Sporticus')
-  db.session.add(jarj)
-  db.session.commit()
-  f = open('teht.txt', 'r')
-  for i in range(103):
-    line = f.readline().split(',')
-    num = i + 1
-    teht = Tehtava(id=int(str(1951) + str(num)), kuvaus=line[0], id_jarj=1951, tyyppi=line[1], num=num)
-    db.session.add(teht)
-    db.session.commit()
+#def luoTehtavat():
+#  jarj = Jarjesto(id=1951, name='Sporticus')
+#  db.session.add(jarj)
+#  db.session.commit()
+#  f = open('teht.txt', 'r')
+#  for i in range(103):
+#    line = f.readline().split(',')
+#    num = i + 1
+#    teht = Tehtava(id=int(str(1951) + str(num)), kuvaus=line[0], id_jarj=1951, tyyppi=line[1], num=num)
+#    db.session.add(teht)
+#    db.session.commit()
+
+def korjaaTeht():
+  tehtavat = Tehtava.query.filter_by(id_jarj=1951)
+  for teht in tehtavat:
+    teht.tyyppi = teht.tyyppi.replace('TASO', 'Taso')
+    db.session.commit() 
