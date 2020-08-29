@@ -128,8 +128,8 @@ body{
 
 input:focus{
   color: #123;
-  border-bottom: 1px solid #036d00 !important;
-  box-shadow: 0 1px 0 0 #036d00 !important;
+  border-bottom: 1px solid #f8af2d !important;
+  box-shadow: 0 1px 0 0 #f8af2d !important;
 }
 
 .policy{
