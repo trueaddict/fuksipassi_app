@@ -196,7 +196,7 @@ if __name__ == '__name__':
 
 
 def luoTehtavat():
-  jarj = Jarjesto(id=1951, name='Varkaat')
+  jarj = Jarjesto(id=1951, name='Sporticus')
   db.session.add(jarj)
   db.session.commit()
   f = open('teht.txt', 'r')
