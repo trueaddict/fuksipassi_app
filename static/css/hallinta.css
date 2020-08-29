@@ -193,6 +193,5 @@ input:focus{
   margin-bottom: 0.5rem !important;
 }
 .halinfo{
-  text-align: right;
-  width: 18rem;
+  text-align: left;
 }
