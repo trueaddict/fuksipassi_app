@@ -8,6 +8,9 @@ body{
   background: grey !important;
 }
 .brand-text{
+  color: #f8af2d !important;
+}
+.brand-text-black{
   color: black !important;
 }
 .brand-text-white {
@@ -34,7 +37,7 @@ body{
 }
 
 .nav{
-  background: #055812 !important;
+  background: black !important;
   padding-bottom: 0.5rem;
 }
 .kuittaus{
@@ -117,7 +120,7 @@ div.panel.show{
 }
 
 body{
-  background-color: #d1ded2 !important;
+  background-color: #fff !important;
 }
 
 input:focus{

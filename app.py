@@ -206,9 +206,3 @@ if __name__ == '__name__':
 #    teht = Tehtava(id=int(str(1951) + str(num)), kuvaus=line[0], id_jarj=1951, tyyppi=line[1], num=num)
 #    db.session.add(teht)
 #    db.session.commit()
-
-def korjaaTeht():
-  tehtavat = Tehtava.query.filter_by(id_jarj=1951)
-  for teht in tehtavat:
-    teht.tyyppi = teht.tyyppi.replace('TASO', 'Taso')
-    db.session.commit() 
