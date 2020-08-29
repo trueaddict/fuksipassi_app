@@ -41,7 +41,7 @@ function luodaankoUusiKayttaja() {
     div1.appendChild(div2);
     var button1=document.createElement('button');
     button1.setAttribute('id','signup');
-    button1.className='btn green-varkaat';
+    button1.className='btn green-sporticus';
     div2.appendChild(button1);
     var txt10=document.createTextNode('Kyllä');
     button1.appendChild(txt10);

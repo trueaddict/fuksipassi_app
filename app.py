@@ -4,8 +4,8 @@ from datetime import datetime
 import json
 import os
 
-ainejarjesto = 'varkaat'
-idjarj = 1961
+ainejarjesto = 'sporticus'
+idjarj = 1951
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY')
