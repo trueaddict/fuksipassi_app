@@ -180,12 +180,12 @@ function luoTehtava(nro, kuvaus, suoritettu, tyyppi, id, lahetetty) {
   div2.appendChild(div4);
   if ('true' == suoritettu) {
     var button = document.createElement('button');
-    button.className = 'btn brand-text btn-suoritettu';
+    button.className = 'btn brand-text-white btn-suoritettu';
     div4.appendChild(button);
     button.appendChild(document.createTextNode('Suoritettu'));
   } else if ('true' == lahetetty) {
     var button = document.createElement('button');
-    button.className = 'btn brand-text grey';
+    button.className = 'btn brand-text-white grey';
     div4.appendChild(button);
     button.appendChild(document.createTextNode('Lähetetty'));
   } else {
