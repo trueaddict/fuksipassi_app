@@ -24,7 +24,7 @@ function luodaankoUusiKayttaja() {
     var p1=document.createElement('p');
     p1.className='center brand-text';
     div1.appendChild(p1);
-    var txt4=document.createTextNode('Email');
+    var txt4=document.createTextNode(data.user);
     p1.appendChild(txt4);
     var p2=document.createElement('p');
     p2.className='center gray-text';
@@ -41,7 +41,7 @@ function luodaankoUusiKayttaja() {
     div1.appendChild(div2);
     var button1=document.createElement('button');
     button1.setAttribute('id','signup');
-    button1.className='btn green-sporticus';
+    button1.className='btn orange-sporticus';
     div2.appendChild(button1);
     var txt10=document.createTextNode('Kyllä');
     button1.appendChild(txt10);
