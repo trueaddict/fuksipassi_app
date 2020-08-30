@@ -216,7 +216,7 @@ def generateDataHallinta():
     if not s.checked:
       suor_list.append({"id_suor":s.id, "id_user":s.id_user, "id_teht":s.id_teht, "useremail":kayt_list.get(s.id_user), "kuvaus":teht_list.get(s.id_teht), "message":s.info_text.replace('"', '/').replace("'", '/')})
     else:
-      suoritukset_list.append({"id_suor":s.id, "id_user":s.id_user, "id_teht":s.id_teht, "useremail":kayt_list.get(s.id_user), "tyyppi":teht_tyyppi_list.get(s.id_teht)})
+      suoritukset_list.append({"id_suor":s.id, "id_user":s.id_user, "id_teht":s.id_teht, "useremail":kayt_list.get(s.id_user), "tyyppi":teht_tyyppi_list.get(s.id_teht).strip()})
 
   return {
           "useremail": session['useremail'],
