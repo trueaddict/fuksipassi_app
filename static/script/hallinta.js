@@ -64,7 +64,7 @@ function lisaaSuoritukset(kayt_suor, tyyppi_maarat, suor) {
     div.appendChild(div1);
   }
   
-  let nameDiv = document.getElementById(suor+'1');
+  let nameDiv = document.getElementById(suor+'999');
   nameDiv.appendChild(document.createTextNode(' - '+ yhtSuor +' / '+yhtMaar))
 }
 
@@ -83,7 +83,7 @@ function luoKayttajat(data) {
     let div1 = document.createElement('div');
     div1.className = 'collapsible-header';
     div1.appendChild(document.createTextNode(name));
-    div1.setAttribute('id', kayt.id+'1');
+    div1.setAttribute('id', kayt.id+'999');
     li.appendChild(div1);
     let div2 = document.createElement('div');
     div2.className = 'collapsible-body';
