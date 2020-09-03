@@ -152,6 +152,7 @@ function luoTehtavat(data) {
     input2.setAttribute('type','text');
     input2.setAttribute('name', 'kuvaus');
     input2.setAttribute('value', t.kuvaus);
+    input2.setAttribute('maxlength', '255');
     form1.appendChild(input2);
     var button1=document.createElement('button');
     button1.className='btn-small float-right';
