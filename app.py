@@ -206,7 +206,7 @@ def generateDataHallinta():
   for t in teht:
     teht_list[t.id] = t.kuvaus.strip()
     teht_tyyppi_list[t.id] = t.tyyppi
-    tehtavat_list.append({"id_teht":t.id, "kuvaus":t.kuvaus.strip().replace('"', '/').replace("'", '/'), "id_jarj":t.id_jarj, "num":t.num, "tyyppi":t.tyyppi.strip()})
+    tehtavat_list.append({"id_teht":t.id, "kuvaus":t.kuvaus.strip().encode(encoding='UTF-8',errors='strict'), "id_jarj":t.id_jarj, "num":t.num, "tyyppi":t.tyyppi.strip()})
 
   for k in kayttajat:
     kayt_list[k.id] = k.useremail
