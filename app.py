@@ -206,7 +206,7 @@ def generateDataHallinta():
   for t in teht:
     teht_list[t.id] = t.kuvaus.strip()
     teht_tyyppi_list[t.id] = t.tyyppi
-    tehtavat_list.append({"id_teht":t.id, "kuvaus":t.kuvaus.strip(), "id_jarj":t.id_jarj, "num":t.num, "tyyppi":t.tyyppi.strip()})
+    tehtavat_list.append({"id_teht":t.id, "kuvaus":t.kuvaus.strip().replace('"', '/').replace("'", '/'), "id_jarj":t.id_jarj, "num":t.num, "tyyppi":t.tyyppi.strip()})
 
   for k in kayttajat:
     kayt_list[k.id] = k.useremail
@@ -214,7 +214,7 @@ def generateDataHallinta():
 
   for s in suoritukset:
     if not s.checked:
-      suor_list.append({"id_suor":s.id, "id_user":s.id_user, "id_teht":s.id_teht, "useremail":kayt_list.get(s.id_user), "kuvaus":teht_list.get(s.id_teht), "message":s.info_text.replace('"', '/').replace("'", '/')})
+      suor_list.append({"id_suor":s.id, "id_user":s.id_user, "id_teht":s.id_teht, "useremail":kayt_list.get(s.id_user), "kuvaus":teht_list.get(s.id_teht).replace('"', '/').replace("'", '/'), "message":s.info_text.replace('"', '/').replace("'", '/')})
     else:
       suoritukset_list.append({"id_suor":s.id, "id_user":s.id_user, "id_teht":s.id_teht, "useremail":kayt_list.get(s.id_user), "tyyppi":teht_tyyppi_list.get(s.id_teht).strip()})
 
