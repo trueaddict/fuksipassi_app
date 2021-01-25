@@ -1,1 +1,0 @@
-# fuksipassi_app
