@@ -1,23 +1,42 @@
 import './App.css';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import Login from './components/Login';
+import Header from './components/Header';
+import Info from './components/Info';
+
+import './css/materialize.min.css';
+import { useState } from 'react';
 
 function App() {
+  const [token, setToken] = useState();
+
+  if (!token) {
+    //return <Login setToken={setToken}/>
+    return (<>
+      <Router>
+        <Switch>
+          <Route path='/syrinx'>
+            <Login setToken={setToken}/>
+          </Route>
+          <Route path='/'>
+            <Login setToken={setToken}/>
+          </Route>
+        </Switch>
+      
+      </Router>
+      </>
+    );
+  }
+
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src='https://www.tuusmotor.fi/@Bin/242581/2022-Suzuki-Hayabusa-studio-tuusmotor.jpeg' className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header/>
+      <Info/>
+      
+      <p>Etusivu</p>
+    </>
   );
 }
 
