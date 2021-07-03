@@ -9,7 +9,7 @@ import { useState } from 'react';
 
 function App() {
   const [token, setToken] = useState();
-  console.log(token);
+  
   if (!token) {
     //return <Login setToken={setToken}/>
     return (<>
@@ -19,7 +19,7 @@ function App() {
             <Login setToken={setToken} id_jarj={'1971'}/>
           </Route>
           <Route path='/'>
-            <Login setToken={setToken}/>
+            <Login setToken={setToken} id_jarj={'1971'}/>
           </Route>
         </Switch>
       
