@@ -1,26 +1,27 @@
 import React, {useState} from 'react';
 
 async function loginUser(creds) {
-    return {"login":"ok"};
-    /*return fetch('http://localhost:8080/login', {
+    /*return {"login":"ok"};*/
+    return fetch('http://127.0.0.1:5000/login', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify(credentials)
+        body: JSON.stringify(creds)
     })
-    .then(data => data.json())*/
+    .then(data => data.json())
 }
 
-export default function Login({ setToken }) {
+export default function Login({ setToken, id_jarj }) {
     const [useremail, setEmail] = useState();
     const [password, setPassword] = useState();
 
     const onSubmit = async e => {
         e.preventDefault();
         const user = {
-            email: useremail,
-            password: password
+            useremail: useremail,
+            password: password,
+            id_jarj: id_jarj
         }
         const token = await loginUser(user);
         setToken(token);
