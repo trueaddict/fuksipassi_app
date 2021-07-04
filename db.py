@@ -18,6 +18,12 @@ def create_new_column(engine, table_name, column):
     column_type = column.type.compile(engine.dialect)
     engine.execute('ALTER TABLE %s ADD COLUMN %s %s' % (table_name, column_name, column_type))
 
+def create_new_jarjesto(name, password):
+    jarj = Jarjesto(name=name, password=password)
+    db.session.add(jarj)
+    db.session.commit()
+    return jarj
+
 class Kayttaja(db.Model):
   __tablename__ = 'kayttaja'
   id = db.Column(db.Integer, primary_key=True, autoincrement=True)
