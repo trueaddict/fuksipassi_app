@@ -11,7 +11,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
 db = SQLAlchemy(app)
 
 def create_app():
-    return app
+    return app, db
 
 def create_new_column(engine, table_name, column):
     column_name = column.compile(dialect=engine.dialect)
@@ -76,6 +76,6 @@ class Jarjesto(db.Model):
   password = db.Column(db.String(50), nullable=False)
   tehtavat = db.relationship('Tehtava', backref='jarjesto')
 
-  def __init__(self, id, name):
-    self.id = id
+  def __init__(self, name, password):
     self.name = name
+    self.password = password

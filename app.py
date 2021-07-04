@@ -2,7 +2,7 @@ from flask import Flask, request, send_from_directory, jsonify
 from flask_cors import CORS, cross_origin
 from db import create_app, Kayttaja, Tehtava, Suoritus, Jarjesto
  
-app = create_app()
+app, db = create_app()
 cors = CORS(app)
 
 @app.route('/')
