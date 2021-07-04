@@ -16,7 +16,7 @@ function App() {
       <Router>
         <Switch>
           <Route path='/syrinx'>
-            <Login setToken={setToken} id_jarj={'1971'}/>
+            <Login setToken={setToken} id_jarj={'1'}/>
           </Route>
           <Route path='/'>
             <p>Public frontpage</p>
