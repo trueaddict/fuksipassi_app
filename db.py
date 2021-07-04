@@ -6,8 +6,6 @@ db = SQLAlchemy()
 migrate = Migrate()
 
 def create_app(app):
-    column = db.Column(db.String(50), nullable=False)
-    create_new_column(db, 'jarjesto', column)
     db.init_app(app)
     migrate.init_app(app, db)
     return app
