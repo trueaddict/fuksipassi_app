@@ -3,13 +3,14 @@ from flask_migrate import Migrate
 import datetime
 
 db = SQLAlchemy()
+migrate = Migrate()
 
 def create_app(app):
     column = db.Column(db.String(50), nullable=False)
     create_new_column(db, 'jarjesto', column)
     db.init_app(app)
-    migrate = Migrate(app, db)
-    return app, migrate
+    migrate.init_app(app, db)
+    return app
 
 def create_new_column(engine, table_name, column):
     column_name = column.compile(dialect=engine.dialect)

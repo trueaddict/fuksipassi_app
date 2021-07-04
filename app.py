@@ -1,7 +1,7 @@
 from flask import Flask, request, send_from_directory, jsonify
 from flask_cors import CORS, cross_origin
 import os
-from db import create_app, create_new_column, Kayttaja, Tehtava, Suoritus, Jarjesto
+from db import create_app, Kayttaja, Tehtava, Suoritus, Jarjesto
 
 
 app = Flask(__name__, static_folder='client/build', static_url_path='')
@@ -10,7 +10,7 @@ app.secret_key = os.environ.get('SECRET_KEY')
 cors = CORS(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') 
-app, migrate = create_app(app)
+app = create_app(app)
 
 
 @app.route('/')
