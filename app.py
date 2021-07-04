@@ -5,11 +5,11 @@ import datetime
 import os
 
 app = Flask(__name__, static_folder='client/build', static_url_path='')
-app.secret_key = 'salainenavain'
+app.secret_key = os.environ.get('SECRET_KEY')
 
 cors = CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') #'postgresql://root:root@localhost:5432/fuksipassi_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') 
 db = SQLAlchemy(app)
 
 class Kayttaja(db.Model):
@@ -78,6 +78,11 @@ class Jarjesto(db.Model):
 @app.route('/')
 def index():
   return send_from_directory(app.static_folder, 'index.html')
+
+@app.route('/syrinx')
+def syrinx():
+  return send_from_directory(app.static_folder, 'index.html')
+
 
 @app.route('/login', methods=['POST'])
 @cross_origin()
