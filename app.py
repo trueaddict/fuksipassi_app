@@ -1,10 +1,13 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, send_from_directory, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS, cross_origin
 import datetime
 import os
 
-app = Flask(__name__, static_folder='build', static_url_path='/')
+app = Flask(__name__, static_folder='client/build', static_url_path='')
 app.secret_key = 'salainenavain'
+
+cors = CORS(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') #'postgresql://root:root@localhost:5432/fuksipassi_db'
 db = SQLAlchemy(app)
@@ -74,9 +77,10 @@ class Jarjesto(db.Model):
 
 @app.route('/')
 def index():
-  return app.send_static_file('index.html')
+  return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/login', methods=['POST'])
+@cross_origin()
 def login():
   data = request.get_json()
 
@@ -102,13 +106,6 @@ def login():
   return '{status:none}'
   #return jsonify(data)
 
-
-@app.after_request
-def add_header(response):
-  response.headers['Access-Control-Allow-Origin'] = '*'
-  response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
-  response.headers['Content-Type'] = 'application/json'
-  return response
 
 def getData(user, jarj):
   teht = Tehtava.query.filter_by(id_jarj=jarj.id).all()
