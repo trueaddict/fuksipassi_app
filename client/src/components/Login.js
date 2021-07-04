@@ -23,8 +23,8 @@ export default function Login({ setToken, id_jarj }) {
             password: password,
             id_jarj: id_jarj
         }
-        const token = await loginUser(user);
-        setToken(token);
+        const tokenData = await loginUser(user);
+        setToken(tokenData);
     }
 
     return (

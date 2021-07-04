@@ -11,7 +11,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
 db = SQLAlchemy(app)
 
 def create_app():
-    return app, db
+    return app
 
 def create_new_column(engine, table_name, column):
     column_name = column.compile(dialect=engine.dialect)
@@ -23,6 +23,34 @@ def create_new_jarjesto(name, password):
     db.session.add(jarj)
     db.session.commit()
     return jarj
+
+def create_new_user(useremail, jarj):
+  newUser = Kayttaja(useremail = useremail, password = jarj.password, id_jarj=jarj.id)
+  db.session.add(newUser)
+  db.session.commit()
+  return newUser
+
+
+def query_jarj(id_jarj):
+    return Jarjesto.query.filter_by(id=id_jarj).first()
+
+def query_kayttaja(useremail):
+    return Kayttaja.query.filter_by(useremail = useremail).first()
+
+def get_data(user, jarj):
+  teht = Tehtava.query.filter_by(id_jarj=jarj.id).all()
+  suoritukset = db.session.query(Suoritus).join(Kayttaja).filter(Kayttaja.id==user.id).all()
+  tehtavat = []
+  for t in teht:
+    suoritettu = "false"
+    lahetetty = "false"
+    for s in suoritukset:
+      if (t.id == s.id_teht and s.checked):
+        suoritettu = "true"
+      if (t.id == s.id_teht):
+        lahetetty = "true"
+    tehtavat.append({"num":t.num, "kuvaus":t.kuvaus.strip().replace('"', '/').replace("'", '/'), "suoritettu":suoritettu, "lahetetty":lahetetty, "tyyppi":t.tyyppi.strip(), "id":t.id})
+  return {"useremail" : user.useremail, "tehtavat" : tehtavat}
 
 class Kayttaja(db.Model):
   __tablename__ = 'kayttaja'

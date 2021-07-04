@@ -8,9 +8,9 @@ import './css/materialize.min.css';
 import { useState } from 'react';
 
 function App() {
-  const [token, setToken] = useState();
+  const [tokenData, setToken] = useState();
   
-  if (!token) {
+  if (tokenData.status != 'loggedin') {
     //return <Login setToken={setToken}/>
     return (<>
       <Router>
