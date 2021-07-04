@@ -19,7 +19,7 @@ function App() {
             <Login setToken={setToken} id_jarj={'1971'}/>
           </Route>
           <Route path='/'>
-            <Login setToken={setToken} id_jarj={'1971'}/>
+            <p>Public frontpage</p>
           </Route>
         </Switch>
       
