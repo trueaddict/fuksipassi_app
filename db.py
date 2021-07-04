@@ -41,20 +41,33 @@ def query_jarj(id_jarj):
 def query_kayttaja(useremail):
     return Kayttaja.query.filter_by(useremail = useremail).first()
 
-def get_data(user, jarj):
-  teht = Tehtava.query.filter_by(id_jarj=jarj.id).all()
-  suoritukset = db.session.query(Suoritus).join(Kayttaja).filter(Kayttaja.id==user.id).all()
-  tehtavat = []
-  for t in teht:
-    suoritettu = "false"
-    lahetetty = "false"
-    for s in suoritukset:
-      if (t.id == s.id_teht and s.checked):
-        suoritettu = "true"
-      if (t.id == s.id_teht):
-        lahetetty = "true"
-    tehtavat.append({"num":t.num, "kuvaus":t.kuvaus.strip().replace('"', '/').replace("'", '/'), "suoritettu":suoritettu, "lahetetty":lahetetty, "tyyppi":t.tyyppi.strip(), "id":t.id})
-  return {"useremail" : user.useremail, "tehtavat" : tehtavat}
+def get_data(user_id):
+    user = Kayttaja.query.filter_by(id = user_id).first()
+
+    teht = Tehtava.query.filter_by(id_jarj=user.id_jarj).all()
+    suoritukset = db.session.query(Suoritus).join(Kayttaja).filter(Kayttaja.id==user.id).all()
+    tehtavat = {}
+
+    for t in teht:
+        tehtavat[t.tyyppi.strip()] = {}
+        tehtavat[t.tyyppi.strip()]['tehtavat'] = []
+        tehtavat[t.tyyppi.strip()]['kpl'] = 0
+        tehtavat[t.tyyppi.strip()]['suoritettu'] = 0
+
+    i = 1
+    for t in teht:
+        suoritettu = False
+        lahetetty = False
+        tehtavat[t.tyyppi.strip()]['kpl'] = tehtavat[t.tyyppi.strip()]['kpl'] + 1
+        for s in suoritukset:
+            if (t.id == s.id_teht and s.checked):
+                suoritettu = True
+                tehtavat[t.tyyppi]['suoritettu'] = tehtavat[t.tyyppi]['suoritettu'] + 1
+            if (t.id == s.id_teht):
+                lahetetty = True
+        tehtavat[t.tyyppi]['tehtavat'].append({"num":i, "kuvaus":t.kuvaus.strip().replace('"', '/').replace("'", '/'), "suoritettu":suoritettu, "lahetetty":lahetetty, "tyyppi":t.tyyppi.strip(), "id":t.id})
+        i = i + 1
+    return {"useremail" : user.useremail, "tehtavat" : tehtavat}
 
 class Kayttaja(db.Model):
   __tablename__ = 'kayttaja'

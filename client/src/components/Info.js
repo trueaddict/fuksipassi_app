@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Info() {
+const Info = () => {
     return (
         <div class="center container">
             <p class="info-text">Tämä on Syrinx Ry:n virallinen Fuksipassi 2020. Seuraavia tehtäviä suorittamalla saat kaiken irti
@@ -11,3 +11,5 @@ export default function Info() {
         </div>
     )
 }
+
+export default Info;

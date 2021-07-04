@@ -39,12 +39,19 @@ def login():
 
   return jsonify('{token:''}')
 
-
 @app.route('/signout', methods=['POST'])
 @cross_origin()
 def signout():
   data = request.get_json()
   delete_user(data['user_id'])
+
+
+@app.route('/data', methods=['GET'])
+@cross_origin()
+def data():
+  user_id = request.args.get('token')
+  print(user_id)
+  return jsonify(get_data(user_id))
 
 
 if __name__ == '__name__':

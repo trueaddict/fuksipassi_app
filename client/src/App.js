@@ -10,7 +10,7 @@ import './css/materialize.min.css';
 import { useState } from 'react';
 
 
-function App() {
+const App = () => {
   const [token, setToken] = useState();
 
   console.log(token);
@@ -35,9 +35,8 @@ function App() {
   return (
     <>
       {token.isnewuser ? <Policy token={token} setToken={setToken}/> : <></>}
-      <Header/>
+      <Header setToken={setToken} name='Otto Virtanen'/>
       <Info/>
-      
       <Tasks token={token} />
     </>
   );

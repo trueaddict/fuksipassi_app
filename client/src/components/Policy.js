@@ -1,7 +1,7 @@
 import React from 'react';
 import Service from './Service';
 
-export default function Policy({token, setToken}) {
+const Policy = ({token, setToken}) => {
     const handleYes = e => {
         const new_token = Object.assign({}, token);
         new_token.isnewuser = false;
@@ -31,3 +31,5 @@ export default function Policy({token, setToken}) {
         </div>
     )
 }
+
+export default Policy;

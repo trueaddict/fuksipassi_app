@@ -28,6 +28,13 @@ body{
 }
 .card-action {
   height: 8.5rem;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-action form {
+  width: 100%;
 }
 
 .nav{
@@ -45,7 +52,7 @@ body{
   color: red;
 }
 .card-content{
-  height: 14rem;
+  height: 11rem;
 }
 .pass {
   font-family: 'text-security-disc';
@@ -83,7 +90,7 @@ button.accordion{
   background-color: transparent;
   border: 1px solid white;
   color: white;
-  padding: 25px;
+  padding: 15px;
   margin: 0 0 4px 0px;
   transition: 0.3s;
 }
@@ -97,6 +104,10 @@ button.accordion.active{
   color: #000;
 }
 
+button.accordion:focus {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
 div.panel{
   background-color: rgba(255, 255, 255, 0.8);
   color: #000;
@@ -104,6 +115,7 @@ div.panel{
   overflow: hidden;
   opacity: 0;
   max-height: 0;
+  padding-top: 1rem;
 }
 
 div.panel.show{
@@ -154,4 +166,11 @@ input:focus{
 }
 .info-text-last{
     font-size: 1.3rem;
+}
+
+.header {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }

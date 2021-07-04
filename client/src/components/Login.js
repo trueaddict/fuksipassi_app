@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Service from './Service';
 
-export default function Login({ setToken, id_jarj }) {
+const Login = ({ setToken, id_jarj }) => {
     const [useremail, setEmail] = useState();
     const [password, setPassword] = useState();
 
@@ -13,10 +13,9 @@ export default function Login({ setToken, id_jarj }) {
             id_jarj: id_jarj
         }
         const token = await Service.loginUser(user);
-        if (token.token !== '') {
+        if (token.token) {
             setToken(token);
         }
-        
     }
 
     return (
@@ -49,3 +48,5 @@ export default function Login({ setToken, id_jarj }) {
         </div>
     )
 }
+
+export default Login;
