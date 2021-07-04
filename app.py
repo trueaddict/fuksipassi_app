@@ -1,6 +1,6 @@
 from flask import Flask, request, send_from_directory, jsonify
 from flask_cors import CORS, cross_origin
-from db import create_app, create_new_user, get_data, query_jarj, query_kayttaja
+from db import create_app, create_new_user, get_data, query_jarj, query_kayttaja, delete_user
  
 app = create_app()
 cors = CORS(app)
@@ -26,22 +26,25 @@ def login():
 
   ret_data = {}
   if user != None and jarj.password == data['password']:
-    ret_data = get_data(user, jarj)
-    ret_data['status'] = 'loggedin'
-    ret_data['isnewuser'] = 'false'
+    ret_data['token'] = user.id
+    ret_data['isnewuser'] = False
     return jsonify(ret_data)
   elif user != None and user.password != data['password']:
-    return jsonify('{status:wrongpassword}')
-  
+    return jsonify('{token:''}')
   if user == None and jarj.password == data['password']:
     new_user = create_new_user(data['useremail'], jarj)
-    ret_data = get_data(new_user, jarj)
-    ret_data['status'] = 'loggedin'
-    ret_data['isnewuser'] = 'true'
+    ret_data['token'] = new_user.id
+    ret_data['isnewuser'] = True
     return jsonify(ret_data)
 
-  return jsonify('{status:none}')
-  #return jsonify(data)
+  return jsonify('{token:''}')
+
+
+@app.route('/signout', methods=['POST'])
+@cross_origin()
+def signout():
+  data = request.get_json()
+  delete_user(data['user_id'])
 
 
 if __name__ == '__name__':

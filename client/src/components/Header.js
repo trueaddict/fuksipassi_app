@@ -11,12 +11,12 @@ export default function Header() {
             <Grid container spacing={3} direction={direction}>
                 <Grid item xs>
                     <div className="center">
-                        <a href="https://www.syrinx.fi"><img src="https://www.syrinx.fi/wp-content/uploads/2019/02/copy-syrinx_logoGreenBackgroundveryYellowWithText.png" alt="" class="responsive-img"/></a>
+                        <a href="https://www.syrinx.fi"><img src="https://www.syrinx.fi/wp-content/uploads/2019/02/copy-syrinx_logoGreenBackgroundveryYellowWithText.png" alt="" className="responsive-img"/></a>
                     </div>
                 </Grid>
                 <Grid item xs >
                     <div className="center">
-                        <a href="" class=""><h3 class="brand-text brand-logo">Syrinx Fuksipassi</h3></a>
+                        <a href="" className=""><h3 className="brand-text brand-logo">Syrinx Fuksipassi</h3></a>
                     </div>
                 </Grid>
                 <Grid item xs>

@@ -30,6 +30,10 @@ def create_new_user(useremail, jarj):
   db.session.commit()
   return newUser
 
+def delete_user(user_id):
+    userToDel = Kayttaja.query.filter_by(id = user_id).first()
+    db.session.delete(userToDel)
+    db.session.commit()
 
 def query_jarj(id_jarj):
     return Jarjesto.query.filter_by(id=id_jarj).first()

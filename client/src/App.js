@@ -3,15 +3,19 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Login from './components/Login';
 import Header from './components/Header';
 import Info from './components/Info';
+import Tasks from './components/Tasks';
+import Policy from './components/Policy';
 
 import './css/materialize.min.css';
 import { useState } from 'react';
 
+
 function App() {
-  const [tokenData, setToken] = useState();
-  
-  if (tokenData['status'] != 'loggedin') {
-    //return <Login setToken={setToken}/>
+  const [token, setToken] = useState();
+
+  console.log(token);
+
+  if (!token) {
     return (<>
       <Router>
         <Switch>
@@ -26,16 +30,15 @@ function App() {
       </Router>
       </>
     );
-  }
-
-  
+  } 
 
   return (
     <>
+      {token.isnewuser ? <Policy token={token} setToken={setToken}/> : <></>}
       <Header/>
       <Info/>
       
-      <p>Etusivu</p>
+      <Tasks token={token} />
     </>
   );
 }
