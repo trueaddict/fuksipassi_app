@@ -1,9 +1,16 @@
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import datetime
+import os
+
+app = Flask(__name__, static_folder='client/build', static_url_path='')
+app.secret_key = os.environ.get('SECRET_KEY')
+
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 
 db = SQLAlchemy()
 
-def create_app(app):
+def create_app():
     db.init_app(app)
     return app
 
