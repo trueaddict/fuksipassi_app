@@ -1,16 +1,5 @@
 import React, {useState} from 'react';
-
-async function loginUser(creds) {
-    /*return {"login":"ok"};*/
-    return fetch('http://127.0.0.1:5000/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(creds)
-    })
-    .then(data => data.json())
-}
+import Service from './Service';
 
 export default function Login({ setToken, id_jarj }) {
     const [useremail, setEmail] = useState();
@@ -23,7 +12,7 @@ export default function Login({ setToken, id_jarj }) {
             password: password,
             id_jarj: id_jarj
         }
-        const token = await loginUser(user);
+        const token = await Service.loginUser(user);
         if (token.token !== '') {
             setToken(token);
         }

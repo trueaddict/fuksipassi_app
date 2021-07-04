@@ -1,16 +1,5 @@
 import React from 'react';
-
-
-async function deleteUser(user) {
-    return fetch('http://127.0.0.1:5000/signout', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(user)
-    })
-    .then(data => data.json())
-}
+import Service from './Service';
 
 export default function Policy({token, setToken}) {
     const handleYes = e => {
@@ -24,7 +13,7 @@ export default function Policy({token, setToken}) {
         const user = {
             user_id:token.token
         }
-        const ret = await deleteUser(user);
+        const ret = await Service.deleteUser(user);
         setToken();
     }
     
