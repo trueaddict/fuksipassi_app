@@ -10,7 +10,7 @@ import { useState } from 'react';
 function App() {
   const [tokenData, setToken] = useState();
   
-  if (tokenData.status != 'loggedin') {
+  if (tokenData['status'] != 'loggedin') {
     //return <Login setToken={setToken}/>
     return (<>
       <Router>
