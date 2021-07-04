@@ -10,8 +10,7 @@ app.secret_key = os.environ.get('SECRET_KEY')
 cors = CORS(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') 
-app = create_app(app)
-
+app, migrate = create_app(app)
 
 
 @app.route('/')
