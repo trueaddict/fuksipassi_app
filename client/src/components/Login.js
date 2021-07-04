@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 async function loginUser(creds) {
     /*return {"login":"ok"};*/
-    return fetch('https://fuksipassi-react.herokuapp.com/login', {
+    return fetch('http://127.0.0.1:5000/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
