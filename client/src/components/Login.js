@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import Service from './Service';
 
-const Login = ({ setToken, id_jarj }) => {
+const Login = ({ setUser, id_jarj }) => {
     const [useremail, setEmail] = useState();
     const [password, setPassword] = useState();
+    const [errors, setErrors] = useState();
 
     const onSubmit = async e => {
         e.preventDefault();
@@ -12,9 +13,11 @@ const Login = ({ setToken, id_jarj }) => {
             password: password,
             id_jarj: id_jarj
         }
-        const token = await Service.loginUser(user);
-        if (token.token) {
-            setToken(token);
+        const temp_user = await Service.loginUser(user);
+        if (temp_user.user_id) {
+            setUser(temp_user);
+        } else {
+            setErrors(true);
         }
     }
 
@@ -38,6 +41,7 @@ const Login = ({ setToken, id_jarj }) => {
                 <p>Esim.</p>
                 <p><i>kalle.h.ankka@student.jyu.fi</i></p>
             </div>
+            {errors === true && <p class="center error">Väärä sähköposti tai salasana!</p>}
             <form class="kuittaus" onSubmit={onSubmit}>
                 <input type="email" name="useremail" placeholder="Sähköposti" pattern=".*@student.jyu.fi" required onChange={e => setEmail(e.target.value)} />{' '}
                 <input type="password" name="password" placeholder="Ainejärjestön Salasana" id="password" required onChange={e => setPassword(e.target.value)} />{' '}

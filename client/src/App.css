@@ -108,6 +108,10 @@ button.accordion:focus {
   background-color: rgba(255, 255, 255, 0.3);
 }
 
+button:focus {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+}
+
 div.panel{
   background-color: rgba(255, 255, 255, 0.8);
   color: #000;
@@ -173,4 +177,18 @@ input:focus{
   justify-content: center;
   align-items: center;
   height: 100%;
+}
+
+.collapsible-body {
+  display: block !important;
+  height: 0%;
+  transition: all 2s ease-in-out;
+}
+
+.collapsible-body:target {
+  height: 100%;
+} 
+
+.hidden {
+  display: none;
 }

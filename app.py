@@ -25,25 +25,46 @@ def login():
   user = query_kayttaja(data['useremail']) #Kayttaja.query.filter_by(useremail = data['useremail']).first()
 
   ret_data = {}
+  ret_data['user_id'] = ''
+  ret_data['is_admin'] = False
+  ret_data['isnewuser'] = False
   if user != None and jarj.password == data['password']:
-    ret_data['token'] = user.id
-    ret_data['isnewuser'] = False
-    return jsonify(ret_data)
-  elif user != None and user.password != data['password']:
-    return jsonify('{token:''}')
+    """
+      user login
+    """
+    ret_data['user_id'] = user.id
+  elif user != None and jarj.admin_password == data['password']:
+    """
+      admin login
+    """
+    ret_data['user_id'] = user.id
+    ret_data['is_admin'] = user.is_admin
+  
   if user == None and jarj.password == data['password']:
-    new_user = create_new_user(data['useremail'], jarj)
-    ret_data['token'] = new_user.id
+    """
+      Creates new standard user
+    """
+    new_user = create_new_user(data['useremail'], jarj, False)
+    ret_data['user_id'] = new_user.id
+    ret_data['is_admin'] = new_user.is_admin
     ret_data['isnewuser'] = True
-    return jsonify(ret_data)
+  if user == None and jarj.admin_password == data['password']:
+    """
+      Creates new admin user
+    """
+    new_user = create_new_user(data['useremail'], jarj, True)
+    ret_data['user_id'] = new_user.id
+    ret_data['is_admin'] = new_user.is_admin
+    ret_data['isnewuser'] = True
 
-  return jsonify('{token:''}')
+  return jsonify(ret_data)
 
 @app.route('/signout', methods=['POST'])
 @cross_origin()
 def signout():
   data = request.get_json()
   delete_user(data['user_id'])
+  return jsonify({})
 
 
 @app.route('/data', methods=['GET'])

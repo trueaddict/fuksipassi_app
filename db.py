@@ -7,6 +7,7 @@ app = Flask(__name__, static_folder='client/build', static_url_path='')
 app.secret_key = os.environ.get('SECRET_KEY')
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
+# postgresql://root:root@localhost:5432/fuksipassi_db
 
 db = SQLAlchemy(app)
 
@@ -24,11 +25,14 @@ def create_new_jarjesto(name, password):
     db.session.commit()
     return jarj
 
-def create_new_user(useremail, jarj):
-  newUser = Kayttaja(useremail = useremail, password = jarj.password, id_jarj=jarj.id)
-  db.session.add(newUser)
-  db.session.commit()
-  return newUser
+def create_new_user(useremail, jarj, is_admin):
+    if is_admin:
+        newUser = Kayttaja(useremail = useremail, password = jarj.admin_password, id_jarj=jarj.id, is_admin=is_admin)
+    else:
+        newUser = Kayttaja(useremail = useremail, password = jarj.password, id_jarj=jarj.id, is_admin=is_admin)
+    db.session.add(newUser)
+    db.session.commit()
+    return newUser
 
 def delete_user(user_id):
     userToDel = Kayttaja.query.filter_by(id = user_id).first()
@@ -75,14 +79,16 @@ class Kayttaja(db.Model):
   useremail = db.Column(db.String(50), nullable=False, unique=True)
   password = db.Column(db.String(50), nullable=False)
   id_jarj = db.Column(db.Integer, db.ForeignKey('jarjesto.id'), nullable=False)
+  is_admin = db.Column(db.Boolean, default=False)
 
   suoritukset = db.relationship('Suoritus', backref='kayttaja')
 
-  def __init__(self, useremail, password, id_jarj):
+  def __init__(self, useremail, password, id_jarj, is_admin=False):
     self.id = None
     self.useremail = useremail
     self.password = password
     self.id_jarj = id_jarj
+    self.is_admin = is_admin
 
 class Tehtava(db.Model):
   __tablename__ = 'tehtava'
@@ -125,6 +131,7 @@ class Jarjesto(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String(50), nullable=False)
   password = db.Column(db.String(50), nullable=False)
+  admin_password = db.Column(db.String(50))
   tehtavat = db.relationship('Tehtava', backref='jarjesto')
 
   def __init__(self, name, password):

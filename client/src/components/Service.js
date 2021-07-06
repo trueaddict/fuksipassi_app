@@ -26,8 +26,8 @@ const deleteUser = async (user) => {
 }
 
 
-const fetchData = async (token) => {
-    return fetch(url+'/data?token='+token.token, {
+const fetchData = async (user) => {
+    return fetch(url+'/data?token='+user.user_id, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

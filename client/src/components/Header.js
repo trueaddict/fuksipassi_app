@@ -2,7 +2,7 @@ import React from 'react';
 import Service from './Service';
 import Grid from '@material-ui/core/Grid';
 
-const Header = ({name, setToken}) => {
+const Header = ({name, setUser}) => {
     const size = Service.useWindowSize();
     const direction = size.width <= 700 ? "column" : "row";
     let colunm_width = [3, 6, 1, 2];
@@ -16,7 +16,7 @@ const Header = ({name, setToken}) => {
     }
 
     const handleLogout = (e) => {
-        setToken();
+        setUser();
     }
 
     return (

@@ -1,20 +1,20 @@
 import React from 'react';
 import Service from './Service';
 
-const Policy = ({token, setToken}) => {
+const Policy = ({user, setUser}) => {
     const handleYes = e => {
-        const new_token = Object.assign({}, token);
-        new_token.isnewuser = false;
-        setToken(new_token);
+        const new_user = Object.assign({}, user);
+        new_user.isnewuser = false;
+        setUser(new_user);
     }
     
     const handleNo = async e => {
         e.preventDefault();
-        const user = {
-            user_id:token.token
+        const temp_user = {
+            user_id:user.user_id
         }
-        const ret = await Service.deleteUser(user);
-        setToken();
+        const ret = await Service.deleteUser(temp_user);
+        setUser();
     }
     
     return (

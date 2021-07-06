@@ -5,22 +5,23 @@ import Header from './components/Header';
 import Info from './components/Info';
 import Tasks from './components/Tasks';
 import Policy from './components/Policy';
+import Setup from './components/Setup';
 
 import './css/materialize.min.css';
 import { useState } from 'react';
 
 
 const App = () => {
-  const [token, setToken] = useState();
+  const [user, setUser] = useState();
 
-  console.log(token);
+  console.log(user);
 
-  if (!token) {
+  if (!user) {
     return (<>
       <Router>
         <Switch>
           <Route path='/syrinx'>
-            <Login setToken={setToken} id_jarj={'1'}/>
+            <Login setUser={setUser} id_jarj={'1'}/>
           </Route>
           <Route path='/'>
             <p>Public frontpage</p>
@@ -30,14 +31,22 @@ const App = () => {
       </Router>
       </>
     );
-  } 
+  }
+  
+  if (user.is_admin) {
+    return (
+    <>
+      <Header setUser={setUser} name='Otto Virtanen'/>
+      <Setup user={user}/>
+    </>);
+  }
 
   return (
     <>
-      {token.isnewuser ? <Policy token={token} setToken={setToken}/> : <></>}
-      <Header setToken={setToken} name='Otto Virtanen'/>
+      {user.isnewuser ? <Policy user={user} setUser={setUser}/> : <></>}
+      <Header setUser={setUser} name='Otto Virtanen'/>
       <Info/>
-      <Tasks token={token} />
+      <Tasks user={user} />
     </>
   );
 }

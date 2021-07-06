@@ -3,7 +3,7 @@ import Service from './Service';
 import Task from './Task';
 import Grid from '@material-ui/core/Grid';
 
-const Tasks = ({token}) => {
+const Tasks = ({user}) => {
     const [open, setOpen] = useState();
     const [tasks, setTasks] = useState([]);
     const size = Service.useWindowSize();
@@ -17,7 +17,7 @@ const Tasks = ({token}) => {
 
     useEffect(() => {
        (async () => {
-            const data = await Service.fetchData(token);
+            const data = await Service.fetchData(user);
             setTasks(data.tehtavat);
             console.log(data)
             console.log(tasks);
