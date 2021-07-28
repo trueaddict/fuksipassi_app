@@ -7,7 +7,7 @@ app = Flask(__name__, static_folder='client/build', static_url_path='')
 app.secret_key = os.environ.get('SECRET_KEY')
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
-# postgresql://root:root@localhost:5432/fuksipassi_db
+# postgresql://otto:@localhost:5432/otto      
 
 db = SQLAlchemy(app)
 
@@ -19,8 +19,8 @@ def create_new_column(engine, table_name, column):
     column_type = column.type.compile(engine.dialect)
     engine.execute('ALTER TABLE %s ADD COLUMN %s %s' % (table_name, column_name, column_type))
 
-def create_new_jarjesto(name, password):
-    jarj = Jarjesto(name=name, password=password)
+def create_new_jarjesto(name, password, admin_password):
+    jarj = Jarjesto(name=name, password=password, admin_password=admin_password)
     db.session.add(jarj)
     db.session.commit()
     return jarj
@@ -72,6 +72,7 @@ def get_data(user_id):
         tehtavat[t.tyyppi]['tehtavat'].append({"num":i, "kuvaus":t.kuvaus.strip().replace('"', '/').replace("'", '/'), "suoritettu":suoritettu, "lahetetty":lahetetty, "tyyppi":t.tyyppi.strip(), "id":t.id})
         i = i + 1
     return {"useremail" : user.useremail, "tehtavat" : tehtavat}
+
 
 class Kayttaja(db.Model):
   __tablename__ = 'kayttaja'
@@ -134,6 +135,22 @@ class Jarjesto(db.Model):
   admin_password = db.Column(db.String(50))
   tehtavat = db.relationship('Tehtava', backref='jarjesto')
 
-  def __init__(self, name, password):
+  def __init__(self, name, password, admin_password):
     self.name = name
     self.password = password
+    self.admin_password = admin_password
+
+
+'''
+    Initial
+'''
+
+if __name__ == '__name__':
+    create_new_jarjesto('syrinx', 'syrinx20', 'syrinxadmin')
+
+    #print(app.config['SQLALCHEMY_DATABASE_URI'])
+    #db.create_all()
+
+'''
+    END 
+'''
