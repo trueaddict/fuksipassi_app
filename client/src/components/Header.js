@@ -2,12 +2,12 @@ import React from 'react';
 import Service from './Service';
 import Grid from '@material-ui/core/Grid';
 
-const Header = ({name, setUser}) => {
+const Header = ({setUser, user}) => {
     const size = Service.useWindowSize();
     const direction = size.width <= 700 ? "column" : "row";
     let colunm_width = [3, 6, 1, 2];
 
-    if (direction == "column") {
+    if (direction === "column") {
         let temp = [];
         for (let i of colunm_width) {
             temp.push(0);
@@ -29,12 +29,12 @@ const Header = ({name, setUser}) => {
                 </Grid>
                 <Grid item xs={colunm_width[1]} >
                     <div className="header">
-                        <a href="" className=""><h3 className="brand-text brand-logo">Syrinx Fuksipassi</h3></a>
+                        <a href="//" className=""><h3 className="brand-text brand-logo">Syrinx Fuksipassi</h3></a>
                     </div>
                 </Grid>
                 <Grid item xs={colunm_width[2]}>
                     <div className="header">
-                        {name}
+                        {Service.parseName(user.useremail)}
                     </div>
                 </Grid>
                 <Grid item xs={colunm_width[3]}>

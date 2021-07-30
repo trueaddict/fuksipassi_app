@@ -4,6 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Requests from './Requests';
+import SetupTasks from './SetupTasks';
+import SetupUsers from './SetupUsers';
 
 
 function TabPanel(props) {
@@ -50,17 +52,13 @@ const Setup = ({user}) => {
                 </Tabs>
             
                 <TabPanel value={value} index={0}>
-                    <Requests/>
+                    <Requests user={user}/>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    <div>
-                        <p>Tehtävät</p>
-                    </div>
+                    <SetupTasks user={user}/>
                 </TabPanel>
                 <TabPanel value={value} index={2}>
-                    <div>
-                        <p>Käyttäjät</p>
-                    </div>
+                    <SetupUsers user={user}/>
                 </TabPanel>
             </div>
             

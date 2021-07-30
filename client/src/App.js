@@ -36,7 +36,7 @@ const App = () => {
   if (user.is_admin) {
     return (
     <>
-      <Header setUser={setUser} name='Otto Virtanen'/>
+      <Header setUser={setUser} user={user}/>
       <Setup user={user}/>
     </>);
   }
@@ -44,7 +44,7 @@ const App = () => {
   return (
     <>
       {user.isnewuser ? <Policy user={user} setUser={setUser}/> : <></>}
-      <Header setUser={setUser} name='Otto Virtanen'/>
+      <Header setUser={setUser} user={user}/>
       <Info/>
       <Tasks user={user} />
     </>

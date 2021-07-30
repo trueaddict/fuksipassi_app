@@ -1,6 +1,22 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import Service from './Service';
 
-const Task = ({task}) => {
+const Task = ({task, user}) => {
+    const [message, setMessage] = useState();
+    const [sended, setSended] = useState();
+    const [approved, setApproved] = useState();
+
+    const sendRequest = async event => {
+        event.preventDefault();
+        Service.createRequest(task, user, message);
+        setSended(true);
+    }
+
+    useEffect(() => {
+        setSended(task.lahetetty);
+        setApproved(task.suoritettu);
+    }, []);
+
     return (
         <div className="card z-depth-0">
             <div className="card-content center">
@@ -8,10 +24,10 @@ const Task = ({task}) => {
                 <h5>{task.kuvaus}</h5>
             </div>
             <div className="card-action center">
-                {task.lahetetty & task.suoritettu ? <button className="btn brand-text grey">Lähetetty</button> :
-                 task.suoritettu ? <button className="btn brand-text btn-suoritettu">Suoritettu</button>:
-                <form>
-                    <input className="hide" name="id"/><input type="text" placeholder="Viesti / Tutorin nimi" name="message" id="1973" className="perusopinnot"/>
+                {sended & !approved ? <button className="btn brand-text grey">Lähetetty</button> :
+                 approved ? <button className="btn brand-text btn-suoritettu">Suoritettu</button>:
+                <form onSubmit={sendRequest}>
+                    <input type="text" placeholder="Viesti / Tutorin nimi" onChange={e => setMessage(e.target.value)}/>
                     <button type="submit" className="btn brand-text yellow darken-2">Lähetä</button>
                 </form>  }
                 

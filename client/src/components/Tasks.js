@@ -50,7 +50,7 @@ const Tasks = ({user}) => {
                     <Grid container spacing={2} direction={direction}>
                         {tasks[key]['tehtavat'].length > 0 ? tasks[key]['tehtavat'].map((task) => (
                             <Grid key={task.id} item xs={width}>
-                                <Task task={task} />
+                                <Task task={task} user={user}/>
                             </Grid>
                         )) : null}
                     </Grid>
