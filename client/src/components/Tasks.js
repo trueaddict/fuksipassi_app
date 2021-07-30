@@ -40,7 +40,7 @@ const Tasks = ({user}) => {
             <h4 className="center gray-text" >Tehtävät</h4>
             {keys.length > 0 ? keys.map((key) => (
                 
-                <div className="">
+                <div className="" style={{wordWrap: 'break-word'}}>
                     <button className={`accordion ${open[key] ? 'active' : ''}`} type="button" onClick={(event) => handleClick(event, key)}>
                         <h5>{key}</h5>
                         <br></br>

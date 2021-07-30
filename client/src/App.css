@@ -40,6 +40,11 @@ body{
 .nav{
   background: #f1dc44 !important;
   padding-bottom: 0.5rem;
+  width: 100%;
+  margin: auto;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  display: inline-block;
 }
 .kuittaus{
   max-width: 100%;
@@ -52,7 +57,7 @@ body{
   color: red;
 }
 .card-content{
-  height: 11rem;
+  height: 100%;
 }
 .pass {
   font-family: 'text-security-disc';
