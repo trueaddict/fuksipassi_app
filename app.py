@@ -141,5 +141,4 @@ def app_data_setup():
   return jsonify(query_request(data['id_jarj']))
 
 if __name__ == '__name__':
-  app.debug = True
   app.run()

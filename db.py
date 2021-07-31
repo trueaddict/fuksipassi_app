@@ -6,8 +6,12 @@ import os
 app = Flask(__name__, static_folder='client/build', static_url_path='')
 #app.secret_key = os.environ.get('SECRET_KEY')
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://otto:@localhost:5432/otto' # os.environ.get('DATABASE_URI')
-# postgresql://otto:@localhost:5432/otto      
+if 'DATABASE_URI' in os.environ:
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
+    app.debug = False
+else:
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://otto:@localhost:5432/otto'
+    app.debug = True
 
 db = SQLAlchemy(app)
 
@@ -212,10 +216,11 @@ class Tehtava(db.Model):
   id_jarj = db.Column(db.Integer, db.ForeignKey('jarjesto.id'), nullable=False)
   num = db.Column(db.Integer)
   tyyppi = db.Column(db.String(255))
+  tyyppiOrder = db.Column(db.Integer)
   deleted = db.Column(db.Boolean, default=False)
 
   def toJson(self):
-    return {'id':self.id, 'jarj_id':self.id_jarj, 'num':self.num, 'desc':self.kuvaus, 'type':self.tyyppi}
+    return {'id':self.id, 'jarj_id':self.id_jarj, 'num':self.num, 'desc':self.kuvaus, 'type':self.tyyppi, 'type_order':self.tyyppiOrder}
 
   def __init__(self, kuvaus, id_jarj, tyyppi, num):
     self.kuvaus = kuvaus
@@ -273,7 +278,7 @@ class Jarjesto(db.Model):
 #print('Tehtävät',Tehtava.query.all())
 #print('Suoritus',Suoritus.query.all())
 
-print(query_users(1))
+print(os.environ.get('DATABASE_URI'))
 
 '''
     END 

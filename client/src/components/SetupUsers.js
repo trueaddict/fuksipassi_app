@@ -29,10 +29,15 @@ const SetupUsers = ({user}) => {
             <li key={index}>
               <div className='collapsible-header' onClick={(event) => handleClick(event, index)}>{Service.parseName(temp.useremail)} - {temp.approved_task_count} / {temp.task_count}</div>
               <div className={`${row===index ? 'collapsible-body' : 'hidden'}`} style={{backgroundColor:'#4f4f4f4a'}}>
+                <div style={{borderBottom:'2px solid #00000070'}}>
+                  <p>{temp.useremail}</p> <p>Poista käyttäjä</p>
+                </div>
+                
                 <ul>
                   {Object.keys(temp.categories).map((category, index) => (
                     <li>
-                      <p>{category}:</p><p style={{marginLeft:'1rem'}}> {temp.categories[category].approved_type_count} / {temp.categories[category].type_count} - {temp.categories[category].approved_type_percent}%</p></li>
+                      <p>{category}:</p><p style={{marginLeft:'1rem'}}> {temp.categories[category].approved_type_count} / {temp.categories[category].type_count} - {temp.categories[category].approved_type_percent}%</p>
+                    </li>
                   ))}
                 </ul>
               </div>

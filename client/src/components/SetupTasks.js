@@ -3,7 +3,9 @@ import Service from './Service';
 
 const SetupTasks = ({user}) => {
   const [tasks, setTasks] = useState([]);
+  const [types, setTypes] = useState(new Map());
   const [showNew, setShowNew] = useState(false);
+  const [showNewType, setShowNewType] = useState(false);
   const [addedNew, setAddedNew] = useState(false);
 
   const [newNum, setNum] = useState();
@@ -57,6 +59,19 @@ const SetupTasks = ({user}) => {
     })();
   };
 
+  const handleTypeEdit = async event => {
+    console.log(event.target.name);
+    console.log(event.target.value);
+    
+    let tempTasks = Object.assign({}, tasks);
+    let orderNum = tempTasks[event.target.name];
+    tempTasks.delete(event.target.name);
+
+    tempTasks[event.target.value] = orderNum;
+
+    setTypes(tempTasks);
+  }
+
   const handleSave = async event => {
     await Service.updateTasks(tasks);
   }
@@ -64,8 +79,13 @@ const SetupTasks = ({user}) => {
   useEffect(() => {
     (async () => {
       const data = await Service.fetchTasks(user);
-      setTasks(data);
       console.log(data);
+      setTasks(data);
+      const tempTypes = new Map();
+      for (let task of data.sort((a,b) => { return a.type_order > b.type_order })) {
+        tempTypes.set(task.type, task.type_order);
+      }
+      setTypes(tempTypes);
     })();
   }, []);
 
@@ -74,7 +94,31 @@ const SetupTasks = ({user}) => {
       <div style={{marginTop:'1rem', marginLeft:'1rem'}}>
         <button onClick={(event) => handleSave(event)} className='btn yellow darken-2' style={{marginRight:'1rem'}}>Tallenna muutokset</button>
         <button onClick={(event) => handleNewTask(event)} className='btn yellow darken-2'>Lisää tehtävä</button>
+        <button onClick={(event) => setShowNewType(!showNewType)} className='btn yellow darken-2' style={{marginLeft:'1rem'}}>Lisää kategoria</button>
       </div>
+      {showNewType ? 
+        <div className='collection'>
+          <div className='collection-item'>
+            { types !== undefined ? Array.from(types).map(([key, temp], index) => (
+              <div className='row'>
+                <div className='col s2'>
+                  <input type='number' defaultValue={temp}></input>
+                </div>
+                <div className='col s10'>
+                  <input type='text' defaultValue={key} name={key} onChange={(event) => handleTypeEdit(event)}></input>
+                </div>
+              </div>
+            )) : null}
+            <div className='row'>
+              <div className='col s2'>
+                <input type='number'></input>
+              </div>
+              <div className='col s10'>
+                <input type='text'></input>
+              </div>
+            </div>
+          </div>
+        </div> : null}      
       <div>  
         {showNew ? 
             <div className='collection'>
@@ -97,6 +141,7 @@ const SetupTasks = ({user}) => {
             </div>
           : null}
       </div>
+      <h4 className='center'>Tehtävät</h4>
       <ul className='collection'>
         {tasks !== undefined ? tasks.map(temp => (
           <li key={temp.id} className='collection-item' style={{marginBottom:'0.5rem'}}>
