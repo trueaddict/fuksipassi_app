@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Service from './Service';
 
-const Task = ({task, user}) => {
+const Task = ({task, user, theme}) => {
     const [message, setMessage] = useState();
     const [sended, setSended] = useState();
     const [approved, setApproved] = useState();

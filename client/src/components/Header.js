@@ -2,7 +2,7 @@ import React from 'react';
 import Service from './Service';
 import Grid from '@material-ui/core/Grid';
 
-const Header = ({setUser, user}) => {
+const Header = ({setUser, user, theme}) => {
     const size = Service.useWindowSize();
     const direction = size.width <= 700 ? "column" : "row";
     let colunm_width = [3, 6, 1, 2];
@@ -20,26 +20,26 @@ const Header = ({setUser, user}) => {
     }
 
     return (
-        <div className="nav">
+        <div className="nav" style={theme.navBackgroundColor}>
             <Grid container spacing={3} direction={direction}>
                 <Grid item xs={colunm_width[0]}>
                     <div className="header">
-                        <a href="https://www.syrinx.fi"><img src="https://www.syrinx.fi/wp-content/uploads/2019/02/copy-syrinx_logoGreenBackgroundveryYellowWithText.png" alt="" className="responsive-img"/></a>
+                        <a href={theme.website_url}><img src={theme.icon_url} alt="" className="responsive-img" style={{marginTop:'10px'}}/></a>
                     </div>
                 </Grid>
                 <Grid item xs={colunm_width[1]} >
                     <div className="header">
-                        <a href="//" className=""><h3 className="brand-text brand-logo">Syrinx Fuksipassi</h3></a>
+                        <a href="//" className=""><h3 className="brand-logo" style={theme.navTextColor}>{theme.name}</h3></a>
                     </div>
                 </Grid>
                 <Grid item xs={colunm_width[2]}>
-                    <div className="header">
+                    <div className="header" style={theme.navTextColor}>
                         {Service.parseName(user.useremail)}
                     </div>
                 </Grid>
                 <Grid item xs={colunm_width[3]}>
                     <div className="header">
-                        <button onClick={handleLogout} className="btn-small logout-btn yellow darken-2" name="logout-submit">Kirjaudu ulos</button>
+                        <button onClick={handleLogout} className={theme.button} name="logout-submit">Kirjaudu ulos</button>
                     </div>
                 </Grid>
             </Grid>

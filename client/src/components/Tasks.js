@@ -3,7 +3,7 @@ import Service from './Service';
 import Task from './Task';
 import Grid from '@material-ui/core/Grid';
 
-const Tasks = ({user}) => {
+const Tasks = ({user, theme}) => {
     const [open, setOpen] = useState();
     const [tasks, setTasks] = useState([]);
     const size = Service.useWindowSize();
@@ -46,11 +46,14 @@ const Tasks = ({user}) => {
 
     return (
         <div className="container">
+            <style>
+                {'body {background-color:'+theme.bodyBackgroundColor+';'}
+            </style>
             <h4 className="center gray-text" >Tehtävät</h4>
             {keys.length > 0 ? keys.map((key) => (
                 
                 <div className="" style={{wordWrap: 'break-word'}}>
-                    <button className={`accordion ${open[key.name] ? 'active' : ''}`} type="button" onClick={(event) => handleClick(event, key.name)}>
+                    <button className={`accordion ${open[key.name] ? 'active' : ''}`} type="button" onClick={(event) => handleClick(event, key.name)} style={theme.taskButton}>
                         <h5>{key.name}</h5>
                         <br></br>
                         <h6>{tasks[key.name]['suoritettu']} / {tasks[key.name]['kpl']}</h6>
@@ -59,7 +62,7 @@ const Tasks = ({user}) => {
                     <Grid container spacing={2} direction={direction}>
                         {tasks[key.name]['tehtavat'].length > 0 ? tasks[key.name]['tehtavat'].map((task) => (
                             <Grid key={task.id} item xs={width}>
-                                <Task task={task} user={user}/>
+                                <Task task={task} user={user} theme={theme}/>
                             </Grid>
                         )) : null}
                     </Grid>

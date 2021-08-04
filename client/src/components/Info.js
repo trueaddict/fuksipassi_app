@@ -1,13 +1,11 @@
 import React from 'react';
 
-const Info = () => {
+const Info = ({theme}) => {
     return (
         <div class="center container">
-            <p class="info-text">Tämä on Syrinx Ry:n virallinen Fuksipassi 2020. Seuraavia tehtäviä suorittamalla saat kaiken irti
-                fuksisyksystäsi ja pääset samalla sukeltamaan osaksi Syrinxin toimintaa!</p>
-            <p class="info-text">Vaikka fuksipassin täyttämiseen tulee suhtautua omistautuneesti ja asianmukaisella vakavuudella, muista
-                aina tehtäviä suorittaessasi pitää hauskaa ja hakea rennosti uusia kokemuksia.</p>
-            <p class="info-text info-text-last">Antoisaa fuksisyksyä!</p>
+            <p class="info-text">{theme.info_1}</p>
+            <p class="info-text">{theme.info_2}</p>
+            <p class="info-text info-text-last">{theme.info_3}</p>
         </div>
     )
 }

@@ -1,6 +1,11 @@
 body{
   font-size: 15;
 }
+
+html, body {
+  height: 100%;
+}
+
 .hide {
   display: none;
 }
@@ -38,7 +43,7 @@ body{
 }
 
 .nav{
-  background: #f1dc44 !important;
+  /*  background: #f1dc44 !important;*/
   padding-bottom: 0.5rem;
   width: 100%;
   margin: auto;
@@ -49,7 +54,6 @@ body{
 .kuittaus{
   max-width: 100%;
   padding: 1rem;
-  background-color: #687a17;
 }
 .error{
   max-width: 460px;
@@ -134,14 +138,11 @@ div.panel.show{
   overflow: visible;
 }
 
-body{
-  background-color: #93ad20 !important;
-}
 
 input:focus{
   color: #123;
-  border-bottom: 1px solid #fbc02d !important;
-  box-shadow: 0 1px 0 0 #fbc02d !important;
+  border-bottom: 1px solid #9e9e9e !important;
+  box-shadow: 0 1px 0 0 #9e9e9e !important;
 }
 
 .policy{
