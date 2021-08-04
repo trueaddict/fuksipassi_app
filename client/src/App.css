@@ -212,3 +212,7 @@ input:focus{
   backface-visibility: hidden;
   transform-origin: 100% 100%;
 }
+
+select {
+  display: block !important;
+}

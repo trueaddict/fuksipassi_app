@@ -51,11 +51,12 @@ def create_new_task(jarj_id, num, desc, type):
     db.session.commit()
     return task.toJson()
 
-def update_task(task_id, num, desc, type):
+def update_task(task_id, num, desc, type, type_order):
     task = Tehtava.query.filter_by(id=task_id).filter_by(deleted=False).first()
     task.num = num
     task.kuvaus = desc
     task.tyyppi = type
+    task.tyyppiOrder = type_order
     db.session.commit()
     return task.toJson()
 
@@ -168,13 +169,16 @@ def get_data(user_id):
 
     teht = Tehtava.query.filter_by(id_jarj=user.id_jarj).filter_by(deleted=False).all()
     suoritukset = db.session.query(Suoritus).join(Kayttaja).filter(Kayttaja.id==user.id).all()
+    
     tehtavat = {}
 
     for t in teht:
-        tehtavat[t.tyyppi.strip()] = {}
-        tehtavat[t.tyyppi.strip()]['tehtavat'] = []
-        tehtavat[t.tyyppi.strip()]['kpl'] = 0
-        tehtavat[t.tyyppi.strip()]['suoritettu'] = 0
+        t_type = t.tyyppi.strip()
+        tehtavat[t_type] = {}
+        tehtavat[t_type]['tehtavat'] = []
+        tehtavat[t_type]['kpl'] = 0
+        tehtavat[t_type]['suoritettu'] = 0
+        tehtavat[t_type]['orderNum'] = t.tyyppiOrder
 
     i = 1
     for t in teht:

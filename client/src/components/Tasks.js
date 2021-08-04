@@ -15,11 +15,20 @@ const Tasks = ({user}) => {
         setOpen(tempOpen);
     }
 
+    const orderKeys = (tasks) => {
+        let keys = [];
+        for (let key of Object.keys(tasks)) {
+            keys.push({'name':key, 'orderNum':tasks[key].orderNum});
+        }
+        keys.sort((a,b) => { return a.orderNum > b.orderNum });
+        return keys;
+    }
+
     useEffect(() => {
        (async () => {
             const data = await Service.fetchData(user);
+            console.log(data);
             setTasks(data.tehtavat);
-            console.log(data)
             console.log(tasks);
        })();
        let falses = {}
@@ -33,7 +42,7 @@ const Tasks = ({user}) => {
     const direction = size.width <= 700 ? "column" : "row";
     const width = size.width <= 700 ? 12 : 6;
 
-    let keys = Object.keys(tasks);
+    let keys = orderKeys(tasks);
 
     return (
         <div className="container">
@@ -41,14 +50,14 @@ const Tasks = ({user}) => {
             {keys.length > 0 ? keys.map((key) => (
                 
                 <div className="" style={{wordWrap: 'break-word'}}>
-                    <button className={`accordion ${open[key] ? 'active' : ''}`} type="button" onClick={(event) => handleClick(event, key)}>
-                        <h5>{key}</h5>
+                    <button className={`accordion ${open[key.name] ? 'active' : ''}`} type="button" onClick={(event) => handleClick(event, key.name)}>
+                        <h5>{key.name}</h5>
                         <br></br>
-                        <h6>{tasks[key]['suoritettu']} / {tasks[key]['kpl']}</h6>
+                        <h6>{tasks[key.name]['suoritettu']} / {tasks[key.name]['kpl']}</h6>
                     </button>
-                    <div className={`panel ${open[key] ? 'show' : ''}`}>
+                    <div className={`panel ${open[key.name] ? 'show' : ''}`}>
                     <Grid container spacing={2} direction={direction}>
-                        {tasks[key]['tehtavat'].length > 0 ? tasks[key]['tehtavat'].map((task) => (
+                        {tasks[key.name]['tehtavat'].length > 0 ? tasks[key.name]['tehtavat'].map((task) => (
                             <Grid key={task.id} item xs={width}>
                                 <Task task={task} user={user}/>
                             </Grid>

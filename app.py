@@ -88,7 +88,7 @@ def tasks():
 def task():
   data = request.get_json()
   for task in data:
-    temp = update_task(task['id'], task['num'], task['desc'], task['type'])
+    temp = update_task(task['id'], task['num'], task['desc'], task['type'], task['type_order'])
   return jsonify(data)
 
 @app.route('/create_task', methods=['POST'])
