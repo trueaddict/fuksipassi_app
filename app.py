@@ -95,7 +95,7 @@ def task():
 @cross_origin()
 def create_task():
   data = request.get_json()
-  task = create_new_task(data['jarj_id'], data['num'], data['desc'], data['type'])
+  task = create_new_task(data['jarj_id'], data['num'], data['desc'], data['type'], data['typeOrder'])
   return jsonify(task)
 
 @app.route('/delete_task', methods=['POST'])

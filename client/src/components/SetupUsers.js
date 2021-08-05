@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Service from './Service';
 
-const SetupUsers = ({user}) => {
+const SetupUsers = ({user, theme}) => {
   const [row, setRow] = useState();
   const [data, setData] = useState();
 
@@ -34,9 +34,9 @@ const SetupUsers = ({user}) => {
                 </div>
                 
                 <ul>
-                  {Object.keys(temp.categories).map((category, index) => (
+                  {temp.categories.map((category, index) => (
                     <li>
-                      <p>{category}:</p><p style={{marginLeft:'1rem'}}> {temp.categories[category].approved_type_count} / {temp.categories[category].type_count} - {temp.categories[category].approved_type_percent}%</p>
+                      <p>{category.name}:</p><p style={{marginLeft:'1rem'}}> {category.approved_type_count} / {category.type_count} - {Math.round(category.approved_type_percent)}%</p>
                     </li>
                   ))}
                 </ul>

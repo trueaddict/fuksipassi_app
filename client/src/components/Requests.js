@@ -2,7 +2,7 @@ import { Grid } from '@material-ui/core';
 import React, {useEffect, useState} from 'react';
 import Service from './Service';
 
-const Requests = ({user}) => {
+const Requests = ({user, theme}) => {
     const [row, setRow] = useState();
     const [data, setData] = useState();
 
@@ -81,7 +81,7 @@ const Requests = ({user}) => {
                             <div className={`${row===index ? 'collapsible-body' : 'hidden'} `} style={{backgroundColor:'#4f4f4f4a'}} >
                                 <form onSubmit={(event) => handleSubmit(event, temp)}>
                                     <div>
-                                        <button className="btn-small kuittaa-btn" style={{backgroundColor:'#fbc02d'}}>Kuittaa valitut</button>
+                                        <button className={theme.button}>Kuittaa valitut</button>
                                     </div>
                                     <div>
                                         <ul>

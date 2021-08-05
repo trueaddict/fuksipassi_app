@@ -45,8 +45,8 @@ def query_tasks(jarj_id):
         tehtavat.append(task.toJson())
     return tehtavat
 
-def create_new_task(jarj_id, num, desc, type):
-    task = Tehtava(kuvaus=desc, tyyppi=type, id_jarj=jarj_id, num=num)
+def create_new_task(jarj_id, num, desc, type, typeOrder):
+    task = Tehtava(kuvaus=desc, tyyppi=type, tyyppiOrder=typeOrder, id_jarj=jarj_id, num=num)
     db.session.add(task)
     db.session.commit()
     return task.toJson()
@@ -109,6 +109,9 @@ def query_request(jarj_id):
 
     return temp_data
 
+def usersCategorySort(e):
+    return e['typeOrder']
+
 def query_users(jarj_id):
     suoritukset = Suoritus.query.filter_by(id_jarj=jarj_id).filter_by(approved=True).all()
     teht = Tehtava.query.filter_by(id_jarj=jarj_id).filter_by(deleted=False).all()
@@ -138,6 +141,7 @@ def query_users(jarj_id):
         for i in teht:
             temp['categories'][i.tyyppi] = {}
             temp['categories'][i.tyyppi]['list'] = []
+            temp['categories'][i.tyyppi]['typeOrder'] = i.tyyppiOrder
         
         for i in teht:
             approved = False
@@ -154,6 +158,15 @@ def query_users(jarj_id):
                 if task['approved']:
                     temp['categories'][i.tyyppi]['approved_type_count'] = temp['categories'][i.tyyppi]['approved_type_count'] + 1
             temp['categories'][i.tyyppi]['approved_type_percent'] = (temp['categories'][i.tyyppi]['approved_type_count'] / temp['categories'][i.tyyppi]['type_count']) * 100
+        
+        tempCat = temp['categories']
+        listCat = []
+        for key in tempCat.keys():
+            category = tempCat[key]
+            category['name'] = key
+            listCat.append(category)
+        listCat.sort(key=usersCategorySort)
+        temp['categories'] = listCat
         temp_data.append(temp)
         print(temp)
     return temp_data
@@ -226,11 +239,12 @@ class Tehtava(db.Model):
   def toJson(self):
     return {'id':self.id, 'jarj_id':self.id_jarj, 'num':self.num, 'desc':self.kuvaus, 'type':self.tyyppi, 'type_order':self.tyyppiOrder}
 
-  def __init__(self, kuvaus, id_jarj, tyyppi, num):
+  def __init__(self, kuvaus, id_jarj, tyyppi, tyyppiOrder, num):
     self.kuvaus = kuvaus
     self.id_jarj = id_jarj
     self.num = num
     self.tyyppi = tyyppi
+    self.tyyppiOrder = tyyppiOrder
 
 class Suoritus(db.Model):
   __tablename__ = 'suoritus'

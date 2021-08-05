@@ -32,7 +32,7 @@ const useStyles = makeStyles({
     }
 });
 
-const Setup = ({user}) => {
+const Setup = ({user, theme}) => {
     const [value, setValue] = useState(0);
     const classes = useStyles();
     const size = Service.useWindowSize();
@@ -45,6 +45,9 @@ const Setup = ({user}) => {
     return (
         <>
             <div style={{width: contentWidth, margin: 'auto'}}>
+                <style>
+                    {'body {background-color:'+theme.bodyBackgroundColor+';'}
+                </style>
                 <Tabs value={value} onChange={handleTabChange} textColor="primary" indicatorColor="primary" TabIndicatorProps={{style:{background:'black', 'text-color':'black'}}} variant="fullWidth" centered>
                     <Tab label="Pyynnöt" style={{color:'rgba(0, 0, 0, 0.7)'}}></Tab>
                     <Tab label="Tehtävät" style={{color:'rgba(0, 0, 0, 0.7)'}}></Tab>
@@ -52,13 +55,13 @@ const Setup = ({user}) => {
                 </Tabs>
             
                 <TabPanel value={value} index={0}>
-                    <Requests user={user}/>
+                    <Requests user={user} theme={theme}/>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    <SetupTasks user={user}/>
+                    <SetupTasks user={user} theme={theme}/>
                 </TabPanel>
                 <TabPanel value={value} index={2}>
-                    <SetupUsers user={user}/>
+                    <SetupUsers user={user} theme={theme}/>
                 </TabPanel>
             </div>
             

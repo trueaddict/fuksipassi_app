@@ -28,7 +28,7 @@ const Header = ({setUser, user, theme}) => {
                     </div>
                 </Grid>
                 <Grid item xs={colunm_width[1]} >
-                    <div className="header">
+                    <div className="header" style={{'textAlign':'center'}}>
                         <a href="//" className=""><h3 className="brand-logo" style={theme.navTextColor}>{theme.name}</h3></a>
                     </div>
                 </Grid>

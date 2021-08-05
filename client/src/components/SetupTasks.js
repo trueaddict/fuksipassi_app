@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Service from './Service';
 
-const SetupTasks = ({user}) => {
+const SetupTasks = ({user, theme}) => {
   const [tasks, setTasks] = useState([]);
   const [types, setTypes] = useState(new Map());
   const [showNew, setShowNew] = useState(false);
@@ -11,7 +11,7 @@ const SetupTasks = ({user}) => {
   const [type, setNewType] = useState('');
 
   const [newNum, setNum] = useState();
-  const [newType, setType] = useState();
+  const [newType, setType] = useState(1);
   const [newDesc, setDesc] = useState();
 
 
@@ -48,7 +48,7 @@ const SetupTasks = ({user}) => {
   const handleNewTask = async event => {
     setShowNew(!showNew);
     setNum();
-    setType();
+    setType(1);
     setDesc();
   }
 
@@ -56,14 +56,15 @@ const SetupTasks = ({user}) => {
     event.preventDefault();
     (async () => {
       let temp = {}
-      temp['num'] = newNum;
-      temp['type'] = newType;
+      temp['num'] = parseInt(newNum);
+      temp['type'] = types.get(parseInt(newType));
+      temp['typeOrder'] = parseInt(newType);
       temp['desc'] = newDesc;
       temp['jarj_id'] = user.id_jarj;
       setAddedNew(true);
+      console.log(temp);
       await Service.createTask(temp);
-      const data = await Service.fetchTasks(user);
-      setTasks(data);
+      await init();
     })();
   };
 
@@ -117,9 +118,10 @@ const SetupTasks = ({user}) => {
 
   const handleSave = async event => {
     await Service.updateTasks(tasks);
+    await init();
   }
 
-  useEffect(() => {
+  const init = async => {
     (async () => {
       const data = await Service.fetchTasks(user);
       let tempData = Object.assign([], data);
@@ -132,14 +134,18 @@ const SetupTasks = ({user}) => {
       }
       setTypes(tempTypes);
     })();
+  }
+
+  useEffect(() => {
+    init();
   }, []);
 
   return (
     <>
       <div style={{marginTop:'1rem', marginLeft:'1rem'}}>
-        <button onClick={(event) => handleSave(event)} className='btn yellow darken-2' style={{marginRight:'1rem'}}>Tallenna muutokset</button>
-        <button onClick={(event) => handleNewTask(event)} className='btn yellow darken-2'>Lisää tehtävä</button>
-        <button onClick={(event) => setShowNewType(!showNewType)} className='btn yellow darken-2' style={{marginLeft:'1rem'}}>Lisää kategoria</button>
+        <button onClick={(event) => handleSave(event)} className={theme.button} style={{marginRight:'1rem'}}>Tallenna muutokset</button>
+        <button onClick={(event) => handleNewTask(event)} className={theme.button}>Lisää tehtävä</button>
+        <button onClick={(event) => setShowNewType(!showNewType)} className={theme.button} style={{marginLeft:'1rem'}}>Lisää kategoria</button>
       </div>
       {showNewType ? 
         <div className='collection'>
@@ -151,8 +157,8 @@ const SetupTasks = ({user}) => {
                   <div className='input-field inline'>
                     <input type='text' defaultValue={temp}></input>
                   </div>
-                  <button type='submit' className='btn-floating yellow darken-2' style={{marginLeft:'1rem'}}><i class="material-icons">save</i></button>
-                  <button onClick={(event) => handleTypeRemove(event, key)} className='btn-floating yellow darken-2' style={{marginLeft:'1rem'}}><i class="material-icons">clear</i></button>
+                  <button type='submit' className={theme.button} style={{marginLeft:'1rem'}}><i class="material-icons">save</i></button>
+                  <button onClick={(event) => handleTypeRemove(event, key)} className={theme.button} style={{marginLeft:'1rem'}}><i class="material-icons">clear</i></button>
                 </form>
               </div>
             )) : null}
@@ -164,7 +170,7 @@ const SetupTasks = ({user}) => {
               <div className='input-field inline'>
                 <input type='text' value={type} onChange={(event) => setNewType(event.target.value)}></input>
               </div>
-              <button onClick={(event) => handleTypeNew(event, Array.from(types).length+1)} className='btn yellow darken-2' style={{marginLeft:'1rem'}}>Lisää</button>
+              <button onClick={(event) => handleTypeNew(event, Array.from(types).length+1)} className={theme.button} style={{marginLeft:'1rem'}}>Lisää</button>
             </div>
           </div>
         </div> : null}      
@@ -176,20 +182,20 @@ const SetupTasks = ({user}) => {
                 {addedNew ? <p>Uusi tehtävä lisätty!</p> : null}
                 <form onSubmit={submitNewTask}>
                     <label for="num">Numero</label>
-                    <input id="num" type='number' onChange={e => {setNum(e.target.value);setAddedNew(false);}}></input>
+                    <input id="num" type='number' required onChange={e => {setNum(parseInt(e.target.value));setAddedNew(false);}}></input>
                     
                     <label>Kategoria</label>
                     <div className='input-field'>
-                      <select onChange={e => {setType(e.target.value);setAddedNew(false);}}>
+                      <select defaultValue={1} required onChange={e => {setType(e.target.value);setAddedNew(false);}}>
                         {types !== undefined ? Array.from(types).map(([key, temp], index) => (
-                          <option value={temp}>{temp}</option>
+                          <option value={parseInt(key)}>{temp}</option>
                         )): null}
                       </select>
                     </div>
                     
                     <label for="desc">Tehtävä</label>
-                    <input id='desc' type='text' onChange={e => {setDesc(e.target.value);setAddedNew(false);}}></input>
-                    <input class="btn yellow darken-2" type="submit" value="Lisää"/>
+                    <input id='desc' type='text' required onChange={e => {setDesc(e.target.value);setAddedNew(false);}}></input>
+                    <input className={theme.button} type="submit" value="Lisää"/>
                 </form>
               </div>
             </div>
@@ -202,12 +208,12 @@ const SetupTasks = ({user}) => {
             <div>
               <form onChange={(event) => handleChange(event, temp)}>
                 <label for="num">Numero</label>
-                <input id="num" type='number' value={temp.num}></input>
+                <input id="num" type='number' defaultValue={parseInt(temp.num)}></input>
                 
                 
                 <label>Kategoria</label>
                 <div className='input-field'>
-                  <select value={temp.type_order} id='type'>
+                  <select defaultValue={temp.type_order} id='type'>
                     {types !== undefined ? Array.from(types).map(([key, temp], index) => (
                       <option value={key}>{temp}</option>
                     )): null}
@@ -217,9 +223,9 @@ const SetupTasks = ({user}) => {
                 
                 
                 <label for="desc">Tehtävä</label>
-                <input id='desc' type='text' value={temp.desc}></input>
+                <input id='desc' type='text' defaultValue={temp.desc}></input>
               </form>
-              <button onClick={(event) => handleDelete(event, temp)} className="btn-small yellow darken-2">Poista tehtävä</button>
+              <button onClick={(event) => handleDelete(event, temp)} className={theme.button}>Poista tehtävä</button>
             </div>
           </li>
         )): null}

@@ -73,7 +73,7 @@ const App = () => {
     return (
     <>
       <Header setUser={setUser} user={user} theme={theme}/>
-      <Setup user={user}/>
+      <Setup user={user} theme={theme}/>
     </>);
   }
 
