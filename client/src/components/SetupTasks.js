@@ -142,14 +142,14 @@ const SetupTasks = ({user, theme}) => {
 
   return (
     <>
-      <div style={{marginTop:'1rem', marginLeft:'1rem'}}>
+      <div style={{margin:'1rem', 'paddingBottom':'1rem' , 'overflow-x':'auto','whiteSpace':'nowrap'}}>
         <button onClick={(event) => handleSave(event)} className={theme.button} style={{marginRight:'1rem'}}>Tallenna muutokset</button>
         <button onClick={(event) => handleNewTask(event)} className={theme.button}>Lisää tehtävä</button>
         <button onClick={(event) => setShowNewType(!showNewType)} className={theme.button} style={{marginLeft:'1rem'}}>Lisää kategoria</button>
       </div>
       {showNewType ? 
         <div className='collection'>
-          <div className='collection-item'>
+          <div className='collection-item' style={{width:'100%', 'padding':'0rem 0rem 0rem 1rem'}}>
             { types !== undefined ? Array.from(types).map(([key, temp], index) => (
               <div key={temp}>
                 <form onSubmit={(event => handleTypeEdit(event, key))}>
@@ -157,8 +157,8 @@ const SetupTasks = ({user, theme}) => {
                   <div className='input-field inline'>
                     <input type='text' defaultValue={temp}></input>
                   </div>
-                  <button type='submit' className={theme.button} style={{marginLeft:'1rem'}}><i class="material-icons">save</i></button>
-                  <button onClick={(event) => handleTypeRemove(event, key)} className={theme.button} style={{marginLeft:'1rem'}}><i class="material-icons">clear</i></button>
+                  <button type='submit' className={`btn-floating `+ theme.button} style={{marginLeft:'1rem'}}><i class="material-icons">save</i></button>
+                  <button onClick={(event) => handleTypeRemove(event, key)} className={`btn-floating `+theme.button} style={{marginLeft:'1rem'}}><i class="material-icons">clear</i></button>
                 </form>
               </div>
             )) : null}

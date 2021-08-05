@@ -53,7 +53,8 @@ const Requests = ({user, theme}) => {
         setData(tempData);
     }
 
-    const handleReject = async (req) => {
+    const handleReject = async (event,req) => {
+        event.preventDefault();
         (async () => {
             await Service.deleteRequest(req);
             const data = await Service.fetchSetupData(user);
@@ -99,7 +100,7 @@ const Requests = ({user, theme}) => {
                                                                 </div>
                                                             </Grid>
                                                             <Grid item xs={3}>
-                                                                <button className='btn-small grey' onClick={(event) => handleReject(req)}>Hylkää</button>
+                                                                <button className='btn-small grey' onClick={(event) => handleReject(event, req)}>Hylkää</button>
                                                             </Grid>
                                                         </Grid>
                                                     </div>
