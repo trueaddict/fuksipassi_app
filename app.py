@@ -1,6 +1,6 @@
-from flask import Flask, json, request, send_from_directory, jsonify
+from flask import request, send_from_directory, jsonify
 from flask_cors import CORS, cross_origin
-from db import create_app, create_new_user, get_data, query_jarj, query_kayttaja, delete_user, query_tasks, update_task, create_new_task, delete_task, create_request, query_request, approve_request, delete_request, query_users
+from db import create_app, create_new_user, get_data, query_jarj, query_kayttaja, delete_user, query_tasks, update_task, create_new_task, delete_task, create_request, query_request, approve_request, delete_request, query_users, Kayttaja
  
 app = create_app()
 cors = CORS(app)
@@ -36,12 +36,14 @@ def login():
       user login
     """
     ret_data['user_id'] = user.id
+
   elif user != None and jarj.admin_password == data['password']:
     """
       admin login
     """
     ret_data['user_id'] = user.id
     ret_data['is_admin'] = user.is_admin
+    
   
   if user == None and jarj.password == data['password']:
     """
@@ -51,6 +53,7 @@ def login():
     ret_data['user_id'] = new_user.id
     ret_data['is_admin'] = new_user.is_admin
     ret_data['isnewuser'] = True
+    
   if user == None and jarj.admin_password == data['password']:
     """
       Creates new admin user
@@ -59,6 +62,7 @@ def login():
     ret_data['user_id'] = new_user.id
     ret_data['is_admin'] = new_user.is_admin
     ret_data['isnewuser'] = True
+    
 
   return jsonify(ret_data)
 
@@ -69,13 +73,13 @@ def signout():
   delete_user(data['user_id'])
   return jsonify({})
 
-
 @app.route('/data', methods=['GET'])
 @cross_origin()
 def data():
   user_id = request.args.get('token')
   print(user_id)
   return jsonify(get_data(user_id))
+  
 
 @app.route('/tasks', methods=['GET'])
 @cross_origin()

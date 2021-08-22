@@ -1,16 +1,19 @@
-from flask import Flask
+from flask import Flask, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import os
+import csv
 
 app = Flask(__name__, static_folder='client/build', static_url_path='')
 #app.secret_key = os.environ.get('SECRET_KEY')
 
 if 'DATABASE_URI' in os.environ:
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
+    app.secret_key = os.environ.get('SECRET_KEY')
     app.debug = False
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://otto:@localhost:5432/otto'
+    app.secret_key = 'salainensana'
     app.debug = True
 
 db = SQLAlchemy(app)
@@ -293,10 +296,21 @@ class Jarjesto(db.Model):
 #db.create_all()
 #create_new_jarjesto('syrinx', 'syrinx20', 'syrinxadmin')
 #create_new_task(1,1,'Ensimmäinen tehtävä', 'Tyyppi1')
-#print('Tehtävät',Tehtava.query.all())
-#print('Suoritus',Suoritus.query.all())
 
-print(os.environ.get('DATABASE_URI'))
+def addTasks():
+    with open('syrinx_teht_2021.csv', newline='', encoding='utf-8-sig') as f:
+        reader = csv.DictReader(f, delimiter=';')
+        for row in reader:
+            task = Tehtava(id_jarj = 1,kuvaus=row['task'],num=int(row['num']),tyyppi=row['category'],tyyppiOrder=row['category_num'])
+            db.session.add(task)
+            print(row)
+    db.session.commit()
+#tasks = Tehtava.query.filter_by(id_jarj='1').all()
+#print('Tehtävät',tasks)
+#for task in tasks:
+#    db.session.delete(task)
+#db.session.commit()
+
 
 '''
     END 

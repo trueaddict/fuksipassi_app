@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Service from './Service';
 
-const Login = ({ setUser, id_jarj, theme }) => {
+const Login = ({ setUser, user, id_jarj, theme }) => {
     const [useremail, setEmail] = useState();
     const [password, setPassword] = useState();
     const [errors, setErrors] = useState();

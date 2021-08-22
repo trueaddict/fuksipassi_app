@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
-//const url = 'http://127.0.0.1:5000';
-const url = 'https://fuksipassi-react.herokuapp.com';
+const url = 'http://127.0.0.1:5000';
+//const url = 'https://fuksipassi-react.herokuapp.com';
 
 const loginUser = async (creds) => {
     return fetch(url+'/login', {
@@ -13,7 +13,6 @@ const loginUser = async (creds) => {
     })
     .then(data => data.json())
 };
-
 
 const deleteUser = async (user) => {
     return fetch(url+'/signout', {
