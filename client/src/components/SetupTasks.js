@@ -125,13 +125,20 @@ const SetupTasks = ({user, theme}) => {
     (async () => {
       const data = await Service.fetchTasks(user);
       let tempData = Object.assign([], data);
-      tempData.sort((a,b) => { return a.num > b.num })
+      tempData.sort((a,b) => { 
+        if (a.type_order > b.type_order) return 1;
+        if (a.type_order < b.type_order) return -1;
+        if (a.num > b.num) return 1;
+        if (a.num < b.num) return -1;
+        return 0;
+      })
       console.log(tempData);
       setTasks(tempData);
       const tempTypes = new Map();
       for (let task of data.sort((a,b) => { return a.type_order > b.type_order })) {
         tempTypes.set(task.type_order, task.type);
       }
+      console.log(tempTypes);
       setTypes(tempTypes);
     })();
   }
@@ -213,7 +220,7 @@ const SetupTasks = ({user, theme}) => {
                 
                 <label>Kategoria</label>
                 <div className='input-field'>
-                  <select defaultValue={temp.type_order} id='type'>
+                  <select value={temp.type_order} id='type'>
                     {types !== undefined ? Array.from(types).map(([key, temp], index) => (
                       <option value={key}>{temp}</option>
                     )): null}
