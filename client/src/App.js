@@ -10,11 +10,13 @@ import Setup from './components/Setup';
 import Frontpage from './components/Frontpage';
 import Gdpr from './components/Gdpr';
 import Config from './config/Config';
+import { useCookies } from 'react-cookie';
 
 import './css/materialize.min.css';
 
 const App = () => {
   const [user, setUser] = useState();
+  const [cookies, setCookie] = useCookies(['useremail','password']);
   let themes = {
     '1':Config.syrinx,
   };
@@ -25,7 +27,7 @@ const App = () => {
       <Router>
         <Switch>
           <Route path='/syrinx'>
-            <Login setUser={setUser} id_jarj={'1'} theme={Config.syrinx}/>
+            <Login setUser={setUser} setCookie={setCookie} cookies={cookies} id_jarj={'1'} theme={Config.syrinx}/>
           </Route>
           <Route path='/gdpr'>
             <Gdpr/>
@@ -45,7 +47,7 @@ const App = () => {
   if (user.is_admin) {
     return (
     <>
-      <Header setUser={setUser} user={user} theme={theme}/>
+      <Header setUser={setUser} user={user} setCookie={setCookie} theme={theme}/>
       <Setup user={user} theme={theme}/>
     </>);
   }
@@ -53,7 +55,7 @@ const App = () => {
   return (
     <>
       {user.isnewuser ? <Policy user={user} setUser={setUser}/> : <></>}
-      <Header setUser={setUser} user={user} theme={theme}/>
+      <Header setUser={setUser} user={user} setCookie={setCookie} theme={theme}/>
       <Info theme={theme}/>
       <Tasks user={user} theme={theme}/>
     </>

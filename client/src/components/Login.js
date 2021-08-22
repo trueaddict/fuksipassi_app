@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Service from './Service';
 
-const Login = ({ setUser, user, id_jarj, theme }) => {
+const Login = ({ setUser, id_jarj, setCookie, cookies, theme }) => {
     const [useremail, setEmail] = useState();
     const [password, setPassword] = useState();
     const [errors, setErrors] = useState();
@@ -16,10 +16,31 @@ const Login = ({ setUser, user, id_jarj, theme }) => {
         const temp_user = await Service.loginUser(user);
         if (temp_user.user_id) {
             setUser(temp_user);
+            setCookie('useremail', user.useremail, {path: '/'});
+            setCookie('password', user.password, {path: '/'});
         } else {
             setErrors(true);
         }
     }
+
+    useEffect(() => {
+        (async () => {
+            let email = cookies.useremail;
+            let password = cookies.password;
+            if (email != null && password != null) {
+                const user = {
+                    useremail: email,
+                    password: password,
+                    id_jarj: id_jarj
+                }
+                const temp_user = await Service.loginUser(user);
+                if (temp_user.user_id) {
+                    setUser(temp_user);
+                }
+            }
+        })();
+    }, []);
+
 
     return (
         <div>

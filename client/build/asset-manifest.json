@@ -1,21 +1,21 @@
 {
   "files": {
     "main.css": "/static/css/main.971386c5.chunk.css",
-    "main.js": "/static/js/main.f99e6e64.chunk.js",
-    "main.js.map": "/static/js/main.f99e6e64.chunk.js.map",
+    "main.js": "/static/js/main.4e3fe76c.chunk.js",
+    "main.js.map": "/static/js/main.4e3fe76c.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.e5a68642.js",
     "runtime-main.js.map": "/static/js/runtime-main.e5a68642.js.map",
-    "static/js/2.fa0829c4.chunk.js": "/static/js/2.fa0829c4.chunk.js",
-    "static/js/2.fa0829c4.chunk.js.map": "/static/js/2.fa0829c4.chunk.js.map",
+    "static/js/2.f83eaaee.chunk.js": "/static/js/2.f83eaaee.chunk.js",
+    "static/js/2.f83eaaee.chunk.js.map": "/static/js/2.f83eaaee.chunk.js.map",
     "index.html": "/index.html",
     "static/css/main.971386c5.chunk.css.map": "/static/css/main.971386c5.chunk.css.map",
-    "static/js/2.fa0829c4.chunk.js.LICENSE.txt": "/static/js/2.fa0829c4.chunk.js.LICENSE.txt",
+    "static/js/2.f83eaaee.chunk.js.LICENSE.txt": "/static/js/2.f83eaaee.chunk.js.LICENSE.txt",
     "static/media/Linkin_logo.7458fc95.png": "/static/media/Linkin_logo.7458fc95.png"
   },
   "entrypoints": [
     "static/js/runtime-main.e5a68642.js",
-    "static/js/2.fa0829c4.chunk.js",
+    "static/js/2.f83eaaee.chunk.js",
     "static/css/main.971386c5.chunk.css",
-    "static/js/main.f99e6e64.chunk.js"
+    "static/js/main.4e3fe76c.chunk.js"
   ]
 }

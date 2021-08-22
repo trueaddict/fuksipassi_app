@@ -2,7 +2,7 @@ import React from 'react';
 import Service from './Service';
 import Grid from '@material-ui/core/Grid';
 
-const Header = ({setUser, user, theme}) => {
+const Header = ({setUser, user, setCookie, theme}) => {
     const size = Service.useWindowSize();
     const direction = size.width <= 700 ? "column" : "row";
     let colunm_width = [3, 6, 1, 2];
@@ -17,6 +17,8 @@ const Header = ({setUser, user, theme}) => {
 
     const handleLogout = (e) => {
         setUser();
+        setCookie('useremail', null, {path: '/'});
+        setCookie('password', null, {path: '/'});
     }
 
     return (
