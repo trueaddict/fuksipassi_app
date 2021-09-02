@@ -13,6 +13,10 @@ def index():
 def syrinx():
   return send_from_directory(app.static_folder, 'index.html')
 
+@app.route('/linkkijkl')
+def syrinx():
+  return send_from_directory(app.static_folder, 'index.html')
+
 
 @app.route('/login', methods=['POST'])
 @cross_origin()
