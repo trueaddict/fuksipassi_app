@@ -14,7 +14,7 @@ def syrinx():
   return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/linkkijkl')
-def syrinx():
+def linkkijkl():
   return send_from_directory(app.static_folder, 'index.html')
 
 
