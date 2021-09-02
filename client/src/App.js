@@ -19,6 +19,7 @@ const App = () => {
   const [cookies, setCookie] = useCookies(['useremail','password']);
   let themes = {
     '1':Config.syrinx,
+    '2':Config.linkkijkl
   };
   console.log(user);
 
@@ -28,6 +29,9 @@ const App = () => {
         <Switch>
           <Route path='/syrinx'>
             <Login setUser={setUser} setCookie={setCookie} cookies={cookies} id_jarj={'1'} theme={Config.syrinx}/>
+          </Route>
+          <Route path='/linkkijkl'>
+            <Login setUser={setUser} setCookie={setCookie} cookies={cookies} id_jarj={'2'} theme={Config.linkkijkl}/>
           </Route>
           <Route path='/gdpr'>
             <Gdpr/>

@@ -23,7 +23,7 @@ def login():
   print(data)
 
   jarj = query_jarj(data['id_jarj']) #Jarjesto.query.filter_by(id=data['id_jarj']).first()
-  user = query_kayttaja(norm_useremail) #Kayttaja.query.filter_by(useremail = data['useremail']).first()
+  user = query_kayttaja(norm_useremail, jarj.id) #Kayttaja.query.filter_by(useremail = data['useremail']).first()
 
   ret_data = {}
   ret_data['user_id'] = ''
@@ -49,7 +49,10 @@ def login():
     """
       Creates new standard user
     """
-    new_user = create_new_user(norm_useremail, jarj, False)
+    try:  
+      new_user = create_new_user(norm_useremail, jarj, False)
+    except:
+      return jsonify(ret_data)
     ret_data['user_id'] = new_user.id
     ret_data['is_admin'] = new_user.is_admin
     ret_data['isnewuser'] = True
@@ -58,7 +61,10 @@ def login():
     """
       Creates new admin user
     """
-    new_user = create_new_user(norm_useremail, jarj, True)
+    try:
+      new_user = create_new_user(norm_useremail, jarj, True)
+    except:
+      return jsonify(ret_data)
     ret_data['user_id'] = new_user.id
     ret_data['is_admin'] = new_user.is_admin
     ret_data['isnewuser'] = True

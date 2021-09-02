@@ -28,7 +28,7 @@ const Task = ({task, user, theme}) => {
                  approved ? <button className="btn brand-text btn-suoritettu">Suoritettu</button>:
                 <form onSubmit={sendRequest}>
                     <input type="text" placeholder="Viesti / Tutorin nimi" onChange={e => setMessage(e.target.value)}/>
-                    <button type="submit" className="btn brand-text yellow darken-2">Lähetä</button>
+                    <button type="submit" className={theme.button}>Lähetä</button>
                 </form>  }
                 
             </div>

@@ -52,7 +52,7 @@ const Login = ({ setUser, id_jarj, setCookie, cookies, theme }) => {
                         
                     </div>
                     <div class="col s12 m4 offset-m2">
-                        <a href="//" class=""><h3 class="brand-text brand-logo">Syrinx Fuksipassi</h3></a>
+                        <a href="//" class=""><h3 class="brand-logo" style={theme.navTextColor}>{theme.name}</h3></a>
                     </div>
                 </div>
               </div>

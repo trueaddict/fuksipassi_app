@@ -34,4 +34,22 @@ const sporticus = {
   info_3:''
 }
 
-export default {syrinx, sporticus};
+const linkkijkl = {
+  name: 'Linkki JKL Fuksipassi',
+  button: 'btn blue darken-3',
+  navBackgroundColor:{'background':'#03076d'},
+  navTextColor:{'color':'#fff'},
+  bodyBackgroundColor:'',
+  accentBackgroundColor:{'backgroundColor':'#fff'},
+  taskButton:{
+    'border': '1px solid #000',
+    'color': '#000'
+  },
+  icon_url:'https://linkkijkl.fi/wp-content/uploads/elementor/thumbs/Logo-pca3kthds2zrj6b0cvdgw50gdi6a0pmkk27nxh41d4.png',
+  website_url:'https://linkkijkl.fi/',
+  info_1:'',
+  info_2:'',
+  info_3:''
+}
+
+export default {syrinx, sporticus, linkkijkl};

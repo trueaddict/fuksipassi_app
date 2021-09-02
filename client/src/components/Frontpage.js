@@ -20,7 +20,7 @@ const Frontpage = () => {
           <div class="card z-depth-0 grey lighten-4">
             <div class="card-content center card-size">
               <h3 class="">Linkki</h3>
-              <a href="#"><img src={linkki_logo} alt="" class="responsive-img"/></a>
+              <a href="/linkkijkl"><img src={linkki_logo} alt="" class="responsive-img"/></a>
             </div>
           </div>
         </div>

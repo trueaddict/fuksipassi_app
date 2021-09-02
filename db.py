@@ -40,7 +40,7 @@ def create_new_user(useremail, jarj, is_admin):
     db.session.add(newUser)
     db.session.commit()
     return newUser
-
+    
 def query_tasks(jarj_id):
     tasks = Tehtava.query.filter_by(id_jarj=jarj_id).filter_by(deleted=False).order_by(Tehtava.num).all()
     tehtavat = []
@@ -177,8 +177,8 @@ def query_users(jarj_id):
 def query_jarj(id_jarj):
     return Jarjesto.query.filter_by(id=id_jarj).first()
 
-def query_kayttaja(useremail):
-    return Kayttaja.query.filter_by(useremail = useremail).first()
+def query_kayttaja(useremail, id_jarj):
+    return Kayttaja.query.filter_by(id_jarj = id_jarj).filter_by(useremail = useremail).first()
 
 def get_data(user_id):
     user = Kayttaja.query.filter_by(id = user_id).first()
@@ -294,18 +294,19 @@ class Jarjesto(db.Model):
 
 #print(app.config['SQLALCHEMY_DATABASE_URI'])
 #db.create_all()
-#create_new_jarjesto('syrinx', 'syrinx20', 'syrinxadmin')
+# create_new_jarjesto('linkkijkl', 'linkkijkl21', 'linkkijkladmin')
 #create_new_task(1,1,'Ensimmäinen tehtävä', 'Tyyppi1')
 
 def addTasks():
-    with open('syrinx_teht_2021.csv', newline='', encoding='utf-8-sig') as f:
+    with open('linkki_teht_2021.csv', newline='', encoding='utf-8-sig') as f:
         reader = csv.DictReader(f, delimiter=';')
         for row in reader:
-            task = Tehtava(id_jarj = 1,kuvaus=row['task'],num=int(row['num']),tyyppi=row['category'],tyyppiOrder=row['category_num'])
+            task = Tehtava(id_jarj = 2,kuvaus=row['task'],num=int(row['num']),tyyppi=row['category'],tyyppiOrder=row['category_num'])
             db.session.add(task)
             print(row)
     db.session.commit()
-#tasks = Tehtava.query.filter_by(id_jarj='1').all()
+
+#tasks = Tehtava.query.filter_by(id_jarj='2').all()
 #print('Tehtävät',tasks)
 #for task in tasks:
 #    db.session.delete(task)
